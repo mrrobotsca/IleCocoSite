@@ -22,20 +22,20 @@ export interface BrandConfig {
  * Default brand configuration values
  */
 const defaultConfig: BrandConfig = {
-  name: 'ShipFree',
+  name: 'Ile CoCo',
   logoUrl: undefined,
   faviconUrl: '/favicon/favicon.ico',
   customCssUrl: undefined,
-  supportEmail: 'hi@revoks.dev',
+  supportEmail: 'info@ilecoco.com',
   documentationUrl: undefined,
   termsUrl: undefined,
   privacyUrl: undefined,
   theme: {
-    primaryColor: '#701ffc',
-    primaryHoverColor: '#802fff',
-    accentColor: '#9d54ff',
-    accentHoverColor: '#a66fff',
-    backgroundColor: '#0c0c0c',
+    primaryColor: '#2a2a2a',
+    primaryHoverColor: '#1a1a1a',
+    accentColor: '#e2b56a',
+    accentHoverColor: '#ecc787',
+    backgroundColor: '#faf8f2',
   },
 }
 

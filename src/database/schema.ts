@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm'
-import { pgTable, text, timestamp, boolean, index, decimal } from 'drizzle-orm/pg-core'
+import { pgTable, text, timestamp, boolean, index, decimal, date } from 'drizzle-orm/pg-core'
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
@@ -238,3 +238,57 @@ export const paymentRelations = relations(payment, ({ one }) => ({
     references: [subscription.id],
   }),
 }))
+
+// =============================================================================
+// Ile CoCo: waitlist applicants and newsletter subscribers
+// =============================================================================
+
+export const waitlistApplicant = pgTable(
+  'waitlist_applicant',
+  {
+    id: text('id').primaryKey(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+
+    // Child
+    childFirstName: text('child_first_name').notNull(),
+    childDob: date('child_dob').notNull(), // YYYY-MM-DD
+
+    // Preferences
+    preferredLocation: text('preferred_location').notNull(), // 'somerled' | 'cote-des-neiges' | 'either'
+    desiredStartDate: date('desired_start_date').notNull(), // YYYY-MM-DD
+    careType: text('care_type').notNull(), // 'full-time' | 'part-time'
+
+    // Parent / contact
+    parentName: text('parent_name').notNull(),
+    parentEmail: text('parent_email').notNull(),
+    parentPhone: text('parent_phone').notNull(),
+    heardFrom: text('heard_from'),
+    notes: text('notes'),
+
+    // Admin workflow
+    status: text('status').default('new').notNull(), // 'new' | 'contacted' | 'tour-booked' | 'offered' | 'placed' | 'closed'
+    lang: text('lang').notNull(), // 'en' | 'fr'
+  },
+  (table) => [
+    index('waitlist_applicant_status_idx').on(table.status),
+    index('waitlist_applicant_created_at_idx').on(table.createdAt),
+    index('waitlist_applicant_email_idx').on(table.parentEmail),
+  ],
+)
+
+export const newsletterSubscriber = pgTable(
+  'newsletter_subscriber',
+  {
+    id: text('id').primaryKey(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    email: text('email').notNull().unique(),
+    lang: text('lang').notNull(), // 'en' | 'fr'
+    source: text('source').notNull(), // 'newsletter-band' | 'cta-band'
+    unsubscribedAt: timestamp('unsubscribed_at'),
+  },
+  (table) => [index('newsletter_subscriber_created_at_idx').on(table.createdAt)],
+)

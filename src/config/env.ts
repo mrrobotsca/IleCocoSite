@@ -74,6 +74,9 @@ export const env = createEnv({
     PREMIUM_PURCHASE_STRIPE_SECRET_KEY: z.string().optional(),
     PREMIUM_PURCHASE_STRIPE_PRICE_ID: z.string().optional(),
     PREMIUM_PURCHASE_STRIPE_WEBHOOK_SECRET: z.string().optional(),
+
+    // Ile CoCo admin: comma-separated email allowlist for /dashboard/admin access
+    ADMIN_EMAILS: z.string().optional(),
   },
 
   client: {
@@ -145,6 +148,7 @@ export const env = createEnv({
     PREMIUM_PURCHASE_STRIPE_SECRET_KEY: process.env.PREMIUM_PURCHASE_STRIPE_SECRET_KEY,
     PREMIUM_PURCHASE_STRIPE_PRICE_ID: process.env.PREMIUM_PURCHASE_STRIPE_PRICE_ID,
     PREMIUM_PURCHASE_STRIPE_WEBHOOK_SECRET: process.env.PREMIUM_PURCHASE_STRIPE_WEBHOOK_SECRET,
+    ADMIN_EMAILS: process.env.ADMIN_EMAILS,
     PAYMENT_PROVIDER: process.env.PAYMENT_PROVIDER,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,

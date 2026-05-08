@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Bricolage_Grotesque } from 'next/font/google'
+import { Geist, Geist_Mono, Bricolage_Grotesque, Quicksand, Fraunces, Caveat } from 'next/font/google'
 
 import '@/app/_styles/globals.css'
 import { QueryProvider } from '@/app/_providers/query-provider'
@@ -21,11 +21,29 @@ const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ['latin'],
 })
 
+const quicksand = Quicksand({
+  variable: '--font-quicksand',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+})
+
+const fraunces = Fraunces({
+  variable: '--font-fraunces',
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+})
+
+const caveat = Caveat({
+  variable: '--font-caveat',
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+})
+
 export const metadata: Metadata = {
   ...generateMetadata({
-    title: 'ShipFree - Turn Ideas Into Products, Fast',
+    title: 'Ile CoCo · Where little hearts bloom',
     description:
-      'Ship your startup in days, not weeks. A production-ready Next.js boilerplate with auth, payments, and everything you need to launch fast. Free forever, open source.',
+      'A small Montessori-inspired daycare in Montréal — two warm, sun-drenched homes on Somerled and Côte-des-Neiges. Bilingual, small-group, house-made meals, no screens.',
     isRootLayout: true,
   }),
   icons: {
@@ -39,11 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bricolageGrotesque.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bricolageGrotesque.variable} ${quicksand.variable} ${fraunces.variable} ${caveat.variable} antialiased`}
       >
         <QueryProvider>
           <ToastProvider>{children}</ToastProvider>
-          <div className="h-screen w-full fixed top-0 left-0 -z-10  bg-[url('/grain.jpg')] opacity-5" />
         </QueryProvider>
       </body>
     </html>

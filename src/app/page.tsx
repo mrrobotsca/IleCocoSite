@@ -1,27 +1,45 @@
-import Navbar from './(site)/navbar'
+import { LangProvider } from './(site)/lang-context'
+import { WizardProvider } from './(site)/wizard-context'
+import { DaycareNav } from './(site)/daycare-nav'
 import Hero from './(site)/hero'
-import Features from './(site)/features'
-import Pricing from './(site)/pricing'
+import Mission from './(site)/mission'
+import Services from './(site)/services'
+import Why from './(site)/why'
+import Journey from './(site)/journey'
+import Gallery from './(site)/gallery'
 import Testimonials from './(site)/testimonials'
+import Tuition from './(site)/tuition'
+import Locations from './(site)/locations'
 import FAQ from './(site)/faq'
-import CTA from './(site)/cta'
-import Footer from './(site)/footer'
-import { GridLayout, SectionDivider } from './(site)/grid-layout'
+import Newsletter from './(site)/newsletter'
+import Social from './(site)/social'
+import DaycareFooter from './(site)/footer'
+import { WaitlistWizard } from './(site)/waitlist-wizard'
 
 export default function Page() {
   return (
-    <GridLayout>
-      <Navbar />
-      <Hero />
-      <SectionDivider />
-      <Features />
-      <SectionDivider />
-      <Pricing />
-      <SectionDivider />
-      <Testimonials />
-      <FAQ />
-      <CTA />
-      <Footer />
-    </GridLayout>
+    <LangProvider>
+      <WizardProvider>
+        <div className="min-h-screen bg-porcelain font-display text-charcoal-deep paper-grain">
+          <DaycareNav />
+          <main>
+            <Hero />
+            <Mission />
+            <Services />
+            <Why />
+            <Journey />
+            <Gallery />
+            <Testimonials />
+            <Tuition />
+            <Locations />
+            <FAQ />
+            <Newsletter />
+            <Social />
+          </main>
+          <DaycareFooter />
+        </div>
+        <WaitlistWizard />
+      </WizardProvider>
+    </LangProvider>
   )
 }

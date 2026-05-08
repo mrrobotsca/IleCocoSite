@@ -1,104 +1,86 @@
 'use client'
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionPanel,
-} from '@/components/ui/accordion'
-import Link from 'next/link'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useLang } from './lang-context'
+import { COPY } from './copy'
+import { CurlyArrow, Spiral } from './doodles'
+import { Eyebrow, SectionTitle } from './ui'
 
-export default function FAQ() {
-  const faqs = [
-    {
-      question: "What's included in the free version?",
-      answer:
-        "Everything you need to build: a full Next.js boilerplate with auth, payments, UI, SEO, and transactional emails. It's free forever under the MIT license.",
-    },
-    {
-      question: "What's in the pro version?",
-      answer:
-        'Pro adds one-click deploys, a CLI tool, advanced auth (roles & invites), automated emails, analytics hooks, lifetime updates, and priority support — built for founders who want to launch fast.',
-    },
-    {
-      question: "Do I lose access to the free version if I don't upgrade?",
-      answer:
-        'Nope. The free version stays open source and always available. Pro just saves you time and setup pain.',
-    },
-    {
-      question: 'Is it really a one-time payment?',
-      answer: 'Yep. $90 lifetime access. No subscriptions, no renewal fees, ever.',
-    },
-    {
-      question: 'Can I use it for commercial products?',
-      answer: 'Yes — both free and pro can be used to build and sell your own projects.',
-    },
-    {
-      question: 'What if I find a bug or issue?',
-      answer:
-        'Open an issue on GitHub or drop it in the Discord — we fix bugs fast, and pro users get priority patches + updates.',
-    },
-    {
-      question: 'Can I upgrade later?',
-      answer:
-        "Absolutely. You can start free, and when you're ready to go pro, your setup stays compatible.",
-    },
-    {
-      question: 'How often do you ship updates?',
-      answer:
-        'Bug fixes and small updates drop regularly; pro users get early access to new templates and features.',
-    },
-    {
-      question: 'What support does pro include?',
-      answer:
-        "Private Discord, priority replies, and lifetime updates. You'll never be stuck figuring things out alone.",
-    },
-  ]
+export const FAQ = () => {
+  const { lang } = useLang()
+  const c = COPY.faq[lang]
+  const [open, setOpen] = useState<number>(0)
 
   return (
-    <section id='faq' className='py-24 border-t border-b border-[#E4E4E7] bg-[#F4F4F5]'>
-      <div className='mx-auto max-w-6xl px-4 sm:px-6'>
-        <h2
-          className='text-center text-sm font-medium text-muted-foreground mb-8'
-          style={{ fontFamily: 'var(--font-geist-mono)' }}
-        >
-          FAQ
-        </h2>
-        <div className='grid md:grid-cols-2 gap-12 md:gap-16'>
-            {/* Left Section */}
-            <div>
-              <h2 className='text-4xl font-semibold tracking-tight mb-4'>
-                Frequently Asked Questions
-              </h2>
-              <p className='text-lg text-muted-foreground'>
-                Have another question?{' '}
-                <Link
-                  href='mailto:support@shipfree.app'
-                  className='underline underline-offset-4 hover:text-foreground transition-colors'
-                >
-                  Contact us by email
-                </Link>
-                .
-              </p>
-            </div>
+    <section id="faq" className="relative overflow-hidden py-24 lg:py-28">
+      <Spiral size={48} style={{ position: 'absolute', top: 80, right: '8%', opacity: 0.4 }} />
 
-            {/* Right Section */}
-            <div>
-              <Accordion className='space-y-0'>
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={index} className='border-b border-[#E4E4E7] last:border-b-0'>
-                    <AccordionTrigger className='text-left py-4 text-base font-medium hover:no-underline'>
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionPanel className='text-muted-foreground text-sm pb-4'>
-                      {faq.answer}
-                    </AccordionPanel>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+      <div className="mx-auto grid max-w-[1280px] items-start gap-14 px-8 lg:grid-cols-[0.9fr_1.3fr] lg:gap-20">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="lg:sticky lg:top-[120px]"
+        >
+          <Eyebrow>{c.eyebrow}</Eyebrow>
+          <SectionTitle className="mt-5">
+            {c.title1}
+            <br />
+            <span className="font-italic-serif font-medium not-italic">{c.title2}</span>
+          </SectionTitle>
+          <div className="mt-6 hidden items-center gap-3 lg:flex">
+            <CurlyArrow width={70} height={50} />
+            <span className="font-hand text-[22px] text-charcoal-deep" style={{ transform: 'rotate(-4deg)' }}>
+              {c.tapHint}
+            </span>
           </div>
+        </motion.div>
+
+        <div>
+          {c.items.map((it, i) => {
+            const isOpen = open === i
+            return (
+              <div
+                key={i}
+                className={`border-t border-charcoal-deep/10 ${i === c.items.length - 1 ? 'border-b' : ''}`}
+              >
+                <button
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  className="flex w-full items-center justify-between gap-5 bg-transparent py-6 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-display text-[18px] font-semibold text-charcoal-deep sm:text-[19px]">{it.q}</span>
+                  <span
+                    className={`grid h-9 w-9 flex-shrink-0 place-items-center rounded-full text-[18px] transition-all duration-300 ${
+                      isOpen ? 'bg-charcoal-deep text-porcelain' : 'bg-porcelain-warm text-charcoal-deep'
+                    }`}
+                    style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0)' }}
+                  >
+                    +
+                  </span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      className="overflow-hidden"
+                    >
+                      <p className="max-w-[640px] pb-6 text-[16px] leading-[1.6] text-ink-soft">{it.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )
+          })}
         </div>
+      </div>
     </section>
   )
 }
+
+export default FAQ

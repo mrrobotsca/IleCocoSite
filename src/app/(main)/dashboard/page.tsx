@@ -1,13 +1,38 @@
 import Link from 'next/link'
-import { CreditCard, Settings, User } from 'lucide-react'
+import { headers } from 'next/headers'
+import { CreditCard, Settings, ShieldCheck, User } from 'lucide-react'
+import { auth } from '@/lib/auth/auth'
+import { isAdminEmail } from '@/lib/auth/admin'
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await auth.api.getSession({ headers: await headers() })
+  const showAdmin = isAdminEmail(session?.user?.email)
+
   return (
     <div className='container mx-auto py-8 px-4 max-w-4xl'>
       <h1 className='text-3xl font-bold tracking-tight mb-2'>Dashboard</h1>
       <p className='text-muted-foreground mb-8'>Welcome to your dashboard</p>
 
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
+        {showAdmin && (
+          <Link
+            href='/dashboard/admin'
+            className='group rounded-lg border-2 border-emerald-200 bg-emerald-50 p-6 transition-colors hover:border-emerald-400 hover:bg-emerald-100'
+          >
+            <div className='flex items-center gap-3 mb-3'>
+              <div className='p-2 rounded-lg bg-emerald-200 text-emerald-800'>
+                <ShieldCheck className='h-5 w-5' />
+              </div>
+              <h2 className='text-lg font-semibold text-emerald-900'>
+                Ile CoCo Admin
+              </h2>
+            </div>
+            <p className='text-sm text-emerald-800/80'>
+              Waitlist applicants and newsletter subscribers from the homepage.
+            </p>
+          </Link>
+        )}
+
         {/* Billing Demo Card */}
         <Link
           href='/dashboard/billing'

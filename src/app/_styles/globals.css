@@ -8,6 +8,22 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-bricolage-grotesque: var(--font-bricolage-grotesque);
+  --font-display: var(--font-quicksand);
+  --font-body: var(--font-quicksand);
+  --font-italic: var(--font-fraunces);
+  --font-hand: var(--font-caveat);
+  --color-porcelain: #faf8f2;
+  --color-porcelain-warm: #f5efe2;
+  --color-charcoal: #3a3a3a;
+  --color-charcoal-deep: #2a2a2a;
+  --color-ash-green: #b9c4b1;
+  --color-ash-green-deep: #93a48a;
+  --color-sunlit-clay: #e2b56a;
+  --color-sunlit-clay-soft: #ecc787;
+  --color-sandy-clay: #e7b08a;
+  --color-sandy-clay-soft: #f0c8aa;
+  --color-ink-soft: rgba(58, 58, 58, 0.72);
+  --color-ink-faint: rgba(58, 58, 58, 0.48);
   --animate-skeleton: skeleton 2s -1s infinite linear;
   --color-warning-foreground: var(--warning-foreground);
   --color-warning: var(--warning);
@@ -91,7 +107,41 @@
       transform: scale(1);
     }
   }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(4px, -6px) rotate(2deg); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 }
+
+.font-display { font-family: var(--font-display), system-ui, sans-serif; }
+.font-italic-serif { font-family: var(--font-italic), serif; font-style: italic; }
+.font-hand { font-family: var(--font-hand), cursive; }
+
+.paper-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(58,58,58,0.025) 1px, transparent 0);
+  background-size: 3px 3px;
+  opacity: 0.6;
+}
+
+.animate-drift { animation: drift 4s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 5s ease-in-out infinite; }
+.animate-float-slow { animation: float-slow 4s ease-in-out infinite; }
+.animate-float-slower { animation: float-slow 7s ease-in-out infinite; }
+
+::selection { background: var(--color-sunlit-clay); color: var(--color-charcoal-deep); }
 
 :root {
   --radius: 0.625rem;
