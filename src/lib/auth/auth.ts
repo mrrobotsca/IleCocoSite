@@ -24,12 +24,14 @@ export const auth = betterAuth({
   }),
 
   advanced: {
-    cookiePrefix: APP_COOKIE_NAME, // Change this to your cookie prefix
+    cookiePrefix: APP_COOKIE_NAME,
+    // Subdomain sharing isn't needed for ilecoco.com (single domain). Only enable in prod
+    // and only when you actually serve the site across multiple subdomains.
     crossSubDomainCookies: {
-      enabled: !isProd,
-      domain: '.shipfree.app', // Change this to your domain, if you are using a custom domain
+      enabled: false,
     },
-    useSecureCookies: !isProd,
+    // Secure cookies require HTTPS — fine in prod, breaks on http://localhost in dev.
+    useSecureCookies: isProd,
   },
 
   session: {

@@ -258,7 +258,7 @@ export const waitlistApplicant = pgTable(
     childDob: date('child_dob').notNull(), // YYYY-MM-DD
 
     // Preferences
-    preferredLocation: text('preferred_location').notNull(), // 'somerled' | 'cote-des-neiges' | 'either'
+    preferredLocation: text('preferred_location').notNull(), // 'somerled' | 'lachine' | 'either'
     desiredStartDate: date('desired_start_date').notNull(), // YYYY-MM-DD
     careType: text('care_type').notNull(), // 'full-time' | 'part-time'
 
@@ -277,7 +277,7 @@ export const waitlistApplicant = pgTable(
     index('waitlist_applicant_status_idx').on(table.status),
     index('waitlist_applicant_created_at_idx').on(table.createdAt),
     index('waitlist_applicant_email_idx').on(table.parentEmail),
-  ],
+  ]
 )
 
 export const newsletterSubscriber = pgTable(
@@ -290,5 +290,5 @@ export const newsletterSubscriber = pgTable(
     source: text('source').notNull(), // 'newsletter-band' | 'cta-band'
     unsubscribedAt: timestamp('unsubscribed_at'),
   },
-  (table) => [index('newsletter_subscriber_created_at_idx').on(table.createdAt)],
+  (table) => [index('newsletter_subscriber_created_at_idx').on(table.createdAt)]
 )

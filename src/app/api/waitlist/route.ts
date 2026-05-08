@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { success: false, error: 'Validation failed', issues: err.issues },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
     console.error('[waitlist] insert failed', err)
     return NextResponse.json(
       { success: false, error: 'Could not save your application. Please try again.' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 }

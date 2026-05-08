@@ -8,10 +8,8 @@ import Why from './(site)/why'
 import Journey from './(site)/journey'
 import Gallery from './(site)/gallery'
 import Testimonials from './(site)/testimonials'
-import Tuition from './(site)/tuition'
 import Locations from './(site)/locations'
 import FAQ from './(site)/faq'
-import Newsletter from './(site)/newsletter'
 import Social from './(site)/social'
 import DaycareFooter from './(site)/footer'
 import { WaitlistWizard } from './(site)/waitlist-wizard'
@@ -30,10 +28,8 @@ export default function Page() {
             <Journey />
             <Gallery />
             <Testimonials />
-            <Tuition />
             <Locations />
             <FAQ />
-            <Newsletter />
             <Social />
           </main>
           <DaycareFooter />

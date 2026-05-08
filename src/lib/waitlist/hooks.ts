@@ -1,11 +1,7 @@
 'use client'
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type {
-  NewsletterSubmission,
-  WaitlistStatus,
-  WaitlistSubmission,
-} from './schemas'
+import type { NewsletterSubmission, WaitlistStatus, WaitlistSubmission } from './schemas'
 
 type ApiOk<T> = { success: true; data?: T; meta?: unknown }
 type ApiErr = { success: false; error: string; issues?: unknown }
@@ -72,7 +68,7 @@ export type WaitlistApplicantRow = {
   updatedAt: string
   childFirstName: string
   childDob: string
-  preferredLocation: 'somerled' | 'cote-des-neiges' | 'either'
+  preferredLocation: 'somerled' | 'lachine' | 'either'
   desiredStartDate: string
   careType: 'full-time' | 'part-time'
   parentName: string

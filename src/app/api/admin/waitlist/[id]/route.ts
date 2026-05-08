@@ -30,7 +30,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
   if (!parsed.success) {
     return NextResponse.json(
       { success: false, error: 'Validation failed', issues: parsed.error.issues },
-      { status: 400 },
+      { status: 400 }
     )
   }
 

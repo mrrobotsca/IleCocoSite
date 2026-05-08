@@ -2,8 +2,8 @@ export type Lang = 'en' | 'fr'
 
 export const COPY = {
   nav: {
-    en: ['Programs', 'Tuition', 'Locations', 'FAQ', 'Contact'],
-    fr: ['Programmes', 'Frais', 'Emplacements', 'FAQ', 'Contact'],
+    en: ['Programs', 'Locations', 'FAQ', 'Contact'],
+    fr: ['Programmes', 'Emplacements', 'FAQ', 'Contact'],
   },
   hero: {
     en: {
@@ -12,7 +12,7 @@ export const COPY = {
       title2: 'little hearts',
       title3: 'bloom in',
       title4: 'good hands',
-      lead: 'A Montessori-inspired daycare nestled on Somerled, where curiosity is honoured, mealtimes are sacred, and every child is met with the gentleness they deserve.',
+      lead: 'A small, warm daycare with two homes in Montréal — Somerled and Lachine — where curiosity is honoured, mealtimes are sacred, and every child is met with the gentleness they deserve.',
       cta1: 'Join the waiting list',
       cta2: 'Book a visit',
       since: 'since 2018',
@@ -29,7 +29,7 @@ export const COPY = {
       title2: 'les petits cœurs',
       title3: 'fleurissent en',
       title4: 'bonnes mains',
-      lead: "Une garderie d'inspiration Montessori nichée sur Somerled, où la curiosité est honorée, les repas sont sacrés, et chaque enfant est accueilli avec la douceur qu'il mérite.",
+      lead: "Une petite garderie chaleureuse avec deux foyers à Montréal — Somerled et Lachine — où la curiosité est honorée, les repas sont sacrés, et chaque enfant est accueilli avec la douceur qu'il mérite.",
       cta1: "Liste d'attente",
       cta2: 'Réserver une visite',
       since: 'depuis 2018',
@@ -48,7 +48,7 @@ export const COPY = {
       title2: 'thoughtfully kept',
       body: 'We believe early childhood is sacred. So we built Ile CoCo as a slow, sun-drenched home — a place where children are not rushed through their days, but invited to wonder, to taste, to listen, to learn at the pace their hearts can hold.',
       bullets: [
-        'Mixed-age Montessori environments',
+        'Mixed-age, mixed-energy classrooms',
         'House-made, allergen-aware meals',
         'Bilingual rhythm — English & French',
         'A small-group ratio, always',
@@ -62,7 +62,7 @@ export const COPY = {
       title2: 'soigneusement tenu',
       body: "Nous croyons que la petite enfance est sacrée. Nous avons donc créé Ile CoCo comme une maison lente et baignée de soleil — un lieu où les enfants ne sont pas pressés, mais invités à s'émerveiller, à goûter, à écouter, à apprendre au rythme de leur cœur.",
       bullets: [
-        'Environnements Montessori multi-âges',
+        'Classes multi-âges, multi-énergies',
         'Repas maison, attentifs aux allergies',
         'Rythme bilingue — Anglais & Français',
         'Petits groupes, toujours',
@@ -78,12 +78,36 @@ export const COPY = {
       title2: 'rhythms of the day',
       sub: 'Each day at Ile CoCo follows the same warm cadence — small rituals that, repeated with love, become the texture of childhood.',
       items: [
-        { tag: '01', name: 'Nourishment', desc: 'Three slow, fresh meals prepared in our own kitchen — built around what little bodies actually need.' },
-        { tag: '02', name: 'Free Play', desc: 'Unhurried, child-led play — the kind where imagination has time to wander into corners and stay a while.' },
-        { tag: '03', name: 'Quiet Learning', desc: 'Montessori materials, gentle prompts, and the dignity of being trusted to figure something out.' },
-        { tag: '04', name: 'Music & Song', desc: 'A daily circle of songs in two languages, instruments small enough for any hand, voices welcomed exactly as they are.' },
-        { tag: '05', name: 'Two Languages', desc: 'English and French woven through the day — never drilled, always lived. Bilingual the way Montréal is.' },
-        { tag: '06', name: 'Daily Journal', desc: 'A short, honest note home each evening — what they ate, what they made, what made them laugh today.' },
+        {
+          tag: '01',
+          name: 'Nourishment',
+          desc: 'Three slow, fresh meals prepared in our own kitchen — built around what little bodies actually need.',
+        },
+        {
+          tag: '02',
+          name: 'Free Play',
+          desc: 'Unhurried, child-led play — the kind where imagination has time to wander into corners and stay a while.',
+        },
+        {
+          tag: '03',
+          name: 'Quiet Learning',
+          desc: 'Curated learning materials, gentle prompts, and the dignity of being trusted to figure something out.',
+        },
+        {
+          tag: '04',
+          name: 'Music & Song',
+          desc: 'A daily circle of songs in two languages, instruments small enough for any hand, voices welcomed exactly as they are.',
+        },
+        {
+          tag: '05',
+          name: 'Two Languages',
+          desc: 'English and French woven through the day — never drilled, always lived. Bilingual the way Montréal is.',
+        },
+        {
+          tag: '06',
+          name: 'Daily Journal',
+          desc: 'A short, honest note home each evening — what they ate, what they made, what made them laugh today.',
+        },
       ],
     },
     fr: {
@@ -92,12 +116,36 @@ export const COPY = {
       title2: 'rythmes de la journée',
       sub: "Chaque journée à Ile CoCo suit la même cadence chaleureuse — de petits rituels qui, répétés avec amour, deviennent la texture de l'enfance.",
       items: [
-        { tag: '01', name: 'Nourriture', desc: 'Trois repas lents et frais préparés dans notre cuisine — pensés pour ce dont les petits corps ont vraiment besoin.' },
-        { tag: '02', name: 'Jeu libre', desc: "Un jeu sans hâte, mené par l'enfant — celui où l'imagination a le temps de s'égarer dans les coins." },
-        { tag: '03', name: 'Apprentissage', desc: 'Du matériel Montessori, des invitations douces, et la dignité de chercher par soi-même.' },
-        { tag: '04', name: 'Musique', desc: 'Un cercle quotidien de chansons en deux langues, des instruments adaptés aux petites mains.' },
-        { tag: '05', name: 'Bilingue', desc: "L'anglais et le français tissés dans la journée — jamais imposés, toujours vécus. Bilingue comme Montréal." },
-        { tag: '06', name: 'Journal', desc: "Un petit mot honnête chaque soir — ce qu'ils ont mangé, fabriqué, ce qui les a fait rire aujourd'hui." },
+        {
+          tag: '01',
+          name: 'Nourriture',
+          desc: 'Trois repas lents et frais préparés dans notre cuisine — pensés pour ce dont les petits corps ont vraiment besoin.',
+        },
+        {
+          tag: '02',
+          name: 'Jeu libre',
+          desc: "Un jeu sans hâte, mené par l'enfant — celui où l'imagination a le temps de s'égarer dans les coins.",
+        },
+        {
+          tag: '03',
+          name: 'Apprentissage',
+          desc: 'Du matériel pédagogique soigné, des invitations douces, et la dignité de chercher par soi-même.',
+        },
+        {
+          tag: '04',
+          name: 'Musique',
+          desc: 'Un cercle quotidien de chansons en deux langues, des instruments adaptés aux petites mains.',
+        },
+        {
+          tag: '05',
+          name: 'Bilingue',
+          desc: "L'anglais et le français tissés dans la journée — jamais imposés, toujours vécus. Bilingue comme Montréal.",
+        },
+        {
+          tag: '06',
+          name: 'Journal',
+          desc: "Un petit mot honnête chaque soir — ce qu'ils ont mangé, fabriqué, ce qui les a fait rire aujourd'hui.",
+        },
       ],
     },
   },
@@ -108,12 +156,30 @@ export const COPY = {
       title2: 'kind, safe, & trusted',
       sub: 'We are licensed, small, and deeply attentive. Here is what that looks like, day to day.',
       items: [
-        { title: 'Licensed & inspected', desc: 'Provincially-permitted, insured, and routinely inspected.' },
-        { title: 'Small-group ratios', desc: 'Never more than seven children per educator. Often fewer.' },
-        { title: 'House-made meals', desc: 'Cooked on-site, never reheated. Allergen-aware menus weekly.' },
-        { title: 'Calm, prepared rooms', desc: 'Natural light, child-height shelves, no screens — ever.' },
-        { title: 'Trained Montessori staff', desc: 'Educators with formal AMI/AMS training and CPR certification.' },
-        { title: 'A real journal home', desc: 'A handwritten note each day. Photos weekly. No anxious apps.' },
+        {
+          title: 'Licensed & inspected',
+          desc: 'Provincially-permitted, insured, and routinely inspected.',
+        },
+        {
+          title: 'Small-group ratios',
+          desc: 'Never more than seven children per educator. Often fewer.',
+        },
+        {
+          title: 'House-made meals',
+          desc: 'Cooked on-site, never reheated. Allergen-aware menus weekly.',
+        },
+        {
+          title: 'Calm, prepared rooms',
+          desc: 'Natural light, child-height shelves, no screens — ever.',
+        },
+        {
+          title: 'Trained, certified educators',
+          desc: 'Early-childhood credentials, food-safety training, and current CPR certification.',
+        },
+        {
+          title: 'A real journal home',
+          desc: 'A handwritten note each day. Photos weekly. No anxious apps.',
+        },
       ],
     },
     fr: {
@@ -122,12 +188,30 @@ export const COPY = {
       title2: 'doux, sûrs & fiables',
       sub: 'Nous sommes accrédités, petits, et profondément attentifs. Voici à quoi ça ressemble, au quotidien.',
       items: [
-        { title: 'Permis & inspecté', desc: 'Permis provincial, assuré et inspecté régulièrement.' },
-        { title: 'Petits groupes', desc: 'Jamais plus de sept enfants par éducateur. Souvent moins.' },
-        { title: 'Repas maison', desc: 'Cuisinés sur place, jamais réchauffés. Menus hebdomadaires.' },
-        { title: 'Espaces préparés', desc: "Lumière naturelle, étagères à hauteur d'enfant, pas d'écrans." },
-        { title: 'Équipe Montessori', desc: 'Éducateurs formés AMI/AMS et certifiés en RCR.' },
-        { title: 'Un vrai journal', desc: 'Un mot manuscrit chaque jour. Des photos chaque semaine.' },
+        {
+          title: 'Permis & inspecté',
+          desc: 'Permis provincial, assuré et inspecté régulièrement.',
+        },
+        {
+          title: 'Petits groupes',
+          desc: 'Jamais plus de sept enfants par éducateur. Souvent moins.',
+        },
+        {
+          title: 'Repas maison',
+          desc: 'Cuisinés sur place, jamais réchauffés. Menus hebdomadaires.',
+        },
+        {
+          title: 'Espaces préparés',
+          desc: "Lumière naturelle, étagères à hauteur d'enfant, pas d'écrans.",
+        },
+        {
+          title: 'Équipe certifiée',
+          desc: 'Diplômes en petite enfance, formation salubrité, et certification RCR à jour.',
+        },
+        {
+          title: 'Un vrai journal',
+          desc: 'Un mot manuscrit chaque jour. Des photos chaque semaine.',
+        },
       ],
     },
   },
@@ -139,7 +223,29 @@ export const COPY = {
       sub: 'A short film of a slow place — gardens in May, dough on small fingers, the first time someone pours their own water.',
       watch: 'Watch the film',
       pressPlay: 'press play ↓',
-      sideLabels: ['Splash days', 'Snow days', 'Apple days'],
+      videos: [
+        {
+          id: 'v2iwKVLfb_8',
+          kind: 'regular',
+          label: 'Our daily rhythm',
+          theme: 'sage',
+          caption: 'Music, hands, and Tuesday afternoon',
+        },
+        {
+          id: 'AWDKjE0AG_s',
+          kind: 'regular',
+          label: 'A tour of the home',
+          theme: 'clay',
+          caption: 'Sun-warm rooms, child-height shelves',
+        },
+        {
+          id: 'qm_S4K0t5DU',
+          kind: 'short',
+          label: 'A day in 60 seconds',
+          theme: 'sun',
+          caption: 'From morning circle to nap time',
+        },
+      ],
     },
     fr: {
       eyebrow: 'Notre quotidien',
@@ -148,7 +254,29 @@ export const COPY = {
       sub: "Un court film d'un lieu lent — les jardins en mai, la pâte sur de petits doigts, la première fois qu'on verse son propre verre d'eau.",
       watch: 'Voir le film',
       pressPlay: 'appuyez ↓',
-      sideLabels: ["Jours d'eau", 'Jours de neige', 'Jours de pommes'],
+      videos: [
+        {
+          id: 'v2iwKVLfb_8',
+          kind: 'regular',
+          label: 'Notre rythme quotidien',
+          theme: 'sage',
+          caption: 'Musique, mains et mardi après-midi',
+        },
+        {
+          id: 'AWDKjE0AG_s',
+          kind: 'regular',
+          label: 'Visite du foyer',
+          theme: 'clay',
+          caption: 'Pièces baignées de soleil, étagères à hauteur d’enfant',
+        },
+        {
+          id: 'qm_S4K0t5DU',
+          kind: 'short',
+          label: 'Une journée en 60 secondes',
+          theme: 'sun',
+          caption: 'Du cercle du matin à la sieste',
+        },
+      ],
     },
   },
   gallery: {
@@ -173,7 +301,7 @@ export const COPY = {
       eyebrow: "À l'intérieur",
       title1: 'Un aperçu de',
       title2: 'nos deux foyers',
-      sub: "Des pièces baignées de soleil sur Somerled, le corridor chaleureux avec nos petits singes, les après-midis enneigés, les étés éclaboussants.",
+      sub: 'Des pièces baignées de soleil sur Somerled, le corridor chaleureux avec nos petits singes, les après-midis enneigés, les étés éclaboussants.',
       cta: 'Plus sur Instagram',
       captions: [
         'Le mur des singes',
@@ -193,9 +321,24 @@ export const COPY = {
       title1: 'What parents',
       title2: 'quietly tell us',
       items: [
-        { quote: 'We toured eight daycares. Ile CoCo was the only one that felt like a home and not a facility. Two years in, it still does.', name: 'Camille & Theo R.', role: 'Parents of Léa, age 3' },
-        { quote: 'The educators know my daughter. Not just her name — her moods, what makes her laugh, what scares her at nap time. That is rare.', name: 'Sofia M.', role: 'Parent of Aïcha, age 2' },
-        { quote: 'Our son started with three words. By spring, he was singing in two languages and arguing in both. We could not have asked for more.', name: 'David & Yann L.', role: 'Parents of Noah, age 4' },
+        {
+          quote:
+            'From the very first day, the warm and caring staff made us feel like family. Our daughter looks forward to going every morning.',
+          name: 'Maya H.',
+          role: 'Google review · 5 ★',
+        },
+        {
+          quote:
+            'I felt that all the teachers were sincere to the children — and I was so touched. Highly recommend Ile CoCo for the nurturing atmosphere.',
+          name: 'Hala N.',
+          role: 'Google review · 5 ★',
+        },
+        {
+          quote:
+            'The food is good, the educators are very kind, friendly and helpful. The owner is one of the most caring people I have ever met.',
+          name: 'Jasmine R.',
+          role: 'Google review · 5 ★',
+        },
       ],
     },
     fr: {
@@ -203,9 +346,24 @@ export const COPY = {
       title1: 'Ce que les parents',
       title2: 'nous disent tout bas',
       items: [
-        { quote: "On a visité huit garderies. Ile CoCo était la seule qui se sentait comme une maison et non un établissement. Deux ans plus tard, c'est toujours vrai.", name: 'Camille & Théo R.', role: 'Parents de Léa, 3 ans' },
-        { quote: "Les éducatrices connaissent ma fille. Pas juste son prénom — ses humeurs, ce qui la fait rire, ce qui l'effraie à la sieste. C'est rare.", name: 'Sofia M.', role: "Maman d'Aïcha, 2 ans" },
-        { quote: 'Notre fils est arrivé avec trois mots. Au printemps, il chantait en deux langues et argumentait dans les deux. On ne pouvait rêver mieux.', name: 'David & Yann L.', role: 'Parents de Noah, 4 ans' },
+        {
+          quote:
+            "Dès le premier jour, l'équipe chaleureuse nous a fait sentir comme en famille. Ma fille a hâte d'y aller chaque matin.",
+          name: 'Maya H.',
+          role: 'Avis Google · 5 ★',
+        },
+        {
+          quote:
+            "J'ai senti que toutes les éducatrices étaient sincères avec les enfants — j'en ai été touchée. Je recommande Ile CoCo pour son ambiance bienveillante.",
+          name: 'Hala N.',
+          role: 'Avis Google · 5 ★',
+        },
+        {
+          quote:
+            'La nourriture est bonne, les éducatrices sont très gentilles, amicales et serviables. La propriétaire est une des personnes les plus attentionnées que j’ai rencontrées.',
+          name: 'Jasmine R.',
+          role: 'Avis Google · 5 ★',
+        },
       ],
     },
   },
@@ -216,11 +374,27 @@ export const COPY = {
       title2: 'no surprises',
       sub: 'Subsidized and full-fee spots, both with the same care. We will walk you through it on a tour — these are starting points.',
       items: [
-        { tag: 'Subsidized', price: '$9.35', per: '/ day', note: "For eligible families through Quebec's reduced-contribution program." },
-        { tag: 'Full-fee', price: '$58', per: '/ day', note: 'Includes meals, snacks, materials, outings — everything but the rain boots.' },
-        { tag: 'Drop-in', price: '$72', per: '/ day', note: 'By availability, for siblings or short-term needs.' },
+        {
+          tag: 'Subsidized',
+          price: '$9.35',
+          per: '/ day',
+          note: "For eligible families through Quebec's reduced-contribution program.",
+        },
+        {
+          tag: 'Full-fee',
+          price: '$58',
+          per: '/ day',
+          note: 'Includes meals, snacks, materials, outings — everything but the rain boots.',
+        },
+        {
+          tag: 'Drop-in',
+          price: '$72',
+          per: '/ day',
+          note: 'By availability, for siblings or short-term needs.',
+        },
       ],
-      includes: 'All tuition includes house-made meals, snacks, all materials, and seasonal outings.',
+      includes:
+        'All tuition includes house-made meals, snacks, all materials, and seasonal outings.',
       mostCommon: 'Most common',
       cta: 'Request the full guide',
     },
@@ -230,11 +404,27 @@ export const COPY = {
       title2: 'sans surprises',
       sub: 'Places subventionnées et au tarif régulier, avec le même soin. Nous vous expliquerons tout lors de la visite.',
       items: [
-        { tag: 'Subventionné', price: '9,35 $', per: '/ jour', note: 'Pour les familles admissibles au programme à contribution réduite du Québec.' },
-        { tag: 'Tarif régulier', price: '58 $', per: '/ jour', note: 'Comprend repas, collations, matériel, sorties — tout sauf les bottes de pluie.' },
-        { tag: 'Sur appel', price: '72 $', per: '/ jour', note: 'Selon disponibilité, pour fratries ou besoins ponctuels.' },
+        {
+          tag: 'Subventionné',
+          price: '9,35 $',
+          per: '/ jour',
+          note: 'Pour les familles admissibles au programme à contribution réduite du Québec.',
+        },
+        {
+          tag: 'Tarif régulier',
+          price: '58 $',
+          per: '/ jour',
+          note: 'Comprend repas, collations, matériel, sorties — tout sauf les bottes de pluie.',
+        },
+        {
+          tag: 'Sur appel',
+          price: '72 $',
+          per: '/ jour',
+          note: 'Selon disponibilité, pour fratries ou besoins ponctuels.',
+        },
       ],
-      includes: 'Tous les frais incluent les repas maison, les collations, le matériel et les sorties saisonnières.',
+      includes:
+        'Tous les frais incluent les repas maison, les collations, le matériel et les sorties saisonnières.',
       mostCommon: 'Le plus courant',
       cta: 'Demander le guide complet',
     },
@@ -245,24 +435,94 @@ export const COPY = {
       title1: 'Find us in',
       title2: 'your neighbourhood',
       sub: 'Both locations are licensed, both are small, and both feel like a home before they feel like a daycare.',
-      labels: { addr: 'Address', hours: 'Hours', ages: 'Ages', phone: 'Phone' },
+      labels: {
+        addr: 'Address',
+        hours: 'Hours',
+        ages: 'Ages',
+        phone: 'Phone',
+        rating: 'Google rating',
+      },
+      directions: 'Get directions',
       items: [
-        { name: 'Somerled', subtitle: 'Our original home · since 2018', addr: '6624 av. Somerled', city: 'Montréal, QC H4V 1S5', hours: 'Mon — Fri · 7:30 — 18:00', ages: '18 months — 5 years', phone: '(514) 574-4695', mapHint: 'NDG · near Décarie' },
-        { name: 'Côte-des-Neiges', subtitle: 'Our newer home · opened 2023', addr: '6620 Côte-des-Neiges', city: 'Montréal, QC H3S 2A5', hours: 'Mon — Fri · 7:30 — 18:00', ages: '18 months — 5 years', phone: '(514) 574-4696', mapHint: 'CDN · near Université de Montréal' },
+        {
+          name: 'Somerled',
+          subtitle: 'Our original home · since 2018',
+          addr: '6624 av. Somerled #201',
+          city: 'Montréal, QC H4V 1T2',
+          hours: 'Mon — Fri · 7:00 — 18:00',
+          ages: '18 months — 5 years',
+          phone: '(514) 574-4695',
+          mapHint: 'NDG · near Décarie',
+          rating: '4.8 · 74 reviews',
+          photo: '/images/ile-coco/locations/somerled.png',
+          mapUrl:
+            'https://www.google.com/maps/search/?api=1&query=Garderie+ile+CoCo+6624+Somerled+Montreal+QC',
+          note: 'tours always include tea',
+        },
+        {
+          name: 'Lachine',
+          subtitle: 'Our second home · the corner one',
+          addr: '400 rue Victoria',
+          city: 'Lachine, QC H8S 1Y5',
+          hours: 'Mon — Fri · 7:00 — 18:00',
+          ages: '18 months — 5 years',
+          phone: '(514) 574-4695',
+          mapHint: 'Lachine · near Hwy 20',
+          rating: '4.6 · 21 reviews',
+          photo: '/images/ile-coco/locations/lachine.png',
+          mapUrl:
+            'https://www.google.com/maps/search/?api=1&query=Garderie+ile+Coco+2+400+rue+Victoria+Lachine+QC',
+          note: 'sunlit windows, all day',
+        },
       ],
-      visit: 'Plan a visit',
+      visit: 'Book a visit',
     },
     fr: {
       eyebrow: 'Deux foyers, un seul cœur',
       title1: 'Retrouvez-nous',
       title2: 'dans votre quartier',
       sub: 'Les deux emplacements sont accrédités, petits, et ressemblent à un foyer avant de ressembler à une garderie.',
-      labels: { addr: 'Adresse', hours: 'Heures', ages: 'Âges', phone: 'Téléphone' },
+      labels: {
+        addr: 'Adresse',
+        hours: 'Heures',
+        ages: 'Âges',
+        phone: 'Téléphone',
+        rating: 'Avis Google',
+      },
+      directions: 'Itinéraire',
       items: [
-        { name: 'Somerled', subtitle: "Notre foyer d'origine · depuis 2018", addr: '6624 av. Somerled', city: 'Montréal, QC H4V 1S5', hours: 'Lun — Ven · 7h30 — 18h00', ages: '18 mois — 5 ans', phone: '(514) 574-4695', mapHint: 'NDG · près de Décarie' },
-        { name: 'Côte-des-Neiges', subtitle: 'Notre nouveau foyer · ouvert 2023', addr: '6620 Côte-des-Neiges', city: 'Montréal, QC H3S 2A5', hours: 'Lun — Ven · 7h30 — 18h00', ages: '18 mois — 5 ans', phone: '(514) 574-4696', mapHint: 'CDN · près de UdeM' },
+        {
+          name: 'Somerled',
+          subtitle: "Notre foyer d'origine · depuis 2018",
+          addr: '6624 av. Somerled #201',
+          city: 'Montréal, QC H4V 1T2',
+          hours: 'Lun — Ven · 7h00 — 18h00',
+          ages: '18 mois — 5 ans',
+          phone: '(514) 574-4695',
+          mapHint: 'NDG · près de Décarie',
+          rating: '4,8 · 74 avis',
+          photo: '/images/ile-coco/locations/somerled.png',
+          mapUrl:
+            'https://www.google.com/maps/search/?api=1&query=Garderie+ile+CoCo+6624+Somerled+Montreal+QC',
+          note: 'les visites se font autour d’un thé',
+        },
+        {
+          name: 'Lachine',
+          subtitle: "Notre deuxième foyer · à l'angle",
+          addr: '400 rue Victoria',
+          city: 'Lachine, QC H8S 1Y5',
+          hours: 'Lun — Ven · 7h00 — 18h00',
+          ages: '18 mois — 5 ans',
+          phone: '(514) 574-4695',
+          mapHint: 'Lachine · près A-20',
+          rating: '4,6 · 21 avis',
+          photo: '/images/ile-coco/locations/lachine.png',
+          mapUrl:
+            'https://www.google.com/maps/search/?api=1&query=Garderie+ile+Coco+2+400+rue+Victoria+Lachine+QC',
+          note: 'des fenêtres ensoleillées toute la journée',
+        },
       ],
-      visit: 'Planifier une visite',
+      visit: 'Réserver une visite',
     },
   },
   faq: {
@@ -272,11 +532,26 @@ export const COPY = {
       title2: 'actually ask',
       tapHint: 'tap to open',
       items: [
-        { q: 'What ages do you welcome?', a: 'We welcome children from 18 months through 5 years. Our rooms are mixed-age, the way Montessori is meant to be.' },
-        { q: 'How do you handle food allergies?', a: 'Every menu is reviewed weekly for the allergens we host that month. Our chef and lead educator both hold current food-safety credentials.' },
-        { q: 'What is your educator-to-child ratio?', a: 'Maximum of seven children per educator. We often run smaller — that is a deliberate choice, not a coincidence.' },
-        { q: 'Do you have a waiting list?', a: 'Yes — and we are honest about it. Spots open three to four times a year. Once you join the list, we keep you informed by email, not by silence.' },
-        { q: 'What about screens?', a: "There are no screens in our rooms. Children's days are full of real things: water, paint, dough, dirt, songs, books, each other." },
+        {
+          q: 'What ages do you welcome?',
+          a: 'We welcome children from 18 months through 5 years. Our rooms are mixed-age — siblings together, older ones lifting up the younger.',
+        },
+        {
+          q: 'How do you handle food allergies?',
+          a: 'Every menu is reviewed weekly for the allergens we host that month. Our chef and lead educator both hold current food-safety credentials.',
+        },
+        {
+          q: 'What is your educator-to-child ratio?',
+          a: 'Maximum of seven children per educator. We often run smaller — that is a deliberate choice, not a coincidence.',
+        },
+        {
+          q: 'Do you have a waiting list?',
+          a: 'Yes — and we are honest about it. Spots open three to four times a year. Once you join the list, we keep you informed by email, not by silence.',
+        },
+        {
+          q: 'What about screens?',
+          a: "There are no screens in our rooms. Children's days are full of real things: water, paint, dough, dirt, songs, books, each other.",
+        },
       ],
     },
     fr: {
@@ -285,11 +560,26 @@ export const COPY = {
       title2: 'les parents posent',
       tapHint: 'cliquez pour ouvrir',
       items: [
-        { q: 'Quels âges accueillez-vous?', a: "De 18 mois à 5 ans. Nos groupes sont multi-âges, comme Montessori l'a pensé." },
-        { q: 'Comment gérez-vous les allergies?', a: 'Chaque menu est révisé chaque semaine pour les allergènes du mois. Notre chef et notre éducatrice principale détiennent les certifications en salubrité alimentaire.' },
-        { q: 'Quel est le ratio éducateur-enfant?', a: "Maximum sept enfants par éducateur. Souvent moins — c'est un choix délibéré." },
-        { q: 'Avez-vous une liste d\'attente?', a: "Oui — et nous sommes honnêtes à ce sujet. Des places s'ouvrent trois à quatre fois par an. Nous vous tenons informés par courriel, pas par silence." },
-        { q: 'Et les écrans?', a: 'Aucun écran dans nos espaces. Les journées sont pleines de choses vraies : eau, peinture, pâte, terre, chansons, livres, les autres.' },
+        {
+          q: 'Quels âges accueillez-vous?',
+          a: 'De 18 mois à 5 ans. Nos groupes sont multi-âges — fratries ensemble, les grands prenant soin des plus petits.',
+        },
+        {
+          q: 'Comment gérez-vous les allergies?',
+          a: 'Chaque menu est révisé chaque semaine pour les allergènes du mois. Notre chef et notre éducatrice principale détiennent les certifications en salubrité alimentaire.',
+        },
+        {
+          q: 'Quel est le ratio éducateur-enfant?',
+          a: "Maximum sept enfants par éducateur. Souvent moins — c'est un choix délibéré.",
+        },
+        {
+          q: "Avez-vous une liste d'attente?",
+          a: "Oui — et nous sommes honnêtes à ce sujet. Des places s'ouvrent trois à quatre fois par an. Nous vous tenons informés par courriel, pas par silence.",
+        },
+        {
+          q: 'Et les écrans?',
+          a: 'Aucun écran dans nos espaces. Les journées sont pleines de choses vraies : eau, peinture, pâte, terre, chansons, livres, les autres.',
+        },
       ],
     },
   },
@@ -317,13 +607,13 @@ export const COPY = {
   },
   social: {
     en: {
-      eyebrow: '@ilecoco',
+      eyebrow: '@ilecocodaycare',
       title1: 'Follow along',
       title2: 'on Instagram',
       sub: 'Quiet daily moments — not curated, just true.',
     },
     fr: {
-      eyebrow: '@ilecoco',
+      eyebrow: '@ilecocodaycare',
       title1: 'Suivez-nous',
       title2: 'sur Instagram',
       sub: 'De petits moments quotidiens — non filtrés, juste vrais.',
@@ -378,13 +668,19 @@ export const COPY = {
         firstNamePh: 'Léa',
         dob: 'Date of birth',
         ageHint: (y: number, m: number) =>
-          y === 0 ? (m === 1 ? '1 month old' : `${m} months old`) : y === 1 ? `1 year, ${m} mo` : `${y} years, ${m} mo`,
+          y === 0
+            ? m === 1
+              ? '1 month old'
+              : `${m} months old`
+            : y === 1
+              ? `1 year, ${m} mo`
+              : `${y} years, ${m} mo`,
       },
       preferences: {
         location: 'Preferred location',
         locations: {
           somerled: 'Somerled',
-          'cote-des-neiges': 'Côte-des-Neiges',
+          lachine: 'Lachine',
           either: 'Either is fine',
         },
         startDate: 'Hoped-for start date',
@@ -435,13 +731,19 @@ export const COPY = {
         firstNamePh: 'Léa',
         dob: 'Date de naissance',
         ageHint: (y: number, m: number) =>
-          y === 0 ? (m === 1 ? '1 mois' : `${m} mois`) : y === 1 ? `1 an, ${m} mois` : `${y} ans, ${m} mois`,
+          y === 0
+            ? m === 1
+              ? '1 mois'
+              : `${m} mois`
+            : y === 1
+              ? `1 an, ${m} mois`
+              : `${y} ans, ${m} mois`,
       },
       preferences: {
         location: 'Emplacement préféré',
         locations: {
           somerled: 'Somerled',
-          'cote-des-neiges': 'Côte-des-Neiges',
+          lachine: 'Lachine',
           either: 'Les deux nous vont',
         },
         startDate: 'Date de début souhaitée',
@@ -471,31 +773,31 @@ export const COPY = {
   },
   footer: {
     en: {
-      tagline: 'A small Montessori daycare with two homes in Montréal.',
-      addr: '6624 av. Somerled · 6620 Côte-des-Neiges',
+      tagline: 'A small, warm daycare with two homes in Montréal.',
+      addr: '6624 av. Somerled #201 · 400 rue Victoria, Lachine',
       phone: '(514) 574-4695',
       email: 'info@ilecoco.com',
-      hours: 'Mon — Fri · 7:30 to 18:00',
+      hours: 'Mon — Fri · 7:00 to 18:00',
       col1: 'Visit',
-      col1Items: ['Programs', 'Tuition', 'Locations', 'Gallery'],
+      col1Items: ['Programs', 'Locations', 'Gallery'],
       col2: 'Family',
-      col2Items: ['Waiting List', 'FAQ', 'Contact', 'Newsletter'],
+      col2Items: ['Waiting List', 'Book a visit', 'FAQ', 'Contact'],
       col3: 'Stay close',
-      col3Items: ['Instagram', 'Facebook', 'YouTube', 'Email us'],
+      col3Items: ['Instagram', 'Email us'],
       copyright: '© 2026 Ile CoCo · Made with care in Montréal',
     },
     fr: {
-      tagline: 'Une petite garderie Montessori avec deux foyers à Montréal.',
-      addr: '6624 av. Somerled · 6620 Côte-des-Neiges',
+      tagline: 'Une petite garderie chaleureuse avec deux foyers à Montréal.',
+      addr: '6624 av. Somerled #201 · 400 rue Victoria, Lachine',
       phone: '(514) 574-4695',
       email: 'info@ilecoco.com',
-      hours: 'Lun — Ven · 7h30 à 18h00',
+      hours: 'Lun — Ven · 7h00 à 18h00',
       col1: 'Visiter',
-      col1Items: ['Programmes', 'Frais', 'Emplacements', 'Galerie'],
+      col1Items: ['Programmes', 'Emplacements', 'Galerie'],
       col2: 'Famille',
-      col2Items: ["Liste d'attente", 'FAQ', 'Contact', 'Infolettre'],
+      col2Items: ["Liste d'attente", 'Réserver', 'FAQ', 'Contact'],
       col3: 'Rester proche',
-      col3Items: ['Instagram', 'Facebook', 'YouTube', 'Écrivez-nous'],
+      col3Items: ['Instagram', 'Écrivez-nous'],
       copyright: '© 2026 Ile CoCo · Fait avec soin à Montréal',
     },
   },
@@ -504,24 +806,38 @@ export const COPY = {
 export const PHOTOS = {
   hero1: '/images/ile-coco/apple-picking.jpg',
   hero2: '/images/ile-coco/baby-reading.jpg',
-  mission: '/images/ile-coco/classroom-bright.jpg',
+  mission: '/images/ile-coco/locations/somerled-classroom.jpg',
   why: '/images/ile-coco/educator-selfie.jpg',
   journey1: '/images/ile-coco/water-play.jpg',
   journey2: '/images/ile-coco/snow-play.jpg',
   journey3: '/images/ile-coco/apple-picking.jpg',
-  gallery1: '/images/ile-coco/hallway-monkeys.jpg',
-  gallery2: '/images/ile-coco/classroom-bright.jpg',
-  gallery3: '/images/ile-coco/playroom-bouncy.jpg',
+  // Gallery — using the new high-res Somerled interiors for the Somerled-themed tiles
+  gallery1: '/images/ile-coco/locations/somerled-hallway.jpg',
+  gallery2: '/images/ile-coco/locations/somerled-classroom.jpg',
+  gallery3: '/images/ile-coco/locations/somerled-bouncy.jpg',
   gallery4: '/images/ile-coco/treehouse.jpg',
   gallery5: '/images/ile-coco/meals-art.jpg',
   gallery6: '/images/ile-coco/santa-group.jpg',
   gallery7: '/images/ile-coco/staff-costumes.jpg',
   gallery8: '/images/ile-coco/water-play.jpg',
-  loc1: '/images/ile-coco/hallway-monkeys.jpg',
+  loc1: '/images/ile-coco/locations/somerled-hallway.jpg',
   loc2: '/images/ile-coco/playroom-bouncy.jpg',
-  testimonial1: 'https://images.unsplash.com/photo-1542385151-efd9000785a0?w=300&auto=format&fit=crop',
-  testimonial2: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?w=300&auto=format&fit=crop',
-  testimonial3: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&auto=format&fit=crop',
+  // Somerled-specific interior shots (used as location cameos)
+  somerledClassroom: '/images/ile-coco/locations/somerled-classroom.jpg',
+  somerledHallway: '/images/ile-coco/locations/somerled-hallway.jpg',
+  somerledNursery: '/images/ile-coco/locations/somerled-nursery.jpg',
+  somerledBouncy: '/images/ile-coco/locations/somerled-bouncy.jpg',
+  somerledPlayroomWide: '/images/ile-coco/locations/somerled-playroom-wide.jpg',
+  // Lachine-specific interior shots (storybook murals, bright primary palette)
+  lachineHallway: '/images/ile-coco/locations/lachine-hallway.png',
+  lachineToddlerRoom: '/images/ile-coco/locations/lachine-toddler-room.png',
+  lachineClassroom: '/images/ile-coco/locations/lachine-classroom.png',
+  testimonial1:
+    'https://images.unsplash.com/photo-1542385151-efd9000785a0?w=300&auto=format&fit=crop',
+  testimonial2:
+    'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?w=300&auto=format&fit=crop',
+  testimonial3:
+    'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&auto=format&fit=crop',
   social1: '/images/ile-coco/meals-art.jpg',
   social2: '/images/ile-coco/staff-costumes.jpg',
   social3: '/images/ile-coco/treehouse.jpg',

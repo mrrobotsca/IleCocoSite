@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   ...generateMetadata({
     title: 'Ile CoCo · Where little hearts bloom',
     description:
-      'A small Montessori-inspired daycare in Montréal — two warm, sun-drenched homes on Somerled and Côte-des-Neiges. Bilingual, small-group, house-made meals, no screens.',
+      'A small, warm daycare in Montréal — two homes on Somerled and in Lachine. Bilingual, small-group, house-made meals, no screens. 4.8★ Google rating.',
     isRootLayout: true,
   }),
   icons: {

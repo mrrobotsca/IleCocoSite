@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const PreferredLocationEnum = z.enum(['somerled', 'cote-des-neiges', 'either'])
+export const PreferredLocationEnum = z.enum(['somerled', 'lachine', 'either'])
 export const CareTypeEnum = z.enum(['full-time', 'part-time'])
 export const WaitlistStatusEnum = z.enum([
   'new',

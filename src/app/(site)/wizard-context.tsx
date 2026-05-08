@@ -15,7 +15,9 @@ export const WizardProvider = ({ children }: { children: ReactNode }) => {
   const openWaitlist = useCallback(() => setOpen(true), [])
   const close = useCallback(() => setOpen(false), [])
   return (
-    <WizardContext.Provider value={{ isOpen, openWaitlist, close }}>{children}</WizardContext.Provider>
+    <WizardContext.Provider value={{ isOpen, openWaitlist, close }}>
+      {children}
+    </WizardContext.Provider>
   )
 }
 

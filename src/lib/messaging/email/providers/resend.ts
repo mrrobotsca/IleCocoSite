@@ -1,4 +1,4 @@
-'use client'
+import 'server-only'
 
 import { Resend } from 'resend'
 

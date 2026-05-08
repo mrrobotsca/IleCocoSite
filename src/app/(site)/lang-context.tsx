@@ -19,7 +19,10 @@ export const LangProvider = ({ children }: { children: ReactNode }) => {
     const stored = window.localStorage.getItem(STORAGE_KEY)
     if (stored === 'en' || stored === 'fr') {
       setLangState(stored)
-    } else if (typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('fr')) {
+    } else if (
+      typeof navigator !== 'undefined' &&
+      navigator.language?.toLowerCase().startsWith('fr')
+    ) {
       setLangState('fr')
     }
   }, [])
