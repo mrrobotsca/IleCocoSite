@@ -46,12 +46,12 @@ export const COPY = {
       eyebrow: "Our Promise",
       title1: "A second home,",
       title2: "thoughtfully kept",
-      body: "We believe early childhood is sacred. So we built Ile CoCo as a slow, sun-drenched home — a place where children are not rushed through their days, but invited to wonder, to taste, to listen, to learn at the pace their hearts can hold.",
+      body: "We believe early childhood is sacred. So we built Ile CoCo as a slow, sun-drenched home — a place where children are not rushed through their days, but invited to wonder, to taste, to listen, to learn at the pace their hearts can hold. Every age has its own dedicated classroom, designed and staffed for exactly that stage.",
       bullets: [
-        "Mixed-age, mixed-energy classrooms",
+        "Dedicated classrooms for each age group",
+        "Secure, child-safe spaces — locked entries, vetted staff",
         "House-made, allergen-aware meals",
         "Bilingual rhythm — English & French",
-        "A small-group ratio, always",
       ],
       cta: "Plan a visit",
       pill: "Made with care",
@@ -60,12 +60,12 @@ export const COPY = {
       eyebrow: "Notre Promesse",
       title1: "Un deuxième foyer,",
       title2: "soigneusement tenu",
-      body: "Nous croyons que la petite enfance est sacrée. Nous avons donc créé Ile CoCo comme une maison lente et baignée de soleil — un lieu où les enfants ne sont pas pressés, mais invités à s'émerveiller, à goûter, à écouter, à apprendre au rythme de leur cœur.",
+      body: "Nous croyons que la petite enfance est sacrée. Nous avons donc créé Ile CoCo comme une maison lente et baignée de soleil — un lieu où les enfants ne sont pas pressés, mais invités à s'émerveiller, à goûter, à écouter, à apprendre au rythme de leur cœur. Chaque âge a sa salle dédiée, pensée et encadrée pour ce stade précis.",
       bullets: [
-        "Classes multi-âges, multi-énergies",
+        "Classes dédiées pour chaque groupe d'âge",
+        "Espaces sécurisés — entrées verrouillées, personnel vérifié",
         "Repas maison, attentifs aux allergies",
         "Rythme bilingue — Anglais & Français",
-        "Petits groupes, toujours",
       ],
       cta: "Planifier une visite",
       pill: "Fait avec soin",
@@ -534,7 +534,7 @@ export const COPY = {
       items: [
         {
           q: "What ages do you welcome?",
-          a: "We welcome children from 18 months through 5 years. Our rooms are mixed-age — siblings together, older ones lifting up the younger.",
+          a: "We welcome children from 18 months through 5 years. Each age has its own dedicated classroom — calm, secure spaces designed and staffed for exactly that stage of development, so every child gets the attention they need.",
         },
         {
           q: "How do you handle food allergies?",
@@ -562,7 +562,7 @@ export const COPY = {
       items: [
         {
           q: "Quels âges accueillez-vous?",
-          a: "De 18 mois à 5 ans. Nos groupes sont multi-âges — fratries ensemble, les grands prenant soin des plus petits.",
+          a: "De 18 mois à 5 ans. Chaque âge a sa salle dédiée — des espaces calmes et sécurisés, conçus et encadrés pour ce stade précis du développement, pour que chaque enfant reçoive l'attention dont il a besoin.",
         },
         {
           q: "Comment gérez-vous les allergies?",
