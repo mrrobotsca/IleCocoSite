@@ -16,9 +16,20 @@ import {
 import { getFromEmailAddress, quickValidateEmail, sendEmail } from '@/lib/messaging/email'
 import { isEmailVerificationEnabled } from '@/config/feature-flags'
 
+// Trust both apex and www for Ile CoCo's custom domain so the session works
+// regardless of which the user lands on first.
+const baseUrl = getBaseUrl()
+const trustedOrigins = Array.from(
+  new Set([
+    baseUrl,
+    baseUrl.replace('https://www.', 'https://').replace('http://www.', 'http://'),
+    baseUrl.replace('https://', 'https://www.').replace('http://', 'http://www.'),
+  ]),
+)
+
 export const auth = betterAuth({
-  baseURL: getBaseUrl(),
-  trustedOrigins: [getBaseUrl()],
+  baseURL: baseUrl,
+  trustedOrigins,
   database: drizzleAdapter(db, {
     provider: 'pg',
   }),
