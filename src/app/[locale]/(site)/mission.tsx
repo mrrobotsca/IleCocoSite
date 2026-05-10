@@ -41,7 +41,7 @@ export const Mission = () => {
             >
               <Image
                 src={PHOTOS.mission}
-                alt='Bright sunflower-decorated classroom at Ile CoCo'
+                alt='Bright sunflower-decorated classroom at Ile Coco daycare on Somerled, NDG, Montréal'
                 fill
                 sizes='(max-width: 1024px) 100vw, 600px'
                 className='object-cover'

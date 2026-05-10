@@ -1,14 +1,26 @@
 import type { Metadata } from 'next'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { generateMetadata as generateSEOMetadata, LOCALES, type Locale } from '@/lib/seo'
 
+type Props = { params: Promise<{ locale: string }> }
+const isLocale = (v: string): v is Locale => (LOCALES as ReadonlyArray<string>).includes(v)
 
+export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }))
 
-
-export const metadata: Metadata = generateSEOMetadata({
-  title: 'Terms of Service',
-  description: 'Terms of Service for ShipFree platform',
-  canonical: '/terms',
-})
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { locale: raw } = await params
+  if (!isLocale(raw)) return {}
+  const locale = raw
+  return generateSEOMetadata({
+    title: locale === 'fr' ? "Conditions d'utilisation" : 'Terms of Service',
+    description:
+      locale === 'fr'
+        ? "Conditions d'utilisation de la garderie Ile Coco."
+        : 'Terms of service for Ile Coco daycare.',
+    locale,
+    path: '/terms',
+    noindex: true,
+  })
+}
 
 export default async function TermsPage() {
   return (

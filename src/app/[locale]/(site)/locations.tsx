@@ -1,12 +1,23 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { MapPin } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
 import { useLang } from './lang-context'
 import { COPY, PHOTOS } from './copy'
 import { Bloom, Sparkle, Squiggle } from './doodles'
 import { BookButton, Eyebrow, SectionTitle } from './ui'
+
+const LOCATION_SLUG: Record<string, 'somerled' | 'lachine'> = {
+  Somerled: 'somerled',
+  Lachine: 'lachine',
+}
+
+const LEARN_MORE_LABEL = {
+  en: { Somerled: 'NDG (Somerled) daycare details', Lachine: 'Lachine daycare details' },
+  fr: { Somerled: 'Détails — garderie NDG (Somerled)', Lachine: 'Détails — garderie Lachine' },
+} as const
 
 // Four interior peeks per location — a proper visible tour, not just tiny circles.
 type InteriorPeek = { src: string; label: { en: string; fr: string } }
@@ -86,7 +97,15 @@ export const Locations = () => {
                 <div className='relative aspect-[4/3] overflow-hidden'>
                   <Image
                     src={loc.photo}
-                    alt={`Garderie Île CoCo — ${loc.name} location exterior`}
+                    alt={
+                      lang === 'fr'
+                        ? `Garderie bilingue Ile Coco — ${
+                            loc.name === 'Somerled' ? 'NDG (Somerled), Montréal' : 'Lachine, Montréal'
+                          }`
+                        : `Ile Coco bilingual daycare — ${
+                            loc.name === 'Somerled' ? 'NDG (Somerled), Montréal' : 'Lachine, Montréal'
+                          }`
+                    }
                     fill
                     sizes='(max-width: 768px) 100vw, 600px'
                     className='object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]'
@@ -242,6 +261,17 @@ export const Locations = () => {
                       {c.directions}
                     </a>
                   </div>
+
+                  {/* Internal link to dedicated location landing page — keyword-rich anchor for local SEO */}
+                  {LOCATION_SLUG[loc.name] && (
+                    <Link
+                      href={`/${lang}/locations/${LOCATION_SLUG[loc.name]}`}
+                      className='-mb-2 inline-flex items-center gap-1.5 self-start font-display text-[13px] font-semibold text-charcoal-deep underline-offset-4 hover:underline'
+                    >
+                      {LEARN_MORE_LABEL[lang][loc.name as 'Somerled' | 'Lachine']}
+                      <ArrowRight size={14} />
+                    </Link>
+                  )}
                 </div>
               </motion.article>
             )

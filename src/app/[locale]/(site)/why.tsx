@@ -42,7 +42,7 @@ export const Why = () => {
             >
               <Image
                 src={PHOTOS.why}
-                alt='An Ile CoCo educator with three painted-face children'
+                alt='Ile Coco educator with three children at our NDG (Somerled) bilingual daycare'
                 fill
                 sizes='(max-width: 1024px) 100vw, 500px'
                 className='object-cover'

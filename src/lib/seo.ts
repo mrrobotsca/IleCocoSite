@@ -2,40 +2,54 @@ import type { Metadata } from 'next'
 import { getBaseUrl } from '@/lib/utils'
 import { getBrandConfig } from '@/config/branding'
 
-/**
- * Site configuration for SEO
- */
+export type Locale = 'en' | 'fr'
+export const LOCALES: ReadonlyArray<Locale> = ['en', 'fr'] as const
+export const DEFAULT_LOCALE: Locale = 'en'
+
 const brandConfig = getBrandConfig()
 
 export const siteConfig = {
   name: brandConfig.name,
-  description:
-    'ShipFree is a free open-source Next.js SaaS boilerplate alternative to ShipFast. Simplify and optimize your shipping process with modern web technologies.',
+  legalName: brandConfig.legalName,
+  description: {
+    en: 'Ile Coco is a small, bilingual daycare with two homes in Montréal — NDG (Somerled) and Lachine — for children 18 months to 5 years. House-made meals, small groups, no screens, French + English.',
+    fr: 'Ile Coco est une petite garderie bilingue avec deux foyers à Montréal — NDG (Somerled) et Lachine — pour les enfants de 18 mois à 5 ans. Repas maison, petits groupes, sans écrans, en français et en anglais.',
+  },
   url: getBaseUrl(),
-  twitterHandle: '@codedoesdev',
-  creator: 'The Revoks Company',
-  keywords: [
-    'ShipFree',
-    'ShipFast alternative',
-    'Next.js SaaS boilerplate',
-    'Open source boilerplate',
-    'SaaS template',
-    'Next.js template',
-    'Shipping solution',
-    'E-commerce boilerplate',
-    'Stripe integration',
-    'LemonSqueezy integration',
-    'Supabase authentication',
-    'Drizzle ORM',
-    'Mailgun',
-    'TypeScript boilerplate',
-    'React SaaS',
-  ],
+  twitterHandle: undefined as string | undefined,
+  creator: brandConfig.legalName,
+  keywords: {
+    en: [
+      'daycare NDG',
+      'daycare Notre-Dame-de-Grâce',
+      'daycare Somerled',
+      'daycare Lachine',
+      'bilingual daycare Montreal',
+      'French immersion daycare NDG',
+      'toddler daycare NDG',
+      'preschool Lachine',
+      'private daycare Montreal',
+      'garderie NDG',
+      'garderie Lachine',
+      'Ile Coco',
+    ],
+    fr: [
+      'garderie NDG',
+      'garderie Notre-Dame-de-Grâce',
+      'garderie Somerled',
+      'garderie Lachine',
+      'garderie bilingue Montréal',
+      'garderie privée NDG',
+      'garderie 18 mois Lachine',
+      'prématernelle Lachine',
+      'garderie Côte-des-Neiges',
+      'daycare NDG',
+      'daycare Lachine',
+      'Ile Coco',
+    ],
+  },
 } as const
 
-/**
- * Type for SEO metadata options
- */
 export type SEOOptions = {
   title?: string
   description?: string
@@ -51,49 +65,59 @@ export type SEOOptions = {
   canonical?: string
   isRootLayout?: boolean
   allowCanonicalQuery?: boolean
+  locale?: Locale
+  /**
+   * Path (without locale prefix) — when provided alongside `locale`, used to
+   * compute the canonical URL and the en/fr alternates for hreflang.
+   * Example: `/locations/somerled`
+   */
+  path?: string
 }
 
-/**
- * Generate absolute URL from a path
- */
 const getAbsoluteUrl = (path: string): string => {
   const trimmed = path.trim()
   const isAbsolute = /^https?:\/\//i.test(trimmed) || trimmed.startsWith('//')
-  if (isAbsolute) {
-    return trimmed
-  }
+  if (isAbsolute) return trimmed
 
   const baseUrl = getBaseUrl().replace(/\/$/, '')
   const cleanPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`
   return `${baseUrl}${cleanPath}`
 }
 
+export const getLocaleHref = (locale: Locale, path = '/'): string => {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`
+  // Locale-only homepage: /en, /fr (not /en/)
+  if (cleanPath === '/') return `/${locale}`
+  return `/${locale}${cleanPath}`
+}
+
 const normalizeCanonicalPath = (canonicalPath?: string, allowQuery?: boolean) => {
-  if (!canonicalPath) {
-    return canonicalPath
-  }
-
+  if (!canonicalPath) return canonicalPath
   const [withoutHash] = canonicalPath.split('#')
-  if (allowQuery) {
-    return withoutHash
-  }
-
+  if (allowQuery) return withoutHash
   const [withoutQuery] = withoutHash.split('?')
   return withoutQuery
 }
 
-/**
- * Generate Open Graph metadata
- */
-const getOpenGraph = (options: SEOOptions) => {
+const ogLocale: Record<Locale, string> = {
+  en: 'en_CA',
+  fr: 'fr_CA',
+}
+
+const getOpenGraph = (options: SEOOptions, canonicalUrl: string) => {
   const imageUrl = options.image || '/opengraph-image.png'
+  const description = options.description || siteConfig.description[options.locale || DEFAULT_LOCALE]
 
   return {
     type: options.type || 'website',
-    url: options.canonical ? getAbsoluteUrl(options.canonical) : siteConfig.url,
+    url: canonicalUrl,
     title: options.title || siteConfig.name,
-    description: options.description || siteConfig.description,
+    description,
     siteName: siteConfig.name,
+    locale: ogLocale[options.locale || DEFAULT_LOCALE],
+    alternateLocale: LOCALES.filter((l) => l !== (options.locale || DEFAULT_LOCALE)).map(
+      (l) => ogLocale[l]
+    ),
     images: [
       {
         url: imageUrl,
@@ -106,38 +130,48 @@ const getOpenGraph = (options: SEOOptions) => {
   }
 }
 
-/**
- * Generate Twitter Card metadata
- */
 const getTwitterCard = (options: SEOOptions) => {
   const imageUrl = options.image || '/twitter-image.png'
+  const description = options.description || siteConfig.description[options.locale || DEFAULT_LOCALE]
 
   return {
     card: 'summary_large_image' as const,
     title: options.title || siteConfig.name,
-    description: options.description || siteConfig.description,
-    creator: siteConfig.twitterHandle,
+    description,
+    ...(siteConfig.twitterHandle && { creator: siteConfig.twitterHandle }),
     images: [imageUrl],
   }
 }
 
-/**
- * Generate comprehensive metadata for a page
- * This is the main function to use for generating SEO metadata
- */
 export const generateMetadata = (options: SEOOptions = {}): Metadata => {
-  const description = options.description || siteConfig.description
-  const keywords = options.keywords || siteConfig.keywords
+  const locale = options.locale ?? DEFAULT_LOCALE
+  const description = options.description || siteConfig.description[locale]
+  const keywords = options.keywords || siteConfig.keywords[locale]
+
+  // Compute canonical URL — prefer (locale + path), then explicit canonical, then site root.
   const normalizedCanonicalPath = normalizeCanonicalPath(
     options.canonical,
     options.allowCanonicalQuery
   )
-  const canonicalUrl = normalizedCanonicalPath
-    ? getAbsoluteUrl(normalizedCanonicalPath)
-    : siteConfig.url
+  let canonicalUrl: string
+  if (options.path !== undefined) {
+    canonicalUrl = getAbsoluteUrl(getLocaleHref(locale, options.path))
+  } else if (normalizedCanonicalPath) {
+    canonicalUrl = getAbsoluteUrl(normalizedCanonicalPath)
+  } else {
+    canonicalUrl = siteConfig.url
+  }
 
-  // For root layout, use absolute and template
-  // For child pages, just use string title (template will be applied automatically)
+  // hreflang alternates — only emit when we know the path
+  const languages: Record<string, string> | undefined =
+    options.path !== undefined
+      ? {
+          'en-CA': getAbsoluteUrl(getLocaleHref('en', options.path)),
+          'fr-CA': getAbsoluteUrl(getLocaleHref('fr', options.path)),
+          'x-default': getAbsoluteUrl(getLocaleHref(DEFAULT_LOCALE, options.path)),
+        }
+      : undefined
+
   const titleMetadata = options.isRootLayout
     ? {
         absolute: options.title || siteConfig.name,
@@ -157,15 +191,10 @@ export const generateMetadata = (options: SEOOptions = {}): Metadata => {
     metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: canonicalUrl,
+      ...(languages && { languages }),
     },
-    openGraph: getOpenGraph({
-      ...options,
-      canonical: normalizedCanonicalPath,
-    }),
-    twitter: getTwitterCard({
-      ...options,
-      canonical: normalizedCanonicalPath,
-    }),
+    openGraph: getOpenGraph(options, canonicalUrl),
+    twitter: getTwitterCard(options),
     robots: {
       index: !options.noindex,
       follow: !options.nofollow,
@@ -177,54 +206,9 @@ export const generateMetadata = (options: SEOOptions = {}): Metadata => {
         'max-snippet': -1,
       },
     },
-    ...(options.publishedTime && {
-      publicationDate: options.publishedTime,
-    }),
-    ...(options.modifiedTime && {
-      modificationDate: options.modifiedTime,
-    }),
   }
 }
 
-/**
- * Generate JSON-LD structured data for organization
- */
-export const getOrganizationSchema = () => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteConfig.name,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    logo: getAbsoluteUrl('/logo.png'),
-    sameAs: ['https://github.com/revokslab', 'https://x.com/codedoesdev'],
-  }
-}
-
-/**
- * Generate JSON-LD structured data for website
- */
-export const getWebsiteSchema = () => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteConfig.name,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
-  }
-}
-
-/**
- * Generate JSON-LD structured data for breadcrumbs
- */
 export const getBreadcrumbSchema = (items: Array<{ name: string; url: string }>) => {
   return {
     '@context': 'https://schema.org',
@@ -238,83 +222,4 @@ export const getBreadcrumbSchema = (items: Array<{ name: string; url: string }>)
   }
 }
 
-/**
- * Generate JSON-LD structured data for article/blog post
- */
-export const getArticleSchema = (options: {
-  title: string
-  description: string
-  image?: string
-  publishedTime: string
-  modifiedTime?: string
-  author?: string
-  url: string
-}) => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: options.title,
-    description: options.description,
-    datePublished: options.publishedTime,
-    ...(options.modifiedTime && { dateModified: options.modifiedTime }),
-    author: {
-      '@type': 'Person',
-      name: options.author || siteConfig.creator,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: getAbsoluteUrl('/image.png'),
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': getAbsoluteUrl(options.url),
-    },
-  }
-}
-
-/**
- * Generate JSON-LD structured data for blog/collection page
- */
-export const getBlogSchema = (options: {
-  name: string
-  description: string
-  url: string
-  posts: Array<{
-    title: string
-    url: string
-    datePublished: string
-    author?: string
-  }>
-}) => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Blog',
-    name: options.name,
-    description: options.description,
-    url: getAbsoluteUrl(options.url),
-    blogPost: options.posts.map((post) => ({
-      '@type': 'BlogPosting',
-      headline: post.title,
-      url: getAbsoluteUrl(post.url),
-      datePublished: post.datePublished,
-      ...(post.author && {
-        author: {
-          '@type': 'Person',
-          name: post.author,
-        },
-      }),
-    })),
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: getAbsoluteUrl('/image.png'),
-      },
-    },
-  }
-}
+export { getAbsoluteUrl }

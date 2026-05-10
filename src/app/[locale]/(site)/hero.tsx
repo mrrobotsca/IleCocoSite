@@ -54,7 +54,7 @@ export const Hero = () => {
             >
               <Image
                 src={PHOTOS.hero1}
-                alt='A child in an Ile CoCo bib enjoying autumn outdoors'
+                alt='Child at Ile Coco bilingual daycare in NDG, Montréal — autumn apple-picking outing'
                 fill
                 sizes='280px'
                 className='object-cover'
@@ -127,7 +127,7 @@ export const Hero = () => {
             >
               <Image
                 src={PHOTOS.hero2}
-                alt='A baby reading a small book in soft light'
+                alt='Toddler reading at Ile Coco bilingual daycare — NDG and Lachine, Montréal'
                 fill
                 sizes='280px'
                 className='object-cover'
@@ -154,7 +154,7 @@ export const Hero = () => {
             >
               <Image
                 src={PHOTOS.hero1}
-                alt='A child in an Ile CoCo bib enjoying autumn outdoors'
+                alt='Child at Ile Coco bilingual daycare in NDG, Montréal — autumn apple-picking outing'
                 fill
                 sizes='(max-width: 1024px) 100vw'
                 className='object-cover'

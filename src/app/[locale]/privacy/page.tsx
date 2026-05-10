@@ -1,14 +1,26 @@
 import type { Metadata } from 'next'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { generateMetadata as generateSEOMetadata, LOCALES, type Locale } from '@/lib/seo'
 
+type Props = { params: Promise<{ locale: string }> }
+const isLocale = (v: string): v is Locale => (LOCALES as ReadonlyArray<string>).includes(v)
 
+export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }))
 
-
-export const metadata: Metadata = generateSEOMetadata({
-  title: 'Privacy Policy',
-  description: 'Privacy Policy for ShipFree platform',
-  canonical: '/privacy',
-})
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { locale: raw } = await params
+  if (!isLocale(raw)) return {}
+  const locale = raw
+  return generateSEOMetadata({
+    title: locale === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy',
+    description:
+      locale === 'fr'
+        ? 'Politique de confidentialité de la garderie Ile Coco.'
+        : 'Privacy policy for Ile Coco daycare.',
+    locale,
+    path: '/privacy',
+    noindex: true,
+  })
+}
 
 export default async function PrivacyPage() {
   return (
