@@ -17,8 +17,42 @@ const NON_LOCALE_PATHS = [
   '/sentry-example-api',
 ]
 
+// Legacy / guessable URLs that would otherwise 404. We map each to a real
+// destination and 308-redirect, so stray inbound links and typed URLs never
+// land on a 404 (and never show up in Google Search Console's 404 report).
+// Targets are locale-relative; the `#fragment` form points at a homepage section.
+const ALIASES: Record<string, string> = {
+  '/locations': '/#locations',
+  '/location': '/#locations',
+  '/somerled': '/locations/somerled',
+  '/ndg': '/locations/somerled',
+  '/garderie-ndg': '/locations/somerled',
+  '/daycare-ndg': '/locations/somerled',
+  '/garderie-somerled': '/locations/somerled',
+  '/lachine': '/locations/lachine',
+  '/garderie-lachine': '/locations/lachine',
+  '/daycare-lachine': '/locations/lachine',
+  '/contact': '/#contact',
+  '/faq': '/#faq',
+  '/programs': '/#programs',
+  '/programmes': '/#programs',
+  '/gallery': '/#gallery',
+  '/galerie': '/#gallery',
+}
+
 const hasLocalePrefix = (pathname: string): boolean => {
   return LOCALES.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))
+}
+
+// Split a pathname into its locale prefix (if any) and the rest.
+const stripLocale = (
+  pathname: string
+): { locale: (typeof LOCALES)[number] | null; rest: string } => {
+  for (const l of LOCALES) {
+    if (pathname === `/${l}`) return { locale: l, rest: '/' }
+    if (pathname.startsWith(`/${l}/`)) return { locale: l, rest: pathname.slice(l.length + 1) }
+  }
+  return { locale: null, rest: pathname }
 }
 
 const isExcludedFromLocale = (pathname: string): boolean => {
@@ -56,6 +90,20 @@ export default function middleware(req: NextRequest) {
   // Always expose the pathname so the root layout can pick the right <html lang>.
   const requestHeaders = new Headers(req.headers)
   requestHeaders.set('x-pathname', pathname)
+
+  // Legacy / guessable URL → 308-redirect to a real, indexable destination.
+  const { locale: prefixLocale, rest } = stripLocale(pathname)
+  const aliasKey = (rest.replace(/\/$/, '') || '/').toLowerCase()
+  const aliasTarget = ALIASES[aliasKey]
+  if (aliasTarget) {
+    const locale = prefixLocale ?? detectLocale(req)
+    const [aliasPath, aliasHash = ''] = aliasTarget.split('#')
+    const url = req.nextUrl.clone()
+    url.pathname = `/${locale}${aliasPath}`.replace(/\/$/, '') || `/${locale}`
+    url.hash = aliasHash
+    url.search = search
+    return NextResponse.redirect(url, 308)
+  }
 
   // Already locale-prefixed → just forward with the header set.
   if (hasLocalePrefix(pathname)) {

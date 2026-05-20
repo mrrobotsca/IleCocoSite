@@ -36,6 +36,7 @@ const INTERIORS: Record<string, InteriorPeek[]> = {
       label: { en: 'Bee & ladybug room', fr: 'Salle des coccinelles' },
     },
     { src: PHOTOS.lachineClassroom, label: { en: 'The big classroom', fr: 'La grande classe' } },
+    { src: PHOTOS.lachineExterior, label: { en: 'Our corner home', fr: 'Notre coin de rue' } },
   ],
 }
 

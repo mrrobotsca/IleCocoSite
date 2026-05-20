@@ -114,6 +114,10 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
           a: 'Spots open three to four times a year. Once you join the waiting list we keep you informed by email — never by silence.',
         },
         {
+          q: 'Is the NDG (Somerled) daycare subsidized?',
+          a: 'No — our Somerled location is a private, non-subsidized daycare. It is not part of the Quebec reduced-contribution (subsidized) network, so there is no government waiting list to navigate. Private spots in NDG open more regularly, and tuition covers house-made meals, materials and outings — we explain every cost clearly on a tour.',
+        },
+        {
           q: 'How do I book a tour?',
           a: 'Use the “Book a visit” button above or call us at (514) 574-4695. Tours always include tea.',
         },
@@ -197,6 +201,10 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         {
           q: 'Do you serve other Lachine and West-Island neighborhoods?',
           a: 'Yes — we welcome families from all of Lachine, LaSalle, Dorval, Saint-Pierre, and Pointe-Claire.',
+        },
+        {
+          q: 'Is the Lachine daycare subsidized?',
+          a: 'No — our Lachine location is a private, non-subsidized daycare. It is not part of the Quebec reduced-contribution (subsidized) network, so there is no government waiting list. Many Lachine and West-Island families choose private care because spots open more often and the groups stay small. We walk you through every cost on a tour.',
         },
         {
           q: 'How do I book a visit?',
@@ -286,6 +294,10 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
           a: 'Les places s’ouvrent trois à quatre fois par année. Une fois inscrit·e à la liste, nous vous tenons informé·e par courriel — jamais par silence.',
         },
         {
+          q: 'La garderie de NDG est-elle subventionnée ?',
+          a: 'Non — notre installation de Somerled est une garderie privée, non subventionnée. Elle ne fait pas partie du réseau subventionné à contribution réduite du Québec, il n’y a donc aucune liste d’attente gouvernementale à gérer. Les places privées à NDG s’ouvrent plus régulièrement, et les frais couvrent les repas maison, le matériel et les sorties — nous expliquons chaque coût lors de la visite.',
+        },
+        {
           q: 'Comment réserver une visite ?',
           a: 'Utilisez le bouton « Réserver une visite » ci-dessus ou appelez le (514) 574-4695. Les visites se font autour d’un thé.',
         },
@@ -369,6 +381,10 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         {
           q: 'Servez-vous d’autres quartiers de Lachine et de l’Ouest ?',
           a: 'Oui — nous accueillons les familles de Lachine, LaSalle, Dorval, Saint-Pierre et Pointe-Claire.',
+        },
+        {
+          q: 'La garderie de Lachine est-elle subventionnée ?',
+          a: 'Non — notre installation de Lachine est une garderie privée, non subventionnée. Elle ne fait pas partie du réseau subventionné à contribution réduite du Québec, il n’y a donc aucune liste d’attente gouvernementale. Beaucoup de familles de Lachine et de l’Ouest-de-l’Île choisissent le privé parce que les places s’ouvrent plus souvent et que les groupes restent petits. Nous expliquons chaque coût lors de la visite.',
         },
         {
           q: 'Comment réserver une visite ?',

@@ -372,14 +372,8 @@ export const COPY = {
       eyebrow: "Tuition",
       title1: "Honest pricing,",
       title2: "no surprises",
-      sub: "Subsidized and full-fee spots, both with the same care. We will walk you through it on a tour — these are starting points.",
+      sub: "Simple, all-inclusive pricing — every spot comes with the same care. As a private daycare, we will walk you through it on a tour; these are starting points.",
       items: [
-        {
-          tag: "Subsidized",
-          price: "$9.35",
-          per: "/ day",
-          note: "For eligible families through Quebec's reduced-contribution program.",
-        },
         {
           tag: "Full-fee",
           price: "$58",
@@ -402,14 +396,8 @@ export const COPY = {
       eyebrow: "Frais",
       title1: "Tarifs honnêtes,",
       title2: "sans surprises",
-      sub: "Places subventionnées et au tarif régulier, avec le même soin. Nous vous expliquerons tout lors de la visite.",
+      sub: "Une tarification simple et tout compris — chaque place reçoit le même soin. Garderie privée, nous vous expliquons tout lors de la visite.",
       items: [
-        {
-          tag: "Subventionné",
-          price: "9,35 $",
-          per: "/ jour",
-          note: "Pour les familles admissibles au programme à contribution réduite du Québec.",
-        },
         {
           tag: "Tarif régulier",
           price: "58 $",
@@ -552,6 +540,10 @@ export const COPY = {
           q: "What about screens?",
           a: "There are no screens in our rooms. Children's days are full of real things: water, paint, dough, dirt, songs, books, each other.",
         },
+        {
+          q: "Are you a subsidized daycare?",
+          a: "Ile Coco is a private, non-subsidized daycare — we are not part of Quebec's reduced-contribution (subsidized) network, so there is no government waiting list to navigate. Many families in NDG and Lachine choose us for exactly that reason: private spots open more often, the groups stay small, and the same care is included for everyone. We will gladly walk you through every cost on a tour.",
+        },
       ],
     },
     fr: {
@@ -579,6 +571,10 @@ export const COPY = {
         {
           q: "Et les écrans?",
           a: "Aucun écran dans nos espaces. Les journées sont pleines de choses vraies : eau, peinture, pâte, terre, chansons, livres, les autres.",
+        },
+        {
+          q: "Êtes-vous une garderie subventionnée?",
+          a: "Ile Coco est une garderie privée, non subventionnée — nous ne faisons pas partie du réseau subventionné à contribution réduite du Québec, donc aucune liste d'attente gouvernementale à gérer. Beaucoup de familles de NDG et de Lachine nous choisissent pour cette raison : les places privées s'ouvrent plus souvent, les groupes restent petits, et le même soin est inclus pour tous. Nous vous expliquons chaque coût avec plaisir lors de la visite.",
         },
       ],
     },
@@ -833,6 +829,7 @@ export const PHOTOS = {
   lachineHallway: "/images/ile-coco/locations/lachine-hallway.png",
   lachineToddlerRoom: "/images/ile-coco/locations/lachine-toddler-room.png",
   lachineClassroom: "/images/ile-coco/locations/lachine-classroom.png",
+  lachineExterior: "/images/ile-coco/locations/lachine.png",
   testimonial1:
     "https://images.unsplash.com/photo-1542385151-efd9000785a0?w=300&auto=format&fit=crop",
   testimonial2:
