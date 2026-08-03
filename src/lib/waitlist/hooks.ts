@@ -77,6 +77,7 @@ export type WaitlistApplicantRow = {
   heardFrom: string | null
   notes: string | null
   status: WaitlistStatus
+  notifiedAt: string | null
   lang: 'en' | 'fr'
 }
 
@@ -112,6 +113,18 @@ export const useUpdateWaitlistStatus = () => {
     mutationKey: ['admin', 'waitlist', 'update'],
     mutationFn: ({ id, status }: { id: string; status: WaitlistStatus }) =>
       patchJson<WaitlistApplicantRow>(`/api/admin/waitlist/${id}`, { status }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['admin', 'waitlist'] })
+    },
+  })
+}
+
+export const useNotifyWaitlistApplicant = () => {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationKey: ['admin', 'waitlist', 'notify'],
+    mutationFn: ({ id, branch }: { id: string; branch: 'somerled' | 'lachine' }) =>
+      postJson<WaitlistApplicantRow>(`/api/admin/waitlist/${id}/notify`, { branch }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['admin', 'waitlist'] })
     },

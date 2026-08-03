@@ -37,6 +37,8 @@ export interface BrandConfig {
   documentationUrl?: string
   termsUrl?: string
   privacyUrl?: string
+  /** Calendly link parents use to book a visit + registration */
+  bookingUrl?: string
   domain: string
   phone: string
   social?: {
@@ -71,6 +73,7 @@ const defaultConfig: BrandConfig = {
   documentationUrl: undefined,
   termsUrl: undefined,
   privacyUrl: undefined,
+  bookingUrl: 'https://calendly.com/ilecocodaycare',
   domain: 'ilecoco.com',
   phone: '+1-514-574-4695',
   social: {
@@ -158,6 +161,7 @@ export const getBrandConfig = (): BrandConfig => {
     documentationUrl: defaultConfig.documentationUrl,
     termsUrl: defaultConfig.termsUrl,
     privacyUrl: defaultConfig.privacyUrl,
+    bookingUrl: defaultConfig.bookingUrl,
     domain: defaultConfig.domain,
     phone: defaultConfig.phone,
     social: defaultConfig.social,

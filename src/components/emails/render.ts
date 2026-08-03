@@ -1,5 +1,6 @@
 import { render } from '@react-email/components'
 import { OTPVerificationEmail, ResetPasswordEmail, WelcomeEmail } from '@/components/emails/auth'
+import { SpotOpenEmail, type SpotOpenEmailProps } from '@/components/emails/waitlist'
 
 export type { EmailSubjectType } from './subjects'
 export { getEmailSubject } from './subjects'
@@ -21,4 +22,8 @@ export async function renderPasswordResetEmail(
 
 export async function renderWelcomeEmail(userName?: string): Promise<string> {
   return await render(WelcomeEmail({ userName }))
+}
+
+export async function renderSpotOpenEmail(props: SpotOpenEmailProps): Promise<string> {
+  return await render(SpotOpenEmail(props))
 }

@@ -1,10 +1,20 @@
 'use client'
 
-import { useMemo, useState } from 'react'
-import { ChevronDown, ChevronRight, Loader2, Mail, Phone, Trash2 } from 'lucide-react'
+import { useMemo, useState, type MouseEvent } from 'react'
+import {
+  ChevronDown,
+  ChevronRight,
+  Loader2,
+  Mail,
+  MailCheck,
+  Phone,
+  Send,
+  Trash2,
+} from 'lucide-react'
 import {
   useAdminWaitlist,
   useDeleteWaitlistApplicant,
+  useNotifyWaitlistApplicant,
   useUpdateWaitlistStatus,
   type WaitlistApplicantRow,
 } from '@/lib/waitlist/hooks'
@@ -136,7 +146,32 @@ const Row = ({
 }) => {
   const update = useUpdateWaitlistStatus()
   const del = useDeleteWaitlistApplicant()
+  const notify = useNotifyWaitlistApplicant()
+  // Anchor the branch menu with fixed coords so it escapes the table's `overflow-hidden`
+  // (an absolute dropdown gets clipped for the bottom rows).
+  const [menu, setMenu] = useState<{ top: number; right: number } | null>(null)
   const age = computeAge(row.childDob)
+
+  const toggleMenu = (e: MouseEvent<HTMLButtonElement>) => {
+    if (menu) {
+      setMenu(null)
+      return
+    }
+    const rect = e.currentTarget.getBoundingClientRect()
+    setMenu({ top: rect.bottom + 4, right: Math.max(8, window.innerWidth - rect.right) })
+  }
+
+  const handleNotify = (branch: 'somerled' | 'lachine') => {
+    setMenu(null)
+    const label = branch === 'lachine' ? 'Lachine' : 'Somerled'
+    const message = row.notifiedAt
+      ? `${row.parentName} was already emailed on ${formatDate(row.notifiedAt)}. Send the "spot is open" email again for ${label}?`
+      : `Send the "spot is open" email to ${row.parentName} for ${label}?`
+    if (confirm(message)) {
+      notify.mutate({ id: row.id, branch })
+    }
+  }
+
   const ageText =
     age.years === 0
       ? `${age.months} mo`
@@ -184,21 +219,80 @@ const Row = ({
               </option>
             ))}
           </select>
+          {row.notifiedAt && (
+            <div
+              className='mt-1 flex items-center gap-1 text-[10px] font-medium text-emerald-600'
+              title={`Spot-open email sent ${formatDate(row.notifiedAt)}`}
+            >
+              <MailCheck size={11} /> Emailed {formatDate(row.notifiedAt)}
+            </div>
+          )}
         </td>
         <td className='px-3 py-3 text-right' onClick={(e) => e.stopPropagation()}>
-          <button
-            type='button'
-            onClick={() => {
-              if (confirm(`Delete application from ${row.parentName}? This cannot be undone.`)) {
-                del.mutate(row.id)
+          <div className='flex items-center justify-end gap-1'>
+            <button
+              type='button'
+              onClick={toggleMenu}
+              disabled={notify.isPending}
+              className='rounded-md p-1.5 text-zinc-400 transition-colors hover:bg-emerald-50 hover:text-emerald-600 disabled:opacity-50'
+              aria-label='Send spot-open email'
+              title={
+                row.notifiedAt
+                  ? `Emailed ${formatDate(row.notifiedAt)} — click to resend`
+                  : 'Send spot-open email'
               }
-            }}
-            disabled={del.isPending}
-            className='rounded-md p-1.5 text-zinc-400 transition-colors hover:bg-red-50 hover:text-red-600'
-            aria-label='Delete'
-          >
-            <Trash2 size={14} />
-          </button>
+            >
+              {notify.isPending ? (
+                <Loader2 className='h-3.5 w-3.5 animate-spin' />
+              ) : (
+                <Send size={14} />
+              )}
+            </button>
+            {menu && (
+              <>
+                <div className='fixed inset-0 z-40' onClick={() => setMenu(null)} />
+                <div
+                  className='fixed z-50 w-44 overflow-hidden rounded-lg border border-zinc-200 bg-white py-1 text-left shadow-lg'
+                  style={{ top: menu.top, right: menu.right }}
+                >
+                  <div className='px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-zinc-400'>
+                    Spot open at
+                  </div>
+                  {(['lachine', 'somerled'] as const).map((b) => (
+                    <button
+                      key={b}
+                      type='button'
+                      onClick={() => handleNotify(b)}
+                      className='flex w-full items-center justify-between px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50'
+                    >
+                      {LOCATION_LABELS[b]}
+                      {row.preferredLocation === b && (
+                        <span className='text-[10px] font-medium text-emerald-600'>preferred</span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+            <button
+              type='button'
+              onClick={() => {
+                if (confirm(`Delete application from ${row.parentName}? This cannot be undone.`)) {
+                  del.mutate(row.id)
+                }
+              }}
+              disabled={del.isPending}
+              className='rounded-md p-1.5 text-zinc-400 transition-colors hover:bg-red-50 hover:text-red-600'
+              aria-label='Delete'
+            >
+              <Trash2 size={14} />
+            </button>
+          </div>
+          {notify.isError && (
+            <div className='mt-1 text-[10px] text-red-600' title={notify.error.message}>
+              Send failed
+            </div>
+          )}
         </td>
       </tr>
       {expanded && (
@@ -224,6 +318,11 @@ const Row = ({
                     <Phone size={14} /> {row.parentPhone}
                   </a>
                   <p className='text-xs text-zinc-500'>Submitted in {row.lang.toUpperCase()}</p>
+                  {row.notifiedAt && (
+                    <p className='flex items-center gap-1 text-xs text-emerald-600'>
+                      <MailCheck size={12} /> Spot-open email sent {formatDate(row.notifiedAt)}
+                    </p>
+                  )}
                 </div>
               </div>
               <div>
