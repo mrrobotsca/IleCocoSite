@@ -49,7 +49,7 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
     description,
     locale,
     path: '/',
-    image: '/opengraph-image.png',
+    image: '/opengraph-image.jpg',
     imageAlt:
       locale === 'fr'
         ? 'Garderie Ile Coco — NDG et Lachine, Montréal'

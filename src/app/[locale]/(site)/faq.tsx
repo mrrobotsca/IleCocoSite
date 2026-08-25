@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useLang } from './lang-context'
 import { COPY } from './copy'
 import { CurlyArrow, Spiral } from './doodles'
@@ -44,15 +44,19 @@ export const FAQ = () => {
         <div>
           {c.items.map((it, i) => {
             const isOpen = open === i
+            const panelId = `faq-panel-${i}`
+            const buttonId = `faq-button-${i}`
             return (
               <div
                 key={i}
                 className={`border-t border-charcoal-deep/10 ${i === c.items.length - 1 ? 'border-b' : ''}`}
               >
                 <button
+                  id={buttonId}
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   className='flex w-full items-center justify-between gap-5 bg-transparent py-6 text-left'
                   aria-expanded={isOpen}
+                  aria-controls={panelId}
                 >
                   <span className='font-display text-[18px] font-semibold text-charcoal-deep sm:text-[19px]'>
                     {it.q}
@@ -68,21 +72,26 @@ export const FAQ = () => {
                     +
                   </span>
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeOut' }}
-                      className='overflow-hidden'
-                    >
-                      <p className='max-w-[640px] pb-6 text-[16px] leading-[1.6] text-ink-soft'>
-                        {it.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/*
+                  The answer is always rendered, and collapsed with height + overflow
+                  rather than unmounted. Previously only the open item's answer existed
+                  in the DOM, so most of the densest copy on the page — ratios,
+                  allergies, subsidy status — never reached the HTML that Google
+                  parses. The location pages solve the same problem with <details>.
+                */}
+                <motion.div
+                  id={panelId}
+                  role='region'
+                  aria-labelledby={buttonId}
+                  initial={false}
+                  animate={{ height: isOpen ? 'auto' : 0 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                  className='overflow-hidden'
+                >
+                  <p className='max-w-[640px] pb-6 text-[16px] leading-[1.6] text-ink-soft'>
+                    {it.a}
+                  </p>
+                </motion.div>
               </div>
             )
           })}

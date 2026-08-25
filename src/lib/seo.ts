@@ -4,7 +4,11 @@ import { getBrandConfig } from '@/config/branding'
 
 export type Locale = 'en' | 'fr'
 export const LOCALES: ReadonlyArray<Locale> = ['en', 'fr'] as const
-export const DEFAULT_LOCALE: Locale = 'en'
+// Drives the `x-default` hreflang and the sitemap's default alternate. Quebec
+// audience, and `/fr` outperforms `/en` in Search Console — so French is the
+// default a language-agnostic crawler should be sent to. Must stay in sync with
+// DEFAULT_LOCALE in `src/middleware.ts`, which decides where `/` actually lands.
+export const DEFAULT_LOCALE: Locale = 'fr'
 
 const brandConfig = getBrandConfig()
 
@@ -105,7 +109,7 @@ const ogLocale: Record<Locale, string> = {
 }
 
 const getOpenGraph = (options: SEOOptions, canonicalUrl: string) => {
-  const imageUrl = options.image || '/opengraph-image.png'
+  const imageUrl = options.image || '/opengraph-image.jpg'
   const description = options.description || siteConfig.description[options.locale || DEFAULT_LOCALE]
 
   return {
@@ -131,7 +135,7 @@ const getOpenGraph = (options: SEOOptions, canonicalUrl: string) => {
 }
 
 const getTwitterCard = (options: SEOOptions) => {
-  const imageUrl = options.image || '/twitter-image.png'
+  const imageUrl = options.image || '/twitter-image.jpg'
   const description = options.description || siteConfig.description[options.locale || DEFAULT_LOCALE]
 
   return {
@@ -172,12 +176,17 @@ export const generateMetadata = (options: SEOOptions = {}): Metadata => {
         }
       : undefined
 
+  // Titles that already include the brand (e.g. "… | Ile Coco") must be absolute,
+  // otherwise the root layout's `%s · Ile CoCo` template double-brands them.
+  const isSelfBranded = !!options.title && /ile\s*coco/i.test(options.title)
   const titleMetadata = options.isRootLayout
     ? {
         absolute: options.title || siteConfig.name,
         template: `%s · ${siteConfig.name}`,
       }
-    : options.title || siteConfig.name
+    : isSelfBranded || !options.title
+      ? { absolute: options.title || siteConfig.name }
+      : options.title
 
   return {
     title: titleMetadata,

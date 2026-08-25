@@ -56,6 +56,15 @@ export const NewsletterSubmissionSchema = z.object({
 
 export type NewsletterSubmission = z.infer<typeof NewsletterSubmissionSchema>
 
+/** Result of the batch reminder admin action (all offered, or selected ids). */
+export type RemindAllSummary = {
+  total: number
+  sent: number
+  /** Selected applicants that were skipped because they are not in `offered` status. */
+  skipped: { id: string; parentEmail: string }[]
+  failed: { id: string; parentEmail: string }[]
+}
+
 export const computeAge = (dob: string): { years: number; months: number } => {
   const birth = new Date(dob)
   const now = new Date()

@@ -62,7 +62,14 @@ export const Social = () => {
             >
               <Image
                 src={src}
-                alt=''
+                // These tiles are links to Instagram. An empty alt on a linked image
+                // leaves the link with no accessible name at all — screen readers
+                // announce it as an unlabelled link.
+                alt={
+                  lang === 'fr'
+                    ? `Photo ${i + 1} du quotidien à la garderie Ile Coco — voir sur Instagram`
+                    : `Photo ${i + 1} from daily life at Ile Coco daycare — view on Instagram`
+                }
                 fill
                 sizes='(max-width: 768px) 33vw, 16vw'
                 className='object-cover'

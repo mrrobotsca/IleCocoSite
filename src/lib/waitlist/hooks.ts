@@ -1,7 +1,12 @@
 'use client'
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { NewsletterSubmission, WaitlistStatus, WaitlistSubmission } from './schemas'
+import type {
+  NewsletterSubmission,
+  RemindAllSummary,
+  WaitlistStatus,
+  WaitlistSubmission,
+} from './schemas'
 
 type ApiOk<T> = { success: true; data?: T; meta?: unknown }
 type ApiErr = { success: false; error: string; issues?: unknown }
@@ -78,6 +83,7 @@ export type WaitlistApplicantRow = {
   notes: string | null
   status: WaitlistStatus
   notifiedAt: string | null
+  remindedAt: string | null
   lang: 'en' | 'fr'
 }
 
@@ -125,6 +131,30 @@ export const useNotifyWaitlistApplicant = () => {
     mutationKey: ['admin', 'waitlist', 'notify'],
     mutationFn: ({ id, branch }: { id: string; branch: 'somerled' | 'lachine' }) =>
       postJson<WaitlistApplicantRow>(`/api/admin/waitlist/${id}/notify`, { branch }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['admin', 'waitlist'] })
+    },
+  })
+}
+
+export const useRemindWaitlistApplicant = () => {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationKey: ['admin', 'waitlist', 'remind'],
+    mutationFn: ({ id }: { id: string }) =>
+      postJson<WaitlistApplicantRow>(`/api/admin/waitlist/${id}/notify`, { type: 'reminder' }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['admin', 'waitlist'] })
+    },
+  })
+}
+
+export const useRemindBatch = () => {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationKey: ['admin', 'waitlist', 'remind-batch'],
+    mutationFn: ({ ids }: { ids?: string[] } = {}) =>
+      postJson<RemindAllSummary>('/api/admin/waitlist/remind', ids ? { ids } : {}),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['admin', 'waitlist'] })
     },

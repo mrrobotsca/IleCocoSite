@@ -1,7 +1,26 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { headers } from 'next/headers'
 
 type Lang = 'en' | 'fr'
+
+// Without this the page inherits the root layout's metadata, which meant every 404
+// carried the homepage's title and description, a canonical pointing at the site
+// root (itself a redirect), and `index, follow` — sitting alongside the `noindex`
+// Next.js injects for not-found, so two contradictory robots tags shipped together.
+// `null` (not `undefined`) is what clears an inherited metadata field in Next.js —
+// `undefined` just means "not specified here" and falls through to the parent.
+// `title.absolute` bypasses the root layout's `%s · Ile CoCo` template.
+// `robots` must be set explicitly. Next.js injects its own `noindex` for not-found,
+// but without this the page ALSO inherits the root layout's `index, follow` — the
+// two tags contradicted each other. Both now agree. `null` (not `undefined`) is what
+// clears an inherited field; `title.absolute` bypasses the `%s · Ile CoCo` template.
+export const metadata: Metadata = {
+  title: { absolute: 'Page not found · Ile CoCo' },
+  description: null,
+  robots: { index: false, follow: true },
+  alternates: { canonical: null },
+}
 
 // The locale prefix is on the URL the visitor tried to reach; the middleware
 // exposes it via the x-pathname header. Default to English to match the

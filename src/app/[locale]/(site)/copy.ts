@@ -1,17 +1,38 @@
 export type Lang = "en" | "fr";
 
 export const COPY = {
+  // Keyed rather than positional: the labels used to be an array mapped by index
+  // onto a parallel array of `#anchor` hrefs, so every header link was a same-page
+  // fragment — and on the location pages those anchors did not exist at all.
+  // Keys resolve to real routes in `NAV_LINKS` (links.ts).
   nav: {
-    en: ["Programs", "Locations", "FAQ", "Contact"],
-    fr: ["Programmes", "Emplacements", "FAQ", "Contact"],
+    en: {
+      programs: "Programs",
+      somerled: "NDG (Somerled)",
+      lachine: "Lachine",
+      tuition: "Tuition",
+      faq: "FAQ",
+      contact: "Contact",
+    },
+    fr: {
+      programs: "Programmes",
+      somerled: "NDG (Somerled)",
+      lachine: "Lachine",
+      tuition: "Frais",
+      faq: "FAQ",
+      contact: "Contact",
+    },
   },
   hero: {
     en: {
       eyebrow: "Welcome to Ile CoCo · Montréal",
-      title1: "Where",
-      title2: "little hearts",
-      title3: "bloom in",
-      title4: "good hands",
+      // The h1 has to name the service and the neighbourhoods — it is the strongest
+      // on-page signal we have, and the <title> already targets exactly this.
+      // title2 carries the hand-drawn underline, so the place names sit under it.
+      title1: "A bilingual daycare in",
+      title2: "NDG & Lachine",
+      title3: "where little hearts",
+      title4: "bloom",
       lead: "A small, warm daycare with two homes in Montréal — Somerled and Lachine — where curiosity is honoured, mealtimes are sacred, and every child is met with the gentleness they deserve.",
       cta1: "Join the waiting list",
       cta2: "Book a visit",
@@ -25,10 +46,10 @@ export const COPY = {
     },
     fr: {
       eyebrow: "Bienvenue à Ile CoCo · Montréal",
-      title1: "Là où",
-      title2: "les petits cœurs",
-      title3: "fleurissent en",
-      title4: "bonnes mains",
+      title1: "Une garderie bilingue à",
+      title2: "NDG et Lachine",
+      title3: "où les petits cœurs",
+      title4: "fleurissent",
       lead: "Une petite garderie chaleureuse avec deux foyers à Montréal — Somerled et Lachine — où la curiosité est honorée, les repas sont sacrés, et chaque enfant est accueilli avec la douceur qu'il mérite.",
       cta1: "Liste d'attente",
       cta2: "Réserver une visite",
@@ -442,7 +463,7 @@ export const COPY = {
           phone: "(514) 574-4695",
           mapHint: "NDG · near Décarie",
           rating: "4.8 · 74 reviews",
-          photo: "/images/ile-coco/locations/somerled.png",
+          photo: "/images/ile-coco/locations/somerled.jpg",
           mapUrl:
             "https://www.google.com/maps/search/?api=1&query=Garderie+ile+CoCo+6624+Somerled+Montreal+QC",
           note: "tours always include tea",
@@ -457,7 +478,7 @@ export const COPY = {
           phone: "(514) 574-4695",
           mapHint: "Lachine · near Hwy 20",
           rating: "4.6 · 21 reviews",
-          photo: "/images/ile-coco/locations/lachine.png",
+          photo: "/images/ile-coco/locations/lachine.jpg",
           mapUrl:
             "https://www.google.com/maps/search/?api=1&query=Garderie+ile+Coco+2+400+rue+Victoria+Lachine+QC",
           note: "sunlit windows, all day",
@@ -489,7 +510,7 @@ export const COPY = {
           phone: "(514) 574-4695",
           mapHint: "NDG · près de Décarie",
           rating: "4,8 · 74 avis",
-          photo: "/images/ile-coco/locations/somerled.png",
+          photo: "/images/ile-coco/locations/somerled.jpg",
           mapUrl:
             "https://www.google.com/maps/search/?api=1&query=Garderie+ile+CoCo+6624+Somerled+Montreal+QC",
           note: "les visites se font autour d’un thé",
@@ -504,7 +525,7 @@ export const COPY = {
           phone: "(514) 574-4695",
           mapHint: "Lachine · près A-20",
           rating: "4,6 · 21 avis",
-          photo: "/images/ile-coco/locations/lachine.png",
+          photo: "/images/ile-coco/locations/lachine.jpg",
           mapUrl:
             "https://www.google.com/maps/search/?api=1&query=Garderie+ile+Coco+2+400+rue+Victoria+Lachine+QC",
           note: "des fenêtres ensoleillées toute la journée",
@@ -775,12 +796,32 @@ export const COPY = {
       phone: "(514) 574-4695",
       email: "info@ilecoco.com",
       hours: "Mon — Fri · 7:00 to 18:00",
+      // `href` is either a locale-relative route ("/programs"), a same-page anchor
+      // ("#gallery"), or one of the tokens resolved in footer.tsx ("waitlist",
+      // "booking", "instagram", "mailto"). Before this, footer hrefs were guessed
+      // from the label text and every one of them resolved to a fragment, a
+      // mailto:, an external URL, or a button — not one internal page link.
       col1: "Visit",
-      col1Items: ["Programs", "Locations", "Gallery"],
+      col1Items: [
+        { label: "Programs", href: "/programs" },
+        { label: "NDG (Somerled) daycare", href: "/locations/somerled" },
+        { label: "Lachine daycare", href: "/locations/lachine" },
+        { label: "Gallery", href: "#gallery" },
+      ],
       col2: "Family",
-      col2Items: ["Waiting List", "Book a visit", "FAQ", "Contact"],
+      col2Items: [
+        { label: "Tuition & rates", href: "/tuition" },
+        { label: "FAQ", href: "/faq" },
+        { label: "Contact", href: "/contact" },
+        { label: "About us", href: "/about" },
+        { label: "Waiting List", href: "waitlist" },
+        { label: "Book a visit", href: "booking" },
+      ],
       col3: "Stay close",
-      col3Items: ["Instagram", "Email us"],
+      col3Items: [
+        { label: "Instagram", href: "instagram" },
+        { label: "Email us", href: "mailto" },
+      ],
       copyright: "© 2026 Ile CoCo · Made with care in Montréal",
     },
     fr: {
@@ -790,11 +831,26 @@ export const COPY = {
       email: "info@ilecoco.com",
       hours: "Lun — Ven · 7h00 à 18h00",
       col1: "Visiter",
-      col1Items: ["Programmes", "Emplacements", "Galerie"],
+      col1Items: [
+        { label: "Programmes", href: "/programs" },
+        { label: "Garderie NDG (Somerled)", href: "/locations/somerled" },
+        { label: "Garderie Lachine", href: "/locations/lachine" },
+        { label: "Galerie", href: "#gallery" },
+      ],
       col2: "Famille",
-      col2Items: ["Liste d'attente", "Réserver", "FAQ", "Contact"],
+      col2Items: [
+        { label: "Frais et tarifs", href: "/tuition" },
+        { label: "FAQ", href: "/faq" },
+        { label: "Contact", href: "/contact" },
+        { label: "À propos", href: "/about" },
+        { label: "Liste d'attente", href: "waitlist" },
+        { label: "Réserver", href: "booking" },
+      ],
       col3: "Rester proche",
-      col3Items: ["Instagram", "Écrivez-nous"],
+      col3Items: [
+        { label: "Instagram", href: "instagram" },
+        { label: "Écrivez-nous", href: "mailto" },
+      ],
       copyright: "© 2026 Ile CoCo · Fait avec soin à Montréal",
     },
   },
@@ -826,16 +882,10 @@ export const PHOTOS = {
   somerledBouncy: "/images/ile-coco/locations/somerled-bouncy.jpg",
   somerledPlayroomWide: "/images/ile-coco/locations/somerled-playroom-wide.jpg",
   // Lachine-specific interior shots (storybook murals, bright primary palette)
-  lachineHallway: "/images/ile-coco/locations/lachine-hallway.png",
-  lachineToddlerRoom: "/images/ile-coco/locations/lachine-toddler-room.png",
-  lachineClassroom: "/images/ile-coco/locations/lachine-classroom.png",
-  lachineExterior: "/images/ile-coco/locations/lachine.png",
-  testimonial1:
-    "https://images.unsplash.com/photo-1542385151-efd9000785a0?w=300&auto=format&fit=crop",
-  testimonial2:
-    "https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?w=300&auto=format&fit=crop",
-  testimonial3:
-    "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&auto=format&fit=crop",
+  lachineHallway: "/images/ile-coco/locations/lachine-hallway.jpg",
+  lachineToddlerRoom: "/images/ile-coco/locations/lachine-toddler-room.jpg",
+  lachineClassroom: "/images/ile-coco/locations/lachine-classroom.jpg",
+  lachineExterior: "/images/ile-coco/locations/lachine.jpg",
   social1: "/images/ile-coco/meals-art.jpg",
   social2: "/images/ile-coco/staff-costumes.jpg",
   social3: "/images/ile-coco/treehouse.jpg",

@@ -35,7 +35,9 @@ export const Gallery = () => {
   const c = COPY.gallery[lang]
 
   return (
-    <section className='relative overflow-hidden bg-porcelain py-24 lg:py-28'>
+    // The footer and the /gallery alias both point at #gallery, which resolved to
+    // nothing because this section had no id.
+    <section id='gallery' className='relative overflow-hidden bg-porcelain py-24 lg:py-28'>
       <Spiral
         size={42}
         color='var(--color-sandy-clay)'
@@ -86,7 +88,13 @@ export const Gallery = () => {
             >
               <Image
                 src={src}
-                alt={c.captions[i]}
+                // The caption alone ("Splash days") says nothing about who or where.
+                // Anchor it to the business and the city for image search.
+                alt={
+                  lang === 'fr'
+                    ? `${c.captions[i]} — garderie Ile Coco, NDG et Lachine, Montréal`
+                    : `${c.captions[i]} — Ile Coco daycare, NDG and Lachine, Montréal`
+                }
                 fill
                 sizes='(max-width: 640px) 50vw, 25vw'
                 className='object-cover'

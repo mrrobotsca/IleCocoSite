@@ -1,12 +1,13 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Instagram, Mail } from 'lucide-react'
 import { useLang } from './lang-context'
-import { COPY } from './copy'
+import { COPY, type Lang } from './copy'
 import { Blob, CocoTree, IleCocoLogo, Sparkle } from './doodles'
 import { useWizard } from './wizard-context'
-import { BOOKING_URL, INSTAGRAM_URL } from './links'
+import { BOOKING_URL, CONTACT_EMAIL, INSTAGRAM_URL } from './links'
 
 export const DaycareFooter = () => {
   const { lang } = useLang()
@@ -119,7 +120,7 @@ export const DaycareFooter = () => {
               </div>
               <ul className='flex flex-col gap-2.5'>
                 {col.items.map((it) => (
-                  <FooterLink key={it} label={it} />
+                  <FooterLink key={it.label} label={it.label} href={it.href} lang={lang} />
                 ))}
               </ul>
             </div>
@@ -148,59 +149,69 @@ export const DaycareFooter = () => {
   )
 }
 
+const FOOTER_LINK_CLASS =
+  'text-[14px] text-porcelain/85 transition-colors hover:text-porcelain'
+
 /**
- * Footer link that routes to the right destination based on its label.
- * Avoids hardcoding URLs in the copy registry.
+ * Footer link. `href` comes from the copy registry and is one of:
+ *   - a locale-relative route  ("/programs")   → internal <Link>
+ *   - a same-page anchor       ("#gallery")    → plain anchor
+ *   - a token                  ("waitlist" | "booking" | "instagram" | "mailto")
+ *
+ * This used to infer the destination by substring-matching the label, which meant
+ * a label change silently rerouted the link — and no branch ever produced an
+ * internal page URL.
  */
-const FooterLink = ({ label }: { label: string }) => {
-  const lower = label.toLowerCase()
-  let href = '#contact'
-  let external = false
-  let onClickWizard = false
-
-  if (lower.includes('instagram')) {
-    href = INSTAGRAM_URL
-    external = true
-  } else if (lower.includes('email') || lower.includes('écriv') || lower.includes('contact')) {
-    href = 'mailto:info@ilecoco.com'
-  } else if (lower.includes('book') || lower.includes('réserv')) {
-    href = BOOKING_URL
-    external = true
-  } else if (lower.includes('waiting') || lower.includes('attente')) {
-    onClickWizard = true
-  } else if (lower.includes('faq')) {
-    href = '#faq'
-  } else if (lower.includes('location') || lower.includes('emplacement')) {
-    href = '#locations'
-  } else if (lower.includes('program') || lower.includes('programme')) {
-    href = '#programs'
-  } else if (lower.includes('galler') || lower.includes('galer')) {
-    href = '#gallery'
-  }
-
-  const className = 'text-[14px] text-porcelain/85 transition-colors hover:text-porcelain'
-
-  if (onClickWizard) {
+const FooterLink = ({ label, href, lang }: { label: string; href: string; lang: Lang }) => {
+  if (href === 'waitlist') {
     return (
       <li>
         <WaitlistFooterLink label={label} />
       </li>
     )
   }
-  if (external) {
+
+  if (href === 'booking' || href === 'instagram') {
     return (
       <li>
-        <a href={href} target='_blank' rel='noopener noreferrer' className={className}>
+        <a
+          href={href === 'booking' ? BOOKING_URL : INSTAGRAM_URL}
+          target='_blank'
+          rel='noopener noreferrer'
+          className={FOOTER_LINK_CLASS}
+        >
           {label}
         </a>
       </li>
     )
   }
+
+  if (href === 'mailto') {
+    return (
+      <li>
+        <a href={`mailto:${CONTACT_EMAIL}`} className={FOOTER_LINK_CLASS}>
+          {label}
+        </a>
+      </li>
+    )
+  }
+
+  // Anchors stay on the current page; routes get the locale prefix.
+  if (href.startsWith('#')) {
+    return (
+      <li>
+        <a href={href} className={FOOTER_LINK_CLASS}>
+          {label}
+        </a>
+      </li>
+    )
+  }
+
   return (
     <li>
-      <a href={href} className={className}>
+      <Link href={`/${lang}${href}`} className={FOOTER_LINK_CLASS}>
         {label}
-      </a>
+      </Link>
     </li>
   )
 }

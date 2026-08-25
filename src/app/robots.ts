@@ -9,6 +9,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        // The legal pages are deliberately absent: they carry `noindex` in their
+        // own metadata, and blocking them here would stop Google from ever
+        // crawling the page to read that directive — leaving them eligible to be
+        // indexed from external links instead.
         disallow: [
           '/api/',
           '/dashboard',
@@ -19,15 +23,6 @@ export default function robots(): MetadataRoute.Robots {
           '/verify',
           '/sentry-example-page',
           '/premium-purchase/',
-          '/privacy',
-          '/terms',
-          '/licenses',
-          '/en/privacy',
-          '/en/terms',
-          '/en/licenses',
-          '/fr/privacy',
-          '/fr/terms',
-          '/fr/licenses',
         ],
       },
     ],

@@ -78,7 +78,10 @@ const defaultConfig: BrandConfig = {
   phone: '+1-514-574-4695',
   social: {
     facebook: undefined,
-    instagram: undefined,
+    // Feeds `sameAs` on the Organization and LocalBusiness schemas, which is how
+    // Google ties the site to the social profile as one entity. The account has
+    // existed all along (linked in the footer) — it just never reached the schema.
+    instagram: 'https://www.instagram.com/ilecocodaycare/',
   },
   theme: {
     primaryColor: '#2a2a2a',
@@ -104,7 +107,7 @@ const defaultConfig: BrandConfig = {
       openingHours: SHARED_HOURS,
       googleMapsUrl:
         'https://www.google.com/maps/search/?api=1&query=Garderie+ile+CoCo+6624+Somerled+Montreal+QC',
-      photo: '/images/ile-coco/locations/somerled.png',
+      photo: '/images/ile-coco/locations/somerled.jpg',
       yearOpened: 2018,
       rating: { value: 4.8, count: 74 },
       areaServed: [
@@ -132,7 +135,7 @@ const defaultConfig: BrandConfig = {
       openingHours: SHARED_HOURS,
       googleMapsUrl:
         'https://www.google.com/maps/search/?api=1&query=Garderie+ile+Coco+2+400+rue+Victoria+Lachine+QC',
-      photo: '/images/ile-coco/locations/lachine.png',
+      photo: '/images/ile-coco/locations/lachine.jpg',
       yearOpened: 2022,
       rating: { value: 4.6, count: 21 },
       areaServed: ['Lachine', 'LaSalle', 'Dorval', 'Saint-Pierre', 'Pointe-Claire'],

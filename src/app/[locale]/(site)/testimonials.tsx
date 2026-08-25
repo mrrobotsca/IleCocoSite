@@ -1,13 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useLang } from './lang-context'
-import { COPY, PHOTOS } from './copy'
+import { COPY } from './copy'
 import { CloudHen, QuoteMark, Sparkle, WaveDivider } from './doodles'
 import { Eyebrow, SectionTitle } from './ui'
-
-const AVATARS = [PHOTOS.testimonial1, PHOTOS.testimonial2, PHOTOS.testimonial3]
 
 export const Testimonials = () => {
   const { lang } = useLang()
@@ -55,8 +52,21 @@ export const Testimonials = () => {
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className='flex items-center gap-3'>
-                  <div className='relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full bg-ash-green'>
-                    <Image src={AVATARS[i]} alt='' fill sizes='48px' className='object-cover' />
+                  {/*
+                    Monogram, not a photo. These were three Unsplash stock portraits
+                    of strangers standing in for named parents quoted from real Google
+                    reviews — a misrepresentation, and a cross-origin image request on
+                    every homepage load. Initials say the same thing honestly.
+                  */}
+                  <div
+                    aria-hidden='true'
+                    className='grid h-12 w-12 flex-shrink-0 place-items-center rounded-full bg-ash-green font-display text-[15px] font-bold text-charcoal-deep'
+                  >
+                    {t.name
+                      .split(' ')
+                      .map((part) => part[0])
+                      .join('')
+                      .toUpperCase()}
                   </div>
                   <div>
                     <div className='font-display text-[14px] font-bold text-charcoal-deep'>

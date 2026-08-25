@@ -90,15 +90,13 @@ export const getDaycareLocationSchema = (location: DaycareLocation, locale: Loca
     },
     knowsLanguage: ['en', 'fr'],
     sameAs,
-    ...(location.rating && {
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: location.rating.value,
-        reviewCount: location.rating.count,
-        bestRating: 5,
-        worstRating: 1,
-      },
-    }),
+    // No `aggregateRating` here on purpose. The ratings in `branding.ts` are our
+    // own Google Business Profile scores, restated on a page that renders no
+    // reviews. Google treats self-serving review markup on LocalBusiness as
+    // ineligible for rich results, and unverifiable ratings are a structured-data
+    // spam signal. The real stars come from the GBP listing, which Google already
+    // matches to these pages via NAP + geo. If we ever render genuine reviews
+    // on-page, add `review` alongside `aggregateRating` and this becomes valid.
   }
 }
 
@@ -111,7 +109,7 @@ export const getOrganizationSchema = (locale: Locale) => {
   const sameAs: string[] = []
   if (brand.social?.facebook) sameAs.push(brand.social.facebook)
   if (brand.social?.instagram) sameAs.push(brand.social.instagram)
-  brand.locations.forEach((l) => sameAs.push(l.googleMapsUrl))
+  for (const l of brand.locations) sameAs.push(l.googleMapsUrl)
 
   return {
     '@context': 'https://schema.org',
@@ -121,7 +119,7 @@ export const getOrganizationSchema = (locale: Locale) => {
     legalName: brand.legalName,
     url: abs(getLocaleHref(locale, '/')),
     logo: abs('/image.png'),
-    image: abs('/opengraph-image.png'),
+    image: abs('/opengraph-image.jpg'),
     description: siteConfig.description[locale],
     telephone: brand.phone,
     email: brand.supportEmail,
@@ -206,17 +204,14 @@ export const getServiceSchema = (options: {
     serviceType: 'ChildCare',
     name: options.name,
     description: options.description,
+    // Reference the LocalBusiness node emitted by `getDaycareLocationSchema` on the
+    // same page rather than restating it. Repeating the address inline created a
+    // second, unlinked ChildCare entity per program — three extra phantom
+    // businesses on every location page.
     provider: {
-      '@type': 'ChildCare',
-      name: options.location.name,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: options.location.addressLine,
-        addressLocality: options.location.locality,
-        addressRegion: options.location.region,
-        postalCode: options.location.postalCode,
-        addressCountry: options.location.country,
-      },
+      '@id': `${abs(
+        getLocaleHref(options.locale, `/locations/${options.location.slug}`)
+      )}#business`,
     },
     areaServed: options.location.areaServed.map((a) => ({
       '@type': 'AdministrativeArea',

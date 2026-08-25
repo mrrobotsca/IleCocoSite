@@ -272,6 +272,7 @@ export const waitlistApplicant = pgTable(
     // Admin workflow
     status: text('status').default('new').notNull(), // 'new' | 'contacted' | 'tour-booked' | 'offered' | 'placed' | 'closed'
     notifiedAt: timestamp('notified_at'), // set when the "spot open" email is sent
+    remindedAt: timestamp('reminded_at'), // set when the follow-up reminder email is sent
     lang: text('lang').notNull(), // 'en' | 'fr'
   },
   (table) => [

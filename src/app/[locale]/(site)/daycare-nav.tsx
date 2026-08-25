@@ -1,21 +1,21 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils/css'
 import { useLang } from './lang-context'
 import { COPY } from './copy'
 import { IleCocoLogo } from './doodles'
-import { BOOKING_URL } from './links'
-
-const NAV_ANCHORS = ['#programs', '#locations', '#faq', '#contact']
+import { BOOKING_URL, NAV_LINKS } from './links'
 
 export const DaycareNav = () => {
-  const { lang, setLang } = useLang()
+  const { lang, setLang, pathFor } = useLang()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const items = COPY.nav[lang]
+  const labels = COPY.nav[lang]
+  const localeHref = (path: string) => `/${lang}${path}`
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -46,30 +46,37 @@ export const DaycareNav = () => {
             : 'bg-porcelain/85 shadow-[0_8px_30px_rgba(58,58,58,0.06)]'
         )}
       >
-        <a href='#top' className='flex items-center gap-2.5'>
+        <Link href={localeHref('/')} className='flex items-center gap-2.5'>
           <IleCocoLogo size={42} />
           <span className='font-display text-[19px] font-bold tracking-[-0.01em] text-charcoal-deep'>
             Ile CoCo
           </span>
-        </a>
+        </Link>
 
         <div className='hidden items-center gap-1 lg:flex'>
-          {items.map((label, i) => (
-            <a
-              key={label}
-              href={NAV_ANCHORS[i]}
-              className='rounded-full px-4 py-2.5 font-display text-[14px] font-semibold text-charcoal-deep transition-colors hover:bg-charcoal-deep/10'
+          {NAV_LINKS.map((item) => (
+            <Link
+              key={item.key}
+              href={localeHref(item.path)}
+              className='rounded-full px-3.5 py-2.5 font-display text-[14px] font-semibold text-charcoal-deep transition-colors hover:bg-charcoal-deep/10'
             >
-              {label}
-            </a>
+              {labels[item.key]}
+            </Link>
           ))}
         </div>
 
         <div className='flex items-center gap-2.5'>
+          {/*
+            Real anchors, not buttons. The switcher used to call router.push, which
+            left hreflang as the only signal that the other locale existed — there
+            was no crawlable path between /en and /fr anywhere on the site.
+          */}
           <div className='flex rounded-full bg-charcoal-deep/[0.06] p-[3px] font-display text-[12px] font-semibold'>
             {(['en', 'fr'] as const).map((l) => (
-              <button
+              <Link
                 key={l}
+                href={pathFor(l)}
+                hrefLang={l === 'fr' ? 'fr-CA' : 'en-CA'}
                 onClick={() => setLang(l)}
                 className={cn(
                   'rounded-full px-3 py-1.5 uppercase tracking-[0.06em] transition-colors',
@@ -77,10 +84,10 @@ export const DaycareNav = () => {
                     ? 'bg-charcoal-deep text-porcelain'
                     : 'text-charcoal-deep hover:bg-charcoal-deep/10'
                 )}
-                aria-pressed={lang === l}
+                aria-current={lang === l ? 'true' : undefined}
               >
                 {l}
-              </button>
+              </Link>
             ))}
           </div>
           <a
@@ -139,15 +146,15 @@ export const DaycareNav = () => {
               </div>
 
               <nav className='mt-10 flex flex-col gap-1'>
-                {items.map((label, i) => (
-                  <a
-                    key={label}
-                    href={NAV_ANCHORS[i]}
+                {NAV_LINKS.map((item) => (
+                  <Link
+                    key={item.key}
+                    href={localeHref(item.path)}
                     onClick={() => setOpen(false)}
-                    className='rounded-2xl px-4 py-4 font-display text-[22px] font-semibold text-charcoal-deep transition-colors hover:bg-charcoal-deep/[0.06]'
+                    className='rounded-2xl px-4 py-3.5 font-display text-[21px] font-semibold text-charcoal-deep transition-colors hover:bg-charcoal-deep/[0.06]'
                   >
-                    {label}
-                  </a>
+                    {labels[item.key]}
+                  </Link>
                 ))}
               </nav>
 

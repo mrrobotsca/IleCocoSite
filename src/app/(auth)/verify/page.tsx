@@ -5,7 +5,8 @@ import { generateMetadata } from '@/lib/seo'
 export const dynamic = 'force-dynamic'
 
 export const metadata = generateMetadata({
-  title: 'Verification | ShipFree',
+  title: 'Verification · Ile CoCo',
+  noindex: true,
 })
 
 export default function VerifyPage() {

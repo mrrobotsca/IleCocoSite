@@ -9,6 +9,8 @@ const LOCALES: ReadonlyArray<Lang> = ['en', 'fr'] as const
 type LangContextValue = {
   lang: Lang
   setLang: (l: Lang) => void
+  /** The current page's URL in the other locale, so the switcher can be a real link. */
+  pathFor: (l: Lang) => string
 }
 
 const LangContext = createContext<LangContextValue | null>(null)
@@ -31,24 +33,36 @@ export const LangProvider = ({
   const router = useRouter()
   const pathname = usePathname()
 
+  const pathFor = useCallback(
+    (l: Lang) => {
+      const restPath = stripLocaleFromPath(pathname || '/')
+      return restPath === '/' ? `/${l}` : `/${l}${restPath}`
+    },
+    [pathname]
+  )
+
   const setLang = useCallback(
     (l: Lang) => {
       if (!LOCALES.includes(l)) return
       try {
         window.localStorage.setItem(STORAGE_KEY, l)
+        // The middleware reads NEXT_LOCALE when deciding where `/` should land.
+        // Without this the cookie branch never fired and returning visitors were
+        // re-detected from Accept-Language on every visit.
+        document.cookie = `NEXT_LOCALE=${l}; path=/; max-age=31536000; samesite=lax`
       } catch {
-        // localStorage may be unavailable (private mode, SSR races) — ignore.
+        // Storage may be unavailable (private mode, SSR races) — ignore.
       }
-      const restPath = stripLocaleFromPath(pathname || '/')
-      const target = restPath === '/' ? `/${l}` : `/${l}${restPath}`
-      router.push(target)
+      router.push(pathFor(l))
       router.refresh()
     },
-    [router, pathname]
+    [router, pathFor]
   )
 
   return (
-    <LangContext.Provider value={{ lang: initialLang, setLang }}>{children}</LangContext.Provider>
+    <LangContext.Provider value={{ lang: initialLang, setLang, pathFor }}>
+      {children}
+    </LangContext.Provider>
   )
 }
 
