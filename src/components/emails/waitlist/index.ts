@@ -13,3 +13,10 @@ export {
   type SpotReminderEmailProps,
   type SpotReminderBranch,
 } from './spot-reminder-email'
+export {
+  WaitlistWelcomeEmail,
+  getWaitlistWelcomeSubject,
+  buildWaitlistWelcomeText,
+  type WaitlistWelcomeEmailProps,
+  type WaitlistWelcomeBranch,
+} from './waitlist-welcome-email'

@@ -1,9 +1,10 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, after } from 'next/server'
 import { ZodError } from 'zod'
 import { randomUUID } from 'node:crypto'
 import { db } from '@/database'
 import { waitlistApplicant } from '@/database/schema'
 import { WaitlistSubmissionSchema } from '@/lib/waitlist/schemas'
+import { sendWaitlistWelcome } from '@/lib/waitlist/send-welcome'
 
 export async function POST(req: Request) {
   let body: unknown
@@ -44,7 +45,25 @@ export async function POST(req: Request) {
         lang: data.lang,
         status: 'new',
       })
-      .returning({ id: waitlistApplicant.id })
+      .returning()
+
+    // Invite them to book a visit straight away. Waiting until a spot opens means
+    // competing with every other daycare they applied to that week — a family that
+    // has already toured and registered for a start date does not drift away.
+    //
+    // `after()` runs this once the response has been sent, so the form still
+    // returns immediately, and Vercel keeps the function alive to finish it.
+    // The application is already saved, so a send failure must never fail signup.
+    after(async () => {
+      try {
+        const result = await sendWaitlistWelcome(row)
+        if (!result.ok && result.error === 'send-failed') {
+          console.error('[waitlist] welcome email failed to send', { id: row.id })
+        }
+      } catch (err) {
+        console.error('[waitlist] welcome email threw', err)
+      }
+    })
 
     return NextResponse.json({ success: true, data: { id: row.id } }, { status: 201 })
   } catch (err) {

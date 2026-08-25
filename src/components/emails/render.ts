@@ -3,8 +3,10 @@ import { OTPVerificationEmail, ResetPasswordEmail, WelcomeEmail } from '@/compon
 import {
   SpotOpenEmail,
   SpotReminderEmail,
+  WaitlistWelcomeEmail,
   type SpotOpenEmailProps,
   type SpotReminderEmailProps,
+  type WaitlistWelcomeEmailProps,
 } from '@/components/emails/waitlist'
 
 export type { EmailSubjectType } from './subjects'
@@ -35,4 +37,10 @@ export async function renderSpotOpenEmail(props: SpotOpenEmailProps): Promise<st
 
 export async function renderSpotReminderEmail(props: SpotReminderEmailProps): Promise<string> {
   return await render(SpotReminderEmail(props))
+}
+
+export async function renderWaitlistWelcomeEmail(
+  props: WaitlistWelcomeEmailProps
+): Promise<string> {
+  return await render(WaitlistWelcomeEmail(props))
 }
