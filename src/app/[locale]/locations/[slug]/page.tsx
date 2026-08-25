@@ -10,6 +10,7 @@ import { WaitlistWizard } from '../../(site)/waitlist-wizard'
 import { PHOTOS } from '../../(site)/copy'
 import { LOCATIONS_COPY } from '../../(site)/copy-locations'
 import { BOOKING_URL } from '../../(site)/links'
+import { WaitlistButton } from '../../(site)/ui'
 import { JsonLd } from '@/components/seo/json-ld'
 import {
   generateMetadata as buildMetadata,
@@ -191,12 +192,18 @@ export default async function LocationPage({ params }: Props) {
                     >
                       {copy.ctaPrimary}
                     </a>
-                    <Link
-                      href={`${getLocaleHref(locale, '/')}#contact`}
-                      className="inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-charcoal-deep/20 px-7 py-3.5 font-display text-[15px] font-semibold text-charcoal-deep transition-all hover:bg-charcoal-deep/5"
+                    {/*
+                      Opens the waitlist wizard in place. This used to be a link to
+                      the homepage's #contact band, which navigated the visitor off
+                      the location page entirely and then made them click a second
+                      time to reach the same modal.
+                    */}
+                    <WaitlistButton
+                      variant="ghost"
+                      className="border-charcoal-deep/20 px-7 py-3.5 text-[15px] hover:bg-charcoal-deep/5 hover:text-charcoal-deep"
                     >
                       {copy.ctaSecondary}
-                    </Link>
+                    </WaitlistButton>
                   </div>
                 </div>
 

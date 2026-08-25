@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { PageShell } from '../(site)/page-shell'
 import { CONTACT_COPY } from '../(site)/copy-pages'
 import { BOOKING_URL } from '../(site)/links'
+import { WaitlistButton } from '../(site)/ui'
 import { JsonLd } from '@/components/seo/json-ld'
 import {
   generateMetadata as buildMetadata,
@@ -155,12 +156,13 @@ export default async function ContactPage({ params }: Props) {
             <p className='mt-3 text-[15px] leading-[1.6] text-charcoal-deep/75'>
               {copy.waitlistBody}
             </p>
-            <Link
-              href={`${getLocaleHref(locale, '/')}#contact`}
-              className='mt-6 inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-charcoal-deep/20 px-7 py-3.5 font-display text-[15px] font-semibold text-charcoal-deep transition-all hover:bg-charcoal-deep/5'
+            {/* Opens the wizard here rather than bouncing to the homepage footer. */}
+            <WaitlistButton
+              variant='ghost'
+              className='mt-6 border-charcoal-deep/20 px-7 py-3.5 text-[15px] hover:bg-charcoal-deep/5 hover:text-charcoal-deep'
             >
               {locale === 'fr' ? 'Rejoindre la liste' : 'Join the list'}
-            </Link>
+            </WaitlistButton>
           </div>
         </section>
       </PageShell>
