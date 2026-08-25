@@ -96,7 +96,7 @@ const formatHours = (location: DaycareLocation, locale: Locale) =>
   locale === 'fr' ? 'Lun — Ven · 7h00 — 18h00' : 'Mon — Fri · 7:00 — 18:00'
 
 const formatAges = (locale: Locale) =>
-  locale === 'fr' ? '18 mois — 5 ans' : '18 months — 5 years'
+  locale === 'fr' ? '7 mois — 5 ans' : '7 months — 5 years'
 
 export default async function LocationPage({ params }: Props) {
   const { locale: rawLocale, slug: rawSlug } = await params
@@ -122,7 +122,7 @@ export default async function LocationPage({ params }: Props) {
       location,
       name: p.name,
       description: p.blurb,
-      ageMin: 1.5,
+      ageMin: 0.58,
       ageMax: 5,
     })
   )

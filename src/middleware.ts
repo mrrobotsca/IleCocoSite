@@ -37,7 +37,6 @@ const LOCALE_ROUTES = new Set([
   '/privacy',
   '/programs',
   '/terms',
-  '/tuition',
 ])
 
 // Guessable URLs a human might type or an old inbound link might use. Each maps to
@@ -56,9 +55,11 @@ const ALIASES: Record<string, string> = {
   '/garderie-lachine': '/locations/lachine',
   '/daycare-lachine': '/locations/lachine',
   '/programmes': '/programs',
-  '/frais': '/tuition',
-  '/pricing': '/tuition',
-  '/prices': '/tuition',
+  '/frais': '/contact',
+  '/pricing': '/contact',
+  '/prices': '/contact',
+  '/tuition': '/contact',
+  '/tarifs': '/contact',
   '/gallery': '/#gallery',
   '/galerie': '/#gallery',
   '/a-propos': '/about',

@@ -24,8 +24,8 @@ type PageShellProps = {
 }
 
 /**
- * Shared chrome for the standalone content pages (about, contact, faq, programs,
- * tuition) so they inherit the same nav, footer, waitlist wizard, and heading
+ * Shared chrome for the standalone content pages (about, contact, faq, programs)
+ * so they inherit the same nav, footer, waitlist wizard, and heading
  * rhythm as the location pages instead of each re-implementing it.
  */
 export const PageShell = ({

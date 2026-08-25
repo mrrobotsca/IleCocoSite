@@ -8,7 +8,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${brand.name} — Bilingual daycare in NDG & Lachine`,
     short_name: brand.name,
     description:
-      'Ile Coco is a small, bilingual daycare with two homes in Montréal — NDG (Somerled) and Lachine — for children 18 months to 5 years.',
+      'Ile Coco is a small, bilingual daycare with two homes in Montréal — NDG (Somerled) and Lachine — for children 7 months to 5 years.',
     start_url: '/',
     scope: '/',
     display: 'standalone',

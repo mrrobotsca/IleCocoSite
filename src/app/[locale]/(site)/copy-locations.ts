@@ -42,7 +42,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
     somerled: {
       h1: 'Bilingual Daycare in NDG (Somerled), Montréal',
       intro:
-        'Ile Coco on Somerled is our original home — a small, light-filled bilingual daycare in the heart of Notre-Dame-de-Grâce, two minutes from Décarie and a short walk from Parc Notre-Dame-de-Grâce. We welcome children from 18 months to 5 years for full-day care in French and English, with house-made meals, small groups, and zero screens.',
+        'Ile Coco on Somerled is our original home — a small, light-filled bilingual daycare in the heart of Notre-Dame-de-Grâce, two minutes from Décarie and a short walk from Parc Notre-Dame-de-Grâce. We welcome children from 7 months to 5 years — babies included — for full-day care in French and English, with house-made meals, small groups, and zero screens.',
       whyTitle: 'Why families choose our NDG daycare',
       whyBullets: [
         {
@@ -64,8 +64,14 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       ],
       programsTitle: 'Programs at our Somerled location',
       programsBlurb:
-        'Three age-grouped rooms, each staffed and designed for that exact developmental stage.',
+        'Four age-grouped rooms — nursery, toddlers, and two preschool groups — each staffed and designed for that exact developmental stage.',
       programs: [
+        {
+          name: 'Nursery — babies',
+          ages: '7 – 18 months',
+          blurb:
+            'Our infant room. Bottles, meals and naps on your baby’s own schedule, floor play, and lullabies in both languages.',
+        },
         {
           name: 'Toddler room',
           ages: '18 months – 2½ years',
@@ -103,7 +109,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'What ages do you welcome at the NDG location?',
-          a: 'Children from 18 months through 5 years. Each age has its own room with educators trained for exactly that stage.',
+          a: 'Children from 7 months through 5 years. Babies start in our nursery, and each age above has its own room with educators trained for exactly that stage.',
         },
         {
           q: 'Is the NDG daycare bilingual?',
@@ -115,7 +121,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'Is the NDG (Somerled) daycare subsidized?',
-          a: 'No — our Somerled location is a private, non-subsidized daycare. It is not part of the Quebec reduced-contribution (subsidized) network, so there is no government waiting list to navigate. Private spots in NDG open more regularly, and tuition covers house-made meals, materials and outings — we explain every cost clearly on a tour.',
+          a: 'No — our Somerled location is a private, non-subsidized daycare. It is not part of the Quebec reduced-contribution (subsidized) network, so there is no government waiting list to navigate. Private spots in NDG open more regularly, the groups stay small, and house-made meals, materials and outings are all part of the day.',
         },
         {
           q: 'How do I book a tour?',
@@ -126,12 +132,12 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       breadcrumb: { home: 'Home', locations: 'Locations' },
       metaTitle: 'Daycare in NDG (Somerled), Montréal — Ile Coco',
       metaDescription:
-        'Small, bilingual daycare in NDG (Somerled), Montréal — 18 months to 5 years. House-made meals, screen-free, 4.8★ on Google. Book a visit at 6624 av. Somerled.',
+        'Small, bilingual daycare in NDG (Somerled), Montréal — 7 months to 5 years. House-made meals, screen-free, 4.8★ on Google. Book a visit at 6624 av. Somerled.',
     },
     lachine: {
       h1: 'Bilingual Daycare in Lachine, Montréal',
       intro:
-        'Ile Coco Lachine is our second home — a sun-filled, storybook bilingual daycare on the corner of rue Victoria, near Highway 20. We welcome children from 18 months to 5 years for full-day care in French and English, with house-made meals, small groups, and zero screens.',
+        'Ile Coco Lachine is our second home — a sun-filled, storybook bilingual daycare on the corner of rue Victoria, near Highway 20. We welcome children from 7 months to 5 years — babies included — for full-day care in French and English, with house-made meals, small groups, and zero screens.',
       whyTitle: 'Why families choose our Lachine daycare',
       whyBullets: [
         {
@@ -155,6 +161,12 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       programsBlurb:
         'Three age-grouped rooms — calm, secure spaces designed for each stage of development.',
       programs: [
+        {
+          name: 'Nursery — babies',
+          ages: '7 – 18 months',
+          blurb:
+            'Our infant room. Bottles, meals and naps on your baby’s own schedule, floor play, and lullabies in both languages.',
+        },
         {
           name: 'Toddler room',
           ages: '18 months – 2½ years',
@@ -192,7 +204,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'What ages do you welcome at the Lachine location?',
-          a: 'Children from 18 months through 5 years, in three age-grouped rooms with dedicated educators.',
+          a: 'Children from 7 months through 5 years, in four age-grouped rooms — nursery, toddlers, and two preschool groups — each with dedicated educators.',
         },
         {
           q: 'Is the Lachine daycare bilingual?',
@@ -204,7 +216,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'Is the Lachine daycare subsidized?',
-          a: 'No — our Lachine location is a private, non-subsidized daycare. It is not part of the Quebec reduced-contribution (subsidized) network, so there is no government waiting list. Many Lachine and West-Island families choose private care because spots open more often and the groups stay small. We walk you through every cost on a tour.',
+          a: 'No — our Lachine location is a private, non-subsidized daycare. It is not part of the Quebec reduced-contribution (subsidized) network, so there is no government waiting list. Many Lachine and West-Island families choose private care because spots open more often and the groups stay small.',
         },
         {
           q: 'How do I book a visit?',
@@ -215,14 +227,14 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       breadcrumb: { home: 'Home', locations: 'Locations' },
       metaTitle: 'Daycare in Lachine, Montréal — Ile Coco',
       metaDescription:
-        'Small, bilingual daycare in Lachine, Montréal — 18 months to 5 years. House-made meals, screen-free. Book a visit at 400 rue Victoria.',
+        'Small, bilingual daycare in Lachine, Montréal — 7 months to 5 years. House-made meals, screen-free. Book a visit at 400 rue Victoria.',
     },
   },
   fr: {
     somerled: {
       h1: 'Garderie bilingue à NDG (Somerled), Montréal',
       intro:
-        "Ile Coco sur Somerled est notre foyer d'origine — une petite garderie bilingue lumineuse au cœur de Notre-Dame-de-Grâce, à deux minutes de Décarie et à quelques pas du Parc Notre-Dame-de-Grâce. Nous accueillons les enfants de 18 mois à 5 ans pour une journée complète en français et en anglais, avec des repas maison, de petits groupes et aucun écran.",
+        "Ile Coco sur Somerled est notre foyer d'origine — une petite garderie bilingue lumineuse au cœur de Notre-Dame-de-Grâce, à deux minutes de Décarie et à quelques pas du Parc Notre-Dame-de-Grâce. Nous accueillons les enfants de 7 mois à 5 ans — les bébés aussi — pour une journée complète en français et en anglais, avec des repas maison, de petits groupes et aucun écran.",
       whyTitle: 'Pourquoi les familles choisissent notre garderie à NDG',
       whyBullets: [
         {
@@ -244,10 +256,16 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       ],
       programsTitle: 'Programmes à notre emplacement Somerled',
       programsBlurb:
-        'Trois pièces par groupe d’âge, chacune pensée et accompagnée pour ce stade exact.',
+        'Quatre pièces par groupe d’âge — pouponnière, tout-petits et deux groupes préscolaires — chacune pensée et accompagnée pour ce stade exact.',
       programs: [
         {
-          name: 'Pouponnière',
+          name: 'Pouponnière — bébés',
+          ages: '7 – 18 mois',
+          blurb:
+            'Notre pouponnière. Boires, repas et siestes au rythme de votre bébé, jeu au sol, et des berceuses dans les deux langues.',
+        },
+        {
+          name: 'Tout-petits',
           ages: '18 mois – 2 ans ½',
           blurb:
             'Un atterrissage en douceur pour les plus petits. Jeu sensoriel, chansons dans les deux langues, rythmes prévisibles.',
@@ -283,7 +301,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'Quels âges accueillez-vous à NDG ?',
-          a: 'Les enfants de 18 mois à 5 ans, répartis dans trois pièces avec des éducatrices formées pour chaque stade.',
+          a: 'Les enfants de 7 mois à 5 ans. Les bébés commencent à la pouponnière, et chaque âge au-dessus a sa pièce avec des éducatrices formées pour ce stade.',
         },
         {
           q: 'La garderie de NDG est-elle bilingue ?',
@@ -295,7 +313,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'La garderie de NDG est-elle subventionnée ?',
-          a: 'Non — notre installation de Somerled est une garderie privée, non subventionnée. Elle ne fait pas partie du réseau subventionné à contribution réduite du Québec, il n’y a donc aucune liste d’attente gouvernementale à gérer. Les places privées à NDG s’ouvrent plus régulièrement, et les frais couvrent les repas maison, le matériel et les sorties — nous expliquons chaque coût lors de la visite.',
+          a: 'Non — notre installation de Somerled est une garderie privée, non subventionnée. Elle ne fait pas partie du réseau subventionné à contribution réduite du Québec, il n’y a donc aucune liste d’attente gouvernementale à gérer. Les places privées à NDG s’ouvrent plus régulièrement, les groupes restent petits, et les repas maison, le matériel et les sorties font partie de la journée.',
         },
         {
           q: 'Comment réserver une visite ?',
@@ -306,12 +324,12 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       breadcrumb: { home: 'Accueil', locations: 'Emplacements' },
       metaTitle: 'Garderie à NDG (Somerled), Montréal — Ile Coco',
       metaDescription:
-        'Petite garderie bilingue à NDG (Somerled), Montréal — 18 mois à 5 ans. Repas maison, sans écrans, 4,8★ sur Google. Réservez au 6624 av. Somerled.',
+        'Petite garderie bilingue à NDG (Somerled), Montréal — 7 mois à 5 ans. Repas maison, sans écrans, 4,8★ sur Google. Réservez au 6624 av. Somerled.',
     },
     lachine: {
       h1: 'Garderie bilingue à Lachine, Montréal',
       intro:
-        "Ile Coco Lachine est notre second foyer — une garderie bilingue ensoleillée et féerique, à l'angle de la rue Victoria, près de l’autoroute 20. Nous accueillons les enfants de 18 mois à 5 ans pour une journée complète en français et en anglais, avec repas maison, petits groupes et aucun écran.",
+        "Ile Coco Lachine est notre second foyer — une garderie bilingue ensoleillée et féerique, à l'angle de la rue Victoria, près de l’autoroute 20. Nous accueillons les enfants de 7 mois à 5 ans — les bébés aussi — pour une journée complète en français et en anglais, avec repas maison, petits groupes et aucun écran.",
       whyTitle: 'Pourquoi les familles choisissent notre garderie à Lachine',
       whyBullets: [
         {
@@ -336,7 +354,13 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         'Trois pièces par groupe d’âge — calmes, sécurisées, pensées pour chaque stade.',
       programs: [
         {
-          name: 'Pouponnière',
+          name: 'Pouponnière — bébés',
+          ages: '7 – 18 mois',
+          blurb:
+            'Notre pouponnière. Boires, repas et siestes au rythme de votre bébé, jeu au sol, et des berceuses dans les deux langues.',
+        },
+        {
+          name: 'Tout-petits',
           ages: '18 mois – 2 ans ½',
           blurb:
             'Un atterrissage en douceur. Jeu sensoriel, chansons dans les deux langues, siestes paisibles.',
@@ -372,7 +396,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'Quels âges accueillez-vous à Lachine ?',
-          a: 'Les enfants de 18 mois à 5 ans, répartis dans trois pièces avec des éducatrices dédiées.',
+          a: 'Les enfants de 7 mois à 5 ans, répartis dans quatre pièces — pouponnière, tout-petits et deux groupes préscolaires — chacune avec des éducatrices dédiées.',
         },
         {
           q: 'La garderie de Lachine est-elle bilingue ?',
@@ -384,7 +408,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'La garderie de Lachine est-elle subventionnée ?',
-          a: 'Non — notre installation de Lachine est une garderie privée, non subventionnée. Elle ne fait pas partie du réseau subventionné à contribution réduite du Québec, il n’y a donc aucune liste d’attente gouvernementale. Beaucoup de familles de Lachine et de l’Ouest-de-l’Île choisissent le privé parce que les places s’ouvrent plus souvent et que les groupes restent petits. Nous expliquons chaque coût lors de la visite.',
+          a: 'Non — notre installation de Lachine est une garderie privée, non subventionnée. Elle ne fait pas partie du réseau subventionné à contribution réduite du Québec, il n’y a donc aucune liste d’attente gouvernementale. Beaucoup de familles de Lachine et de l’Ouest-de-l’Île choisissent le privé parce que les places s’ouvrent plus souvent et que les groupes restent petits.',
         },
         {
           q: 'Comment réserver une visite ?',
@@ -395,7 +419,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       breadcrumb: { home: 'Accueil', locations: 'Emplacements' },
       metaTitle: 'Garderie à Lachine, Montréal — Ile Coco',
       metaDescription:
-        'Petite garderie bilingue à Lachine, Montréal — 18 mois à 5 ans. Repas maison, sans écrans. Réservez au 400 rue Victoria.',
+        'Petite garderie bilingue à Lachine, Montréal — 7 mois à 5 ans. Repas maison, sans écrans. Réservez au 400 rue Victoria.',
     },
   },
 }

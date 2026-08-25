@@ -35,7 +35,11 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   })
 }
 
+// Ages in years, matching the four rooms in PROGRAMS_COPY. 0.58 = 7 months, the
+// youngest we accept — the nursery entry must stay first and stay aligned with the
+// `rooms` array order.
 const AGE_BOUNDS = [
+  { ageMin: 0.58, ageMax: 1.5 },
   { ageMin: 1.5, ageMax: 2.5 },
   { ageMin: 2.5, ageMax: 4 },
   { ageMin: 4, ageMax: 5 },

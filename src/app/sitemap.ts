@@ -13,7 +13,6 @@ const ROUTES: Route[] = [
   { path: '/locations/somerled', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/locations/lachine', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/programs', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/tuition', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/faq', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/contact', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/about', changeFrequency: 'monthly', priority: 0.6 },

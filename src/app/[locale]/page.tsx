@@ -41,8 +41,8 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
       : 'Bilingual Daycare in NDG (Somerled) & Lachine, Montréal | Ile Coco'
   const description =
     locale === 'fr'
-      ? 'Petite garderie chaleureuse à NDG (Somerled) et Lachine. Bilingue (français/anglais), repas maison, sans écrans. 18 mois à 5 ans. 4,8★ sur Google.'
-      : 'A small, warm bilingual daycare in NDG (Somerled) and Lachine. House-made meals, screen-free, ages 18 months to 5 years. 4.8★ on Google.'
+      ? 'Petite garderie chaleureuse à NDG (Somerled) et Lachine. Bilingue (français/anglais), repas maison, sans écrans. De 7 mois à 5 ans, pouponnière incluse.'
+      : 'A small, warm bilingual daycare in NDG (Somerled) and Lachine. House-made meals, screen-free, ages 7 months to 5 years — babies welcome.'
 
   return buildMetadata({
     title,

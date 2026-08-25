@@ -10,7 +10,6 @@ export const COPY = {
       programs: "Programs",
       somerled: "NDG (Somerled)",
       lachine: "Lachine",
-      tuition: "Tuition",
       faq: "FAQ",
       contact: "Contact",
     },
@@ -18,7 +17,6 @@ export const COPY = {
       programs: "Programmes",
       somerled: "NDG (Somerled)",
       lachine: "Lachine",
-      tuition: "Frais",
       faq: "FAQ",
       contact: "Contact",
     },
@@ -388,56 +386,6 @@ export const COPY = {
       ],
     },
   },
-  tuition: {
-    en: {
-      eyebrow: "Tuition",
-      title1: "Honest pricing,",
-      title2: "no surprises",
-      sub: "Simple, all-inclusive pricing — every spot comes with the same care. As a private daycare, we will walk you through it on a tour; these are starting points.",
-      items: [
-        {
-          tag: "Full-fee",
-          price: "$58",
-          per: "/ day",
-          note: "Includes meals, snacks, materials, outings — everything but the rain boots.",
-        },
-        {
-          tag: "Drop-in",
-          price: "$72",
-          per: "/ day",
-          note: "By availability, for siblings or short-term needs.",
-        },
-      ],
-      includes:
-        "All tuition includes house-made meals, snacks, all materials, and seasonal outings.",
-      mostCommon: "Most common",
-      cta: "Request the full guide",
-    },
-    fr: {
-      eyebrow: "Frais",
-      title1: "Tarifs honnêtes,",
-      title2: "sans surprises",
-      sub: "Une tarification simple et tout compris — chaque place reçoit le même soin. Garderie privée, nous vous expliquons tout lors de la visite.",
-      items: [
-        {
-          tag: "Tarif régulier",
-          price: "58 $",
-          per: "/ jour",
-          note: "Comprend repas, collations, matériel, sorties — tout sauf les bottes de pluie.",
-        },
-        {
-          tag: "Sur appel",
-          price: "72 $",
-          per: "/ jour",
-          note: "Selon disponibilité, pour fratries ou besoins ponctuels.",
-        },
-      ],
-      includes:
-        "Tous les frais incluent les repas maison, les collations, le matériel et les sorties saisonnières.",
-      mostCommon: "Le plus courant",
-      cta: "Demander le guide complet",
-    },
-  },
   locations: {
     en: {
       eyebrow: "Two homes, one heart",
@@ -459,7 +407,7 @@ export const COPY = {
           addr: "6624 av. Somerled #201",
           city: "Montréal, QC H4V 1T2",
           hours: "Mon — Fri · 7:00 — 18:00",
-          ages: "18 months — 5 years",
+          ages: "7 months — 5 years",
           phone: "(514) 574-4695",
           mapHint: "NDG · near Décarie",
           rating: "4.8 · 74 reviews",
@@ -474,7 +422,7 @@ export const COPY = {
           addr: "400 rue Victoria",
           city: "Lachine, QC H8S 1Y5",
           hours: "Mon — Fri · 7:00 — 18:00",
-          ages: "18 months — 5 years",
+          ages: "7 months — 5 years",
           phone: "(514) 574-4695",
           mapHint: "Lachine · near Hwy 20",
           rating: "4.6 · 21 reviews",
@@ -506,7 +454,7 @@ export const COPY = {
           addr: "6624 av. Somerled #201",
           city: "Montréal, QC H4V 1T2",
           hours: "Lun — Ven · 7h00 — 18h00",
-          ages: "18 mois — 5 ans",
+          ages: "7 mois — 5 ans",
           phone: "(514) 574-4695",
           mapHint: "NDG · près de Décarie",
           rating: "4,8 · 74 avis",
@@ -521,7 +469,7 @@ export const COPY = {
           addr: "400 rue Victoria",
           city: "Lachine, QC H8S 1Y5",
           hours: "Lun — Ven · 7h00 — 18h00",
-          ages: "18 mois — 5 ans",
+          ages: "7 mois — 5 ans",
           phone: "(514) 574-4695",
           mapHint: "Lachine · près A-20",
           rating: "4,6 · 21 avis",
@@ -543,7 +491,7 @@ export const COPY = {
       items: [
         {
           q: "What ages do you welcome?",
-          a: "We welcome children from 18 months through 5 years. Each age has its own dedicated classroom — calm, secure spaces designed and staffed for exactly that stage of development, so every child gets the attention they need.",
+          a: "We welcome children from 7 months through 5 years — babies included. Our nursery takes infants from 7 months, and each age above that has its own dedicated classroom: calm, secure spaces designed and staffed for exactly that stage of development.",
         },
         {
           q: "How do you handle food allergies?",
@@ -563,7 +511,7 @@ export const COPY = {
         },
         {
           q: "Are you a subsidized daycare?",
-          a: "Ile Coco is a private, non-subsidized daycare — we are not part of Quebec's reduced-contribution (subsidized) network, so there is no government waiting list to navigate. Many families in NDG and Lachine choose us for exactly that reason: private spots open more often, the groups stay small, and the same care is included for everyone. We will gladly walk you through every cost on a tour.",
+          a: "Ile Coco is a private, non-subsidized daycare — we are not part of Quebec's reduced-contribution (subsidized) network, so there is no government waiting list to navigate. Many families in NDG and Lachine choose us for exactly that reason: private spots open more often, the groups stay small, and the same care is included for everyone.",
         },
       ],
     },
@@ -575,7 +523,7 @@ export const COPY = {
       items: [
         {
           q: "Quels âges accueillez-vous?",
-          a: "De 18 mois à 5 ans. Chaque âge a sa salle dédiée — des espaces calmes et sécurisés, conçus et encadrés pour ce stade précis du développement, pour que chaque enfant reçoive l'attention dont il a besoin.",
+          a: "De 7 mois à 5 ans — les bébés aussi. Notre pouponnière accueille les poupons dès 7 mois, et chaque âge au-dessus a sa salle dédiée : des espaces calmes et sécurisés, conçus et encadrés pour ce stade précis du développement.",
         },
         {
           q: "Comment gérez-vous les allergies?",
@@ -595,7 +543,7 @@ export const COPY = {
         },
         {
           q: "Êtes-vous une garderie subventionnée?",
-          a: "Ile Coco est une garderie privée, non subventionnée — nous ne faisons pas partie du réseau subventionné à contribution réduite du Québec, donc aucune liste d'attente gouvernementale à gérer. Beaucoup de familles de NDG et de Lachine nous choisissent pour cette raison : les places privées s'ouvrent plus souvent, les groupes restent petits, et le même soin est inclus pour tous. Nous vous expliquons chaque coût avec plaisir lors de la visite.",
+          a: "Ile Coco est une garderie privée, non subventionnée — nous ne faisons pas partie du réseau subventionné à contribution réduite du Québec, donc aucune liste d'attente gouvernementale à gérer. Beaucoup de familles de NDG et de Lachine nous choisissent pour cette raison : les places privées s'ouvrent plus souvent, les groupes restent petits, et le même soin est inclus pour tous.",
         },
       ],
     },
@@ -810,7 +758,6 @@ export const COPY = {
       ],
       col2: "Family",
       col2Items: [
-        { label: "Tuition & rates", href: "/tuition" },
         { label: "FAQ", href: "/faq" },
         { label: "Contact", href: "/contact" },
         { label: "About us", href: "/about" },
@@ -839,7 +786,6 @@ export const COPY = {
       ],
       col2: "Famille",
       col2Items: [
-        { label: "Frais et tarifs", href: "/tuition" },
         { label: "FAQ", href: "/faq" },
         { label: "Contact", href: "/contact" },
         { label: "À propos", href: "/about" },

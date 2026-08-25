@@ -1,12 +1,17 @@
 /**
- * Copy for the standalone content pages: about, contact, faq, programs, tuition.
+ * Copy for the standalone content pages: about, contact, faq, programs.
  *
  * These exist as real routes rather than homepage anchors so each can rank on its
  * own. Every claim here is drawn from what the site already states elsewhere
  * (`copy.ts`, `copy-locations.ts`, `config/branding.ts`) — ages, ratio, hours,
- * rates, opening years, and the private/non-subsidized status. Nothing is invented.
+ * opening years, and the private/non-subsidized status. Nothing is invented.
  *
- * Places needing the operator's own words are marked NEEDS-OPERATOR-INPUT.
+ * Two rules for this file:
+ *   1. NEVER state fees, rates, or prices anywhere on the site. Cost questions are
+ *      answered in person on a tour.
+ *   2. The age range is 7 months to 5 years. We run a nursery for babies as well as
+ *      toddler and preschool rooms — the site previously said 18 months, which cost
+ *      us enquiries from families with infants.
  */
 
 export type PageMeta = {
@@ -27,18 +32,6 @@ export type ProgramsCopy = PageMeta & {
   dayBody: string
   ratioTitle: string
   ratioBody: string
-  ctaTitle: string
-  ctaBody: string
-}
-
-export type TuitionCopy = PageMeta & {
-  ratesTitle: string
-  includedTitle: string
-  included: string[]
-  notIncludedTitle: string
-  notIncluded: string[]
-  subsidyTitle: string
-  subsidyBody: string
   ctaTitle: string
   ctaBody: string
 }
@@ -71,20 +64,26 @@ type Locale = 'en' | 'fr'
 
 export const PROGRAMS_COPY: Record<Locale, ProgramsCopy> = {
   en: {
-    metaTitle: 'Daycare Programs by Age — 18 Months to 5 Years | Ile Coco',
+    metaTitle: 'Daycare Programs by Age — 7 Months to 5 Years | Ile Coco',
     metaDescription:
-      'Three age-grouped rooms at our NDG (Somerled) and Lachine daycares: toddlers 18 months–2½, Petits 2½–4, Grands 4–5. Bilingual, screen-free, max 7 children per educator.',
+      'Four age-grouped rooms at our NDG (Somerled) and Lachine daycares: babies from 7 months, toddlers 18 months–2½, Petits 2½–4, Grands 4–5. Bilingual, screen-free.',
     eyebrow: 'Programs',
-    h1: 'Bilingual daycare programs, 18 months to 5 years',
+    h1: 'Bilingual daycare programs, 7 months to 5 years',
     intro:
-      'Both of our Montréal homes — NDG (Somerled) and Lachine — run the same three age-grouped rooms. Each is staffed and designed for that exact stage, so a child moves up when they are ready, not when a calendar says so.',
-    roomsTitle: 'Three rooms, three stages',
+      'We welcome babies from 7 months right through to 5 years. Both of our Montréal homes — NDG (Somerled) and Lachine — run the same four age-grouped rooms, each staffed and designed for that exact stage, so a child moves up when they are ready rather than when a calendar says so.',
+    roomsTitle: 'Four rooms, four stages',
     rooms: [
+      {
+        name: 'Nursery — babies',
+        ages: '7 – 18 months',
+        blurb:
+          'Our infant room, for babies from 7 months. Feeding and sleep on your baby’s own schedule, floor play, lullabies and books in both languages, and one set of familiar arms every day.',
+      },
       {
         name: 'Toddler room',
         ages: '18 months – 2½ years',
         blurb:
-          'A gentle landing place for the youngest. Sensory play, songs in both languages, predictable rhythms, and long naps in a quiet room.',
+          'First steps into a group. Sensory play, songs in both languages, predictable rhythms, and long naps in a quiet room.',
       },
       {
         name: 'Preschool — Petits',
@@ -101,29 +100,35 @@ export const PROGRAMS_COPY: Record<Locale, ProgramsCopy> = {
     ],
     dayTitle: 'What a day looks like',
     dayBody:
-      'Doors open at 7:00. Breakfast, then free play while the rooms fill. Morning circle in French and English, a project or an outing, lunch cooked in our own kitchen, nap, snack, and a long afternoon outside whenever the weather allows. Pickup runs until 18:00. There are no screens in any room — the day is water, paint, dough, dirt, songs, books, and each other.',
+      'Doors open at 7:00. Breakfast, then free play while the rooms fill. Morning circle in French and English, a project or an outing, lunch cooked in our own kitchen, nap, snack, and a long afternoon outside whenever the weather allows. Pickup runs until 18:00. Babies keep their own rhythm — bottles, meals and naps follow your schedule, not the room’s. There are no screens in any room.',
     ratioTitle: 'Small groups, on purpose',
     ratioBody:
-      'A maximum of seven children per educator, and we often run smaller. That is a deliberate choice about what the day feels like, not a coincidence of enrolment. Both locations are bilingual throughout — French and English are lived across the day rather than taught in a block.',
+      'A maximum of seven children per educator, and we often run smaller — smaller still in the nursery, where the youngest need it most. That is a deliberate choice about what the day feels like, not a coincidence of enrolment. Both locations are bilingual throughout: French and English are lived across the day rather than taught in a block.',
     ctaTitle: 'Come see a room in motion',
     ctaBody:
       'Tours are best right after morning snack, when the rooms are humming. Book a visit and we will match you with a time.',
   },
   fr: {
-    metaTitle: 'Programmes de garderie par âge — 18 mois à 5 ans | Ile Coco',
+    metaTitle: 'Programmes de garderie par âge — 7 mois à 5 ans | Ile Coco',
     metaDescription:
-      'Trois groupes d’âge dans nos garderies de NDG (Somerled) et Lachine : tout-petits 18 mois–2½, Petits 2½–4, Grands 4–5. Bilingue, sans écrans, max 7 enfants par éducateur.',
+      'Quatre groupes d’âge dans nos garderies de NDG (Somerled) et Lachine : bébés dès 7 mois, tout-petits 18 mois–2½, Petits 2½–4, Grands 4–5. Bilingue, sans écrans.',
     eyebrow: 'Programmes',
-    h1: 'Programmes de garderie bilingue, de 18 mois à 5 ans',
+    h1: 'Programmes de garderie bilingue, de 7 mois à 5 ans',
     intro:
-      'Nos deux foyers montréalais — NDG (Somerled) et Lachine — offrent les mêmes trois groupes d’âge. Chacun est conçu et encadré pour ce stade précis : l’enfant change de groupe quand il est prêt, pas quand le calendrier le dit.',
-    roomsTitle: 'Trois salles, trois étapes',
+      'Nous accueillons les bébés dès 7 mois et jusqu’à 5 ans. Nos deux foyers montréalais — NDG (Somerled) et Lachine — offrent les mêmes quatre groupes d’âge, chacun conçu et encadré pour ce stade précis : l’enfant change de groupe quand il est prêt, pas quand le calendrier le dit.',
+    roomsTitle: 'Quatre salles, quatre étapes',
     rooms: [
       {
-        name: 'Pouponnière / tout-petits',
+        name: 'Pouponnière — bébés',
+        ages: '7 – 18 mois',
+        blurb:
+          'Notre pouponnière, pour les bébés dès 7 mois. Boires et sommeil au rythme de votre bébé, jeu au sol, berceuses et livres dans les deux langues, et les mêmes bras familiers chaque jour.',
+      },
+      {
+        name: 'Tout-petits',
         ages: '18 mois – 2½ ans',
         blurb:
-          'Un atterrissage tout en douceur pour les plus jeunes. Jeu sensoriel, chansons dans les deux langues, rythmes prévisibles et longues siestes au calme.',
+          'Les premiers pas en groupe. Jeu sensoriel, chansons dans les deux langues, rythmes prévisibles et longues siestes au calme.',
       },
       {
         name: 'Préscolaire — Petits',
@@ -140,76 +145,13 @@ export const PROGRAMS_COPY: Record<Locale, ProgramsCopy> = {
     ],
     dayTitle: 'À quoi ressemble une journée',
     dayBody:
-      'Les portes ouvrent à 7h00. Déjeuner, puis jeu libre pendant que les salles se remplissent. Cercle du matin en français et en anglais, un projet ou une sortie, dîner cuisiné dans notre cuisine, sieste, collation, et un long après-midi dehors dès que la météo le permet. Les départs se font jusqu’à 18h00. Aucun écran dans nos espaces — la journée, c’est de l’eau, de la peinture, de la pâte, de la terre, des chansons, des livres, et les autres.',
+      'Les portes ouvrent à 7h00. Déjeuner, puis jeu libre pendant que les salles se remplissent. Cercle du matin en français et en anglais, un projet ou une sortie, dîner cuisiné dans notre cuisine, sieste, collation, et un long après-midi dehors dès que la météo le permet. Les départs se font jusqu’à 18h00. Les bébés gardent leur propre rythme : boires, repas et siestes suivent votre horaire, pas celui de la salle. Aucun écran dans nos espaces.',
     ratioTitle: 'De petits groupes, par choix',
     ratioBody:
-      'Maximum sept enfants par éducateur, et souvent moins. C’est un choix délibéré sur la texture de la journée, pas un hasard d’inscriptions. Les deux emplacements sont bilingues d’un bout à l’autre : le français et l’anglais se vivent tout au long de la journée plutôt que de s’enseigner en bloc.',
+      'Maximum sept enfants par éducateur, et souvent moins — moins encore à la pouponnière, là où les plus jeunes en ont le plus besoin. C’est un choix délibéré sur la texture de la journée, pas un hasard d’inscriptions. Les deux emplacements sont bilingues d’un bout à l’autre : le français et l’anglais se vivent tout au long de la journée plutôt que de s’enseigner en bloc.',
     ctaTitle: 'Venez voir une salle en mouvement',
     ctaBody:
       'Les visites sont idéales juste après la collation du matin, quand les salles bourdonnent. Réservez et nous vous proposerons une heure.',
-  },
-}
-
-export const TUITION_COPY: Record<Locale, TuitionCopy> = {
-  en: {
-    metaTitle: 'Daycare Tuition & Rates in NDG and Lachine, Montréal | Ile Coco',
-    metaDescription:
-      'Transparent daycare rates at Ile Coco: $58/day full fee, $72/day drop-in, all-inclusive. Private, non-subsidized daycare in NDG (Somerled) and Lachine, Montréal.',
-    eyebrow: 'Tuition',
-    h1: 'Honest daycare pricing in NDG and Lachine',
-    intro:
-      'Simple, all-inclusive pricing — every spot comes with the same care. As a private daycare we set our own rates, and we would rather you see them before you book a tour than after.',
-    ratesTitle: 'Our rates',
-    includedTitle: 'What tuition includes',
-    included: [
-      'Three house-made meals and snacks daily, cooked in our own kitchen',
-      'All learning materials, art supplies, and books',
-      'Seasonal outings and special-day activities',
-      'Bilingual programming in French and English',
-      'A daily journal home — what they ate, made, and laughed at',
-    ],
-    notIncludedTitle: 'What you bring',
-    notIncluded: [
-      'Rain boots, indoor shoes, and a change of clothes',
-      'Diapers and wipes for children still in them',
-      'A nap blanket that smells like home',
-    ],
-    subsidyTitle: 'Are you a subsidized daycare?',
-    subsidyBody:
-      'No. Ile Coco is a private, non-subsidized daycare — we are not part of Quebec’s reduced-contribution network, so there is no government waiting list to navigate. Many families in NDG and Lachine choose us for exactly that reason: private spots open more often and the groups stay small. Quebec’s tax credit for childcare expenses may apply to your situation; we provide the receipts you need, and your own accountant is the right person to confirm what you qualify for.',
-    ctaTitle: 'See it before you decide',
-    ctaBody:
-      'We will walk you through every cost on a tour — no deposit, no pressure. Rates shown are starting points and are confirmed in writing before enrolment.',
-  },
-  fr: {
-    metaTitle: 'Frais de garderie à NDG et Lachine, Montréal | Ile Coco',
-    metaDescription:
-      'Tarifs transparents chez Ile Coco : 58 $/jour tarif régulier, 72 $/jour sur appel, tout inclus. Garderie privée non subventionnée à NDG (Somerled) et Lachine, Montréal.',
-    eyebrow: 'Frais',
-    h1: 'Des tarifs de garderie honnêtes à NDG et Lachine',
-    intro:
-      'Une tarification simple et tout compris — chaque place reçoit le même soin. Garderie privée, nous fixons nos propres tarifs, et nous préférons que vous les voyiez avant la visite plutôt qu’après.',
-    ratesTitle: 'Nos tarifs',
-    includedTitle: 'Ce que les frais comprennent',
-    included: [
-      'Trois repas maison et les collations chaque jour, cuisinés sur place',
-      'Tout le matériel pédagogique, les fournitures d’art et les livres',
-      'Les sorties saisonnières et les journées spéciales',
-      'La programmation bilingue en français et en anglais',
-      'Un journal quotidien à la maison — ce qu’ils ont mangé, fabriqué, ce qui les a fait rire',
-    ],
-    notIncludedTitle: 'Ce que vous apportez',
-    notIncluded: [
-      'Bottes de pluie, souliers d’intérieur et vêtements de rechange',
-      'Couches et lingettes pour les enfants qui en portent',
-      'Une doudou de sieste qui sent la maison',
-    ],
-    subsidyTitle: 'Êtes-vous une garderie subventionnée?',
-    subsidyBody:
-      'Non. Ile Coco est une garderie privée, non subventionnée — nous ne faisons pas partie du réseau à contribution réduite du Québec, donc aucune liste d’attente gouvernementale à gérer. Beaucoup de familles de NDG et de Lachine nous choisissent pour cette raison : les places privées s’ouvrent plus souvent et les groupes restent petits. Le crédit d’impôt québécois pour frais de garde peut s’appliquer à votre situation; nous fournissons les reçus nécessaires, et votre comptable est la bonne personne pour confirmer ce à quoi vous avez droit.',
-    ctaTitle: 'Voyez avant de décider',
-    ctaBody:
-      'Nous vous expliquons chaque coût lors de la visite — sans dépôt, sans pression. Les tarifs affichés sont des points de départ et sont confirmés par écrit avant l’inscription.',
   },
 }
 
@@ -241,7 +183,7 @@ export const ABOUT_COPY: Record<Locale, AboutCopy> = {
       {
         title: 'Private, and clear about it',
         body:
-          'Ile Coco is a private, non-subsidized daycare. We are not part of Quebec’s reduced-contribution network, so there is no government list to sit on — and we publish our rates rather than making you ask. Families who want a small, bilingual, screen-free room and a spot that actually opens tend to find that trade worth making.',
+          'Ile Coco is a private, non-subsidized daycare. We are not part of Quebec’s reduced-contribution network, so there is no government list to sit on and no waiting years for a place. Families who want a small, bilingual, screen-free room — with space for babies as well as toddlers — and a spot that actually opens tend to find that trade worth making.',
       },
     ],
     statsTitle: 'Where things stand',
@@ -249,7 +191,7 @@ export const ABOUT_COPY: Record<Locale, AboutCopy> = {
       { value: '2018', label: 'Somerled (NDG) opened' },
       { value: '2022', label: 'Lachine opened' },
       { value: '7:1', label: 'Maximum children per educator' },
-      { value: '18 mo – 5 yr', label: 'Ages welcomed' },
+      { value: '7 mo – 5 yr', label: 'Ages welcomed' },
     ],
   },
   fr: {
@@ -279,7 +221,7 @@ export const ABOUT_COPY: Record<Locale, AboutCopy> = {
       {
         title: 'Privée, et claire là-dessus',
         body:
-          'Ile Coco est une garderie privée, non subventionnée. Nous ne faisons pas partie du réseau à contribution réduite du Québec : aucune liste gouvernementale à attendre — et nous affichons nos tarifs plutôt que de vous les faire demander. Les familles qui cherchent une salle petite, bilingue et sans écrans, avec une place qui s’ouvre vraiment, trouvent généralement l’échange raisonnable.',
+          'Ile Coco est une garderie privée, non subventionnée. Nous ne faisons pas partie du réseau à contribution réduite du Québec : aucune liste gouvernementale, aucune année d’attente. Les familles qui cherchent une salle petite, bilingue et sans écrans — avec de la place pour les bébés comme pour les tout-petits — et une place qui s’ouvre vraiment, trouvent généralement l’échange raisonnable.',
       },
     ],
     statsTitle: 'Où nous en sommes',
@@ -287,7 +229,7 @@ export const ABOUT_COPY: Record<Locale, AboutCopy> = {
       { value: '2018', label: 'Ouverture de Somerled (NDG)' },
       { value: '2022', label: 'Ouverture de Lachine' },
       { value: '7:1', label: 'Maximum d’enfants par éducateur' },
-      { value: '18 mois – 5 ans', label: 'Âges accueillis' },
+      { value: '7 mois – 5 ans', label: 'Âges accueillis' },
     ],
   },
 }
@@ -337,9 +279,9 @@ export const CONTACT_COPY: Record<Locale, ContactCopy> = {
 
 export const FAQ_PAGE_COPY: Record<Locale, FaqPageCopy> = {
   en: {
-    metaTitle: 'Daycare FAQ — Ages, Ratios, Rates, Waiting List | Ile Coco',
+    metaTitle: 'Daycare FAQ — Ages from 7 Months, Ratios, Waiting List | Ile Coco',
     metaDescription:
-      'Answers about Ile Coco daycare in NDG (Somerled) and Lachine: ages accepted, educator ratio, allergies, screens, rates, and whether we are subsidized.',
+      'Answers about Ile Coco daycare in NDG (Somerled) and Lachine: ages accepted from 7 months, educator ratio, allergies, screens, and whether we are subsidized.',
     eyebrow: 'Honest answers',
     h1: 'Daycare questions parents actually ask',
     intro:
@@ -354,8 +296,8 @@ export const FAQ_PAGE_COPY: Record<Locale, FaqPageCopy> = {
         a: 'Both locations are open Monday to Friday, 7:00 to 18:00. We are closed on statutory holidays, and we give notice well ahead of any closure.',
       },
       {
-        q: 'How much does it cost?',
-        a: 'Full-fee spots start at $58 per day and drop-in days at $72, all-inclusive — meals, snacks, materials, and outings are all in the rate. Full details are on the tuition page, and we confirm everything in writing before enrolment.',
+        q: 'Do you take babies?',
+        a: 'Yes. We welcome babies from 7 months in our nursery, and we have toddler and preschool rooms right through to 5 years. If you have seen an older starting age listed anywhere, it is out of date — please call and ask.',
       },
       {
         q: 'Can we visit before deciding?',
@@ -363,7 +305,7 @@ export const FAQ_PAGE_COPY: Record<Locale, FaqPageCopy> = {
       },
       {
         q: 'Which location should we choose?',
-        a: 'Whichever is closer to your daily route — the programming, the ratio, and the rates are identical at both. Somerled has been open since 2018 and Lachine since 2022. If one has no space, we will tell you honestly whether the other does.',
+        a: 'Whichever is closer to your daily route — the programming and the ratio are identical at both, and both have a nursery for babies. Somerled has been open since 2018 and Lachine since 2022. If one has no space, we will tell you honestly whether the other does.',
       },
     ],
     ctaTitle: 'Still have a question?',
@@ -371,9 +313,9 @@ export const FAQ_PAGE_COPY: Record<Locale, FaqPageCopy> = {
       'Email info@ilecoco.com or call (514) 574-4695. A real person answers, usually the same day.',
   },
   fr: {
-    metaTitle: 'FAQ garderie — âges, ratios, tarifs, liste d’attente | Ile Coco',
+    metaTitle: 'FAQ garderie — âges dès 7 mois, ratios, liste d’attente | Ile Coco',
     metaDescription:
-      'Réponses sur la garderie Ile Coco à NDG (Somerled) et Lachine : âges acceptés, ratio, allergies, écrans, tarifs, et si nous sommes subventionnés.',
+      'Réponses sur la garderie Ile Coco à NDG (Somerled) et Lachine : âges acceptés dès 7 mois, ratio, allergies, écrans, et si nous sommes subventionnés.',
     eyebrow: 'Des réponses honnêtes',
     h1: 'Les questions que les parents posent vraiment',
     intro:
@@ -388,8 +330,8 @@ export const FAQ_PAGE_COPY: Record<Locale, FaqPageCopy> = {
         a: 'Les deux emplacements sont ouverts du lundi au vendredi, de 7h00 à 18h00. Nous sommes fermés les jours fériés, et nous annonçons toute fermeture bien à l’avance.',
       },
       {
-        q: 'Combien ça coûte?',
-        a: 'Les places à tarif régulier débutent à 58 $ par jour et les journées sur appel à 72 $, tout inclus — repas, collations, matériel et sorties sont compris. Tous les détails sont sur la page des frais, et tout est confirmé par écrit avant l’inscription.',
+        q: 'Acceptez-vous les bébés?',
+        a: 'Oui. Nous accueillons les bébés dès 7 mois à la pouponnière, et nous avons des groupes de tout-petits et de préscolaire jusqu’à 5 ans. Si vous avez vu un âge d’admission plus élevé quelque part, l’information est périmée — appelez-nous.',
       },
       {
         q: 'Peut-on visiter avant de décider?',
@@ -397,7 +339,7 @@ export const FAQ_PAGE_COPY: Record<Locale, FaqPageCopy> = {
       },
       {
         q: 'Quel emplacement choisir?',
-        a: 'Celui qui est le plus près de votre trajet quotidien — la programmation, le ratio et les tarifs sont identiques aux deux. Somerled est ouverte depuis 2018 et Lachine depuis 2022. Si l’une n’a pas de place, nous vous dirons honnêtement si l’autre en a.',
+        a: 'Celui qui est le plus près de votre trajet quotidien — la programmation et le ratio sont identiques aux deux, et les deux ont une pouponnière. Somerled est ouverte depuis 2018 et Lachine depuis 2022. Si l’une n’a pas de place, nous vous dirons honnêtement si l’autre en a.',
       },
     ],
     ctaTitle: 'Une autre question?',

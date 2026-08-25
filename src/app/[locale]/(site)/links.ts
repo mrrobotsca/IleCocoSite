@@ -17,7 +17,6 @@ export const NAV_LINKS = [
   { key: 'programs', path: '/programs' },
   { key: 'somerled', path: '/locations/somerled' },
   { key: 'lachine', path: '/locations/lachine' },
-  { key: 'tuition', path: '/tuition' },
   { key: 'faq', path: '/faq' },
   { key: 'contact', path: '/contact' },
 ] as const

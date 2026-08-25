@@ -56,11 +56,13 @@ export const getDaycareLocationSchema = (location: DaycareLocation, locale: Loca
     url: pageUrl,
     telephone: location.phone,
     email: location.email,
-    priceRange: '$$',
+    // No `priceRange`. The site does not state fees anywhere — cost is discussed in
+    // person on a tour — and this property would put a price signal into search
+    // results that no page backs up.
     description:
       locale === 'fr'
-        ? `Garderie bilingue à ${location.neighbourhood}, Montréal. Petits groupes, repas maison, sans écrans. Pour enfants de 18 mois à 5 ans.`
-        : `Bilingual daycare in ${location.neighbourhood}, Montréal. Small groups, house-made meals, screen-free. For children 18 months to 5 years.`,
+        ? `Garderie bilingue à ${location.neighbourhood}, Montréal. Petits groupes, repas maison, sans écrans. Pour enfants de 7 mois à 5 ans, pouponnière incluse.`
+        : `Bilingual daycare in ${location.neighbourhood}, Montréal. Small groups, house-made meals, screen-free. For children 7 months to 5 years, nursery included.`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: location.addressLine,
@@ -85,7 +87,8 @@ export const getDaycareLocationSchema = (location: DaycareLocation, locale: Loca
     availableLanguage: ['en', 'fr'],
     audience: {
       '@type': 'PeopleAudience',
-      suggestedMinAge: 1.5,
+      // 7 months, expressed in years as schema.org requires.
+      suggestedMinAge: 0.58,
       suggestedMaxAge: 5,
     },
     knowsLanguage: ['en', 'fr'],
