@@ -77,6 +77,9 @@ export const env = createEnv({
 
     // Ile CoCo admin: comma-separated email allowlist for /dashboard/admin access
     ADMIN_EMAILS: z.string().optional(),
+
+    // Vercel Cron auth for /api/cron/keep-alive (keeps the Supabase free plan from pausing)
+    CRON_SECRET: z.string().min(16).optional(),
   },
 
   client: {
@@ -149,6 +152,7 @@ export const env = createEnv({
     PREMIUM_PURCHASE_STRIPE_PRICE_ID: process.env.PREMIUM_PURCHASE_STRIPE_PRICE_ID,
     PREMIUM_PURCHASE_STRIPE_WEBHOOK_SECRET: process.env.PREMIUM_PURCHASE_STRIPE_WEBHOOK_SECRET,
     ADMIN_EMAILS: process.env.ADMIN_EMAILS,
+    CRON_SECRET: process.env.CRON_SECRET,
     PAYMENT_PROVIDER: process.env.PAYMENT_PROVIDER,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
