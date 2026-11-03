@@ -1,24 +1,22 @@
 import type { Metadata } from 'next'
 import { headers } from 'next/headers'
-import {
-  Geist,
-  Bricolage_Grotesque,
-  Quicksand,
-  Fraunces,
-  Caveat,
-} from 'next/font/google'
+import { Geist, Quicksand, Fraunces, Caveat } from 'next/font/google'
 
 import '@/app/_styles/globals.css'
 import { QueryProvider } from '@/app/_providers/query-provider'
+import { AnalyticsListeners } from '@/components/analytics/analytics-listeners'
+import { GoogleTag } from '@/components/analytics/google-tag'
 import { ToastProvider } from '@/components/ui/toast'
 import { generateMetadata, siteConfig } from '@/lib/seo'
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'], display: 'swap' })
-
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: '--font-bricolage-grotesque',
+// Only Quicksand (all site text) and Fraunces italic (headline accents) are
+// preloaded. Geist is the dashboard font and Caveat is decorative, so preloading
+// them only competed with the first paint on mobile.
+const geistSans = Geist({
+  variable: '--font-geist-sans',
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
 })
 
 const quicksand = Quicksand({
@@ -28,10 +26,11 @@ const quicksand = Quicksand({
   display: 'swap',
 })
 
+// Only ever used through `.font-italic-serif`, so the upright style isn't loaded.
 const fraunces = Fraunces({
   variable: '--font-fraunces',
   subsets: ['latin'],
-  style: ['normal', 'italic'],
+  style: ['italic'],
   display: 'swap',
 })
 
@@ -40,6 +39,7 @@ const caveat = Caveat({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
   display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -55,6 +55,10 @@ export const metadata: Metadata = {
   },
 }
 
+/** The public FR/EN site — the only pages that carry the Google tag. */
+const isSitePath = (pathname: string | null): boolean =>
+  !!pathname && /^\/(en|fr)(\/|$)/.test(pathname)
+
 const detectLangFromPath = (pathname: string | null): 'en' | 'fr' => {
   if (!pathname) return 'en'
   if (pathname === '/fr' || pathname.startsWith('/fr/')) return 'fr'
@@ -68,12 +72,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={lang}>
+      <head>{isSitePath(pathname) && <GoogleTag />}</head>
       <body
-        className={`${geistSans.variable} ${bricolageGrotesque.variable} ${quicksand.variable} ${fraunces.variable} ${caveat.variable} antialiased`}
+        className={`${geistSans.variable} ${quicksand.variable} ${fraunces.variable} ${caveat.variable} antialiased`}
       >
         <QueryProvider>
           <ToastProvider>{children}</ToastProvider>
         </QueryProvider>
+        {/* Here rather than in [locale]/layout so it survives FR↔EN switches. */}
+        {isSitePath(pathname) && <AnalyticsListeners />}
       </body>
     </html>
   )

@@ -243,7 +243,7 @@ export const CONTACT_COPY: Record<Locale, ContactCopy> = {
     h1: 'Get in touch with Ile Coco',
     intro:
       'Two homes in Montréal, one phone number and one inbox. The fastest way to see a room is to book a tour; the fastest way to hold your place is the waiting list.',
-    visitTitle: 'Book a visit',
+    visitTitle: 'Book a tour',
     visitBody:
       'Tours always include a cup of tea and a slow walk through every room. Pick a time that works and we will match you with a moment when the rooms are humming.',
     waitlistTitle: 'Join the waiting list',
@@ -345,5 +345,45 @@ export const FAQ_PAGE_COPY: Record<Locale, FaqPageCopy> = {
     ctaTitle: 'Une autre question?',
     ctaBody:
       'Écrivez à info@ilecoco.com ou appelez le (514) 574-4695. Une vraie personne répond, souvent le jour même.',
+  },
+}
+
+export type ThankYouCopy = PageMeta & {
+  nextTitle: string
+  nextBody: string
+  bookTour: string
+  call: string
+  home: string
+}
+
+/** Shown after a successful waitlist submit (/fr/merci, /en/thank-you). Not indexed. */
+export const THANK_YOU_COPY: Record<Locale, ThankYouCopy> = {
+  en: {
+    metaTitle: 'Thank you — you are on the waiting list | Ile Coco',
+    metaDescription: 'Your Ile Coco waiting-list application was received.',
+    eyebrow: 'Waiting list',
+    h1: 'Thank you — we have your application',
+    intro:
+      'You are on the Ile Coco waiting list. A real person will reply within a day or two, by email.',
+    nextTitle: 'While you wait',
+    nextBody:
+      'The best way to get a feel for Ile Coco is to see it. Book a tour, or call us with any question.',
+    bookTour: 'Book a tour',
+    call: 'Call (514) 574-4695',
+    home: 'Back to home',
+  },
+  fr: {
+    metaTitle: 'Merci — vous êtes sur la liste d’attente | Ile Coco',
+    metaDescription: 'Votre demande pour la liste d’attente d’Ile Coco a bien été reçue.',
+    eyebrow: 'Liste d’attente',
+    h1: 'Merci — nous avons bien reçu votre demande',
+    intro:
+      'Vous êtes sur la liste d’attente d’Ile Coco. Une vraie personne vous répondra d’ici un jour ou deux, par courriel.',
+    nextTitle: 'En attendant',
+    nextBody:
+      'Le meilleur moyen de découvrir Ile Coco, c’est de venir la voir. Réservez une visite, ou appelez-nous pour toute question.',
+    bookTour: 'Réserver une visite',
+    call: 'Appeler le (514) 574-4695',
+    home: 'Retour à l’accueil',
   },
 }

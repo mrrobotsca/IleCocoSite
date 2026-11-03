@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils/css'
 import { useLang } from './lang-context'
 import { COPY } from './copy'
 import { IleCocoLogo } from './doodles'
-import { BOOKING_URL, NAV_LINKS } from './links'
+import { NAV_LINKS, bookTourHref } from './links'
 
 export const DaycareNav = () => {
   const { lang, setLang, pathFor } = useLang()
@@ -90,17 +90,15 @@ export const DaycareNav = () => {
               </Link>
             ))}
           </div>
-          <a
-            href={BOOKING_URL}
-            target='_blank'
-            rel='noopener noreferrer'
+          <Link
+            href={bookTourHref(lang)}
             className='hidden items-center gap-2 rounded-full bg-charcoal-deep px-[18px] py-2.5 font-display text-[13px] font-semibold text-porcelain transition-all hover:-translate-y-0.5 hover:bg-black hover:shadow-[0_8px_24px_rgba(0,0,0,0.18)] sm:inline-flex'
           >
             {ctaLabel}
             <span className='inline-flex h-7 w-7 items-center justify-center rounded-full bg-porcelain text-[13px] text-charcoal-deep'>
               →
             </span>
-          </a>
+          </Link>
           <button
             onClick={() => setOpen(true)}
             className='grid h-10 w-10 place-items-center rounded-full bg-charcoal-deep/[0.06] text-charcoal-deep lg:hidden'
@@ -158,10 +156,8 @@ export const DaycareNav = () => {
                 ))}
               </nav>
 
-              <a
-                href={BOOKING_URL}
-                target='_blank'
-                rel='noopener noreferrer'
+              <Link
+                href={bookTourHref(lang)}
                 onClick={() => setOpen(false)}
                 className='mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-charcoal-deep px-7 py-4 font-display text-[15px] font-semibold text-porcelain'
               >
@@ -169,7 +165,7 @@ export const DaycareNav = () => {
                 <span className='inline-flex h-7 w-7 items-center justify-center rounded-full bg-porcelain text-[13px] text-charcoal-deep'>
                   →
                 </span>
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Loader2, X } from "lucide-react";
 import { ZodError, type ZodSchema } from "zod";
@@ -16,9 +17,11 @@ import {
   type WaitlistSubmission,
 } from "@/lib/waitlist/schemas";
 import { useSubmitWaitlist } from "@/lib/waitlist/hooks";
+import { markLeadSubmitted } from "@/lib/analytics/google-ads";
 import { COPY } from "./copy";
 import { useLang } from "./lang-context";
 import { useWizard } from "./wizard-context";
+import { THANK_YOU_PATH } from "./links";
 import { Bloom, IleCocoLogo, Sparkle } from "./doodles";
 
 const TOTAL_STEPS = 3;
@@ -67,6 +70,7 @@ export const WaitlistWizard = () => {
   const [errors, setErrors] = useState<Errors>({});
 
   const submit = useSubmitWaitlist();
+  const router = useRouter();
 
   // Reset on close
   useEffect(() => {
@@ -161,7 +165,11 @@ export const WaitlistWizard = () => {
         lang,
       });
       await submit.mutateAsync(payload);
-      setStep(TOTAL_STEPS); // success
+      setStep(TOTAL_STEPS); // success — shown while the thank-you page loads
+      // The thank-you page fires the Google Ads `generate_lead` conversion, and
+      // only when this flag is set, i.e. after a real successful submit.
+      markLeadSubmitted();
+      router.push(`/${lang}${THANK_YOU_PATH[lang]}`);
     } catch (err) {
       if (err instanceof ZodError) {
         const next: Errors = {};

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { PageShell } from '../(site)/page-shell'
 import { PROGRAMS_COPY } from '../(site)/copy-pages'
-import { BOOKING_URL } from '../(site)/links'
+import { bookTourHref } from '../(site)/links'
 import { JsonLd } from '@/components/seo/json-ld'
 import {
   generateMetadata as buildMetadata,
@@ -15,6 +15,7 @@ import {
 } from '@/lib/seo'
 import { getServiceSchema } from '@/lib/structured-data'
 import { getBrandConfig } from '@/config/branding'
+import { ContactText } from '../(site)/contact-text'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -147,16 +148,14 @@ export default async function ProgramsPage({ params }: Props) {
               {copy.ctaTitle}
             </h2>
             <p className='mx-auto mt-3 max-w-[520px] text-[15px] leading-[1.6] text-charcoal-deep/70'>
-              {copy.ctaBody}
+              <ContactText>{copy.ctaBody}</ContactText>
             </p>
-            <a
-              href={BOOKING_URL}
-              target='_blank'
-              rel='noopener noreferrer'
+            <Link
+              href={bookTourHref(locale)}
               className='mt-6 inline-flex items-center gap-2.5 rounded-full bg-charcoal-deep px-7 py-3.5 font-display text-[15px] font-semibold text-porcelain transition-all hover:-translate-y-0.5 hover:bg-black'
             >
-              {locale === 'fr' ? 'Réserver une visite' : 'Book a visit'}
-            </a>
+              {locale === 'fr' ? 'Réserver une visite' : 'Book a tour'}
+            </Link>
           </div>
         </section>
       </PageShell>

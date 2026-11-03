@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation'
 import { LOCALES, type Locale } from '@/lib/seo'
+import { ConsentBanner } from '@/components/analytics/consent-banner'
+import { MobileCallBar } from './(site)/mobile-call-bar'
 
 const isLocale = (v: string): v is Locale => (LOCALES as ReadonlyArray<string>).includes(v)
 
@@ -15,7 +17,13 @@ export default async function LocaleLayout({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
 
-  // The locale-aware <html lang> attribute is set by the root layout based on
-  // the URL prefix (see src/app/layout.tsx). Children render here unchanged.
-  return <>{children}</>
+  // The locale-aware <html lang> attribute and the Google tag in <head> are set
+  // by the root layout based on the URL prefix (see src/app/layout.tsx).
+  return (
+    <>
+      {children}
+      <MobileCallBar lang={locale} />
+      <ConsentBanner lang={locale} />
+    </>
+  )
 }

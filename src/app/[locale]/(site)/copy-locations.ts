@@ -94,7 +94,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       visitTitle: 'Come see the Somerled house',
       visitBody:
         'Tours always include a cup of tea and a slow walk through every room. Book a visit and we’ll match you with a time when the rooms are humming — usually right after morning snack.',
-      ctaPrimary: 'Book a visit',
+      ctaPrimary: 'Book a tour',
       ctaSecondary: 'Join the waiting list',
       addressLabel: 'Address',
       hoursLabel: 'Hours',
@@ -125,7 +125,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'How do I book a tour?',
-          a: 'Use the “Book a visit” button above or call us at (514) 574-4695. Tours always include tea.',
+          a: 'Use the “Book a tour” button above or call us at (514) 574-4695. Tours always include tea.',
         },
       ],
       otherLocationCta: 'Looking for our Lachine daycare?',
@@ -189,7 +189,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
       visitTitle: 'Come see the Lachine house',
       visitBody:
         'Tours are unhurried and always include tea. Book a visit and we’ll match you with a time when the windows are full of sun and the rooms are humming.',
-      ctaPrimary: 'Book a visit',
+      ctaPrimary: 'Book a tour',
       ctaSecondary: 'Join the waiting list',
       addressLabel: 'Address',
       hoursLabel: 'Hours',
@@ -220,7 +220,7 @@ export const LOCATIONS_COPY: Record<Lang, LocationCopySchema> = {
         },
         {
           q: 'How do I book a visit?',
-          a: 'Use the “Book a visit” button above or call (514) 574-4695. Tours always include tea.',
+          a: 'Use the “Book a tour” button above or call (514) 574-4695. Tours always include tea.',
         },
       ],
       otherLocationCta: 'Looking for our NDG (Somerled) daycare?',

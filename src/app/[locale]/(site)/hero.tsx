@@ -7,11 +7,6 @@ import { COPY, PHOTOS } from './copy'
 import { Blob, Bloom, CocoTree, HandUnderline, Rocket, Sparkle, StarBurst } from './doodles'
 import { BookButton, Eyebrow, WaitlistButton } from './ui'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
-}
-
 export const Hero = () => {
   const { lang } = useLang()
   const c = COPY.hero[lang]
@@ -30,15 +25,14 @@ export const Hero = () => {
       />
 
       <div className='relative mx-auto max-w-[1440px] px-8'>
-        <motion.div
-          initial='hidden'
-          animate='show'
-          variants={fadeUp}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className='mb-7 text-center'
-        >
+        {/*
+          The headline block renders visible from the first paint. It used to fade
+          in from opacity 0 via framer-motion, which kept the largest text on the
+          page invisible until the JS bundle hydrated — ~5 s on mobile.
+        */}
+        <div className='mb-7 text-center'>
           <Eyebrow>{c.eyebrow}</Eyebrow>
-        </motion.div>
+        </div>
 
         <div className='grid items-center gap-7 lg:grid-cols-[1fr_1.6fr_1fr]'>
           {/* Left arched photo card */}
@@ -58,7 +52,6 @@ export const Hero = () => {
                 fill
                 sizes='280px'
                 className='object-cover'
-                priority
               />
             </div>
             <Sparkle
@@ -75,13 +68,7 @@ export const Hero = () => {
           </motion.div>
 
           {/* Center copy */}
-          <motion.div
-            initial='hidden'
-            animate='show'
-            variants={fadeUp}
-            transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-            className='relative text-center'
-          >
+          <div className='relative text-center'>
             <h1 className='font-display text-[clamp(42px,5.6vw,84px)] font-medium leading-[1.02] tracking-[-0.02em] text-charcoal-deep'>
               {c.title1}{' '}
               <span className='relative inline-block'>
@@ -112,7 +99,7 @@ export const Hero = () => {
             >
               {c.since}
             </span>
-          </motion.div>
+          </div>
 
           {/* Right arched photo card */}
           <motion.div
@@ -131,7 +118,6 @@ export const Hero = () => {
                 fill
                 sizes='280px'
                 className='object-cover'
-                priority
               />
             </div>
             <Rocket
@@ -158,7 +144,6 @@ export const Hero = () => {
                 fill
                 sizes='(max-width: 1024px) 100vw'
                 className='object-cover'
-                priority
               />
             </div>
             <Rocket
