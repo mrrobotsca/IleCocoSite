@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import { PageShell } from '../(site)/page-shell'
 import { ABOUT_COPY } from '../(site)/copy-pages'
 import { PHOTOS } from '../(site)/copy'
-import { BOOKING_URL } from '../(site)/links'
+import { bookTourHref } from '../(site)/links'
 import { JsonLd } from '@/components/seo/json-ld'
 import {
   generateMetadata as buildMetadata,
@@ -113,14 +113,12 @@ export default async function AboutPage({ params }: Props) {
               : 'The best way to understand Ile Coco is to spend an hour in the rooms.'}
           </p>
           <div className='mt-6 flex flex-wrap items-center justify-center gap-3'>
-            <a
-              href={BOOKING_URL}
-              target='_blank'
-              rel='noopener noreferrer'
+            <Link
+              href={bookTourHref(locale)}
               className='inline-flex items-center gap-2.5 rounded-full bg-charcoal-deep px-7 py-3.5 font-display text-[15px] font-semibold text-porcelain transition-all hover:-translate-y-0.5 hover:bg-black'
             >
-              {locale === 'fr' ? 'Réserver une visite' : 'Book a visit'}
-            </a>
+              {locale === 'fr' ? 'Réserver une visite' : 'Book a tour'}
+            </Link>
             <Link
               href={getLocaleHref(locale, '/programs')}
               className='inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-charcoal-deep/20 px-7 py-3.5 font-display text-[15px] font-semibold text-charcoal-deep transition-all hover:bg-charcoal-deep/5'

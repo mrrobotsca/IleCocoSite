@@ -82,10 +82,10 @@ export default async function PrivacyPage() {
               <p>
                 you can request deletion or correction of your data anytime at{' '}
                 <a
-                  href='mailto:support@shipfree.dev'
+                  href='mailto:info@ilecoco.com'
                   className='text-(--brand-accent-hex) underline-offset-4 hover:text-(--brand-accent-hover-hex) hover:underline'
                 >
-                  support@shipfree.dev
+                  info@ilecoco.com
                 </a>
                 .
               </p>

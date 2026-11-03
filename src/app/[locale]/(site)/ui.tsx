@@ -1,9 +1,11 @@
 'use client'
 
+import Link from 'next/link'
 import { type ButtonHTMLAttributes, type AnchorHTMLAttributes, forwardRef } from 'react'
 import { cn } from '@/lib/utils/css'
+import { useLang } from './lang-context'
 import { useWizard } from './wizard-context'
-import { BOOKING_URL } from './links'
+import { bookTourHref } from './links'
 
 const PILL_BASE =
   'inline-flex items-center gap-2.5 rounded-full font-display font-semibold text-[15px] tracking-[0.01em] transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-deep focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain'
@@ -98,24 +100,27 @@ export const Eyebrow = ({
  * have to remember the wiring twice.
  */
 /**
- * Anchor pill that opens Calendly in a new tab. Use for any "Book a visit / tour" CTA.
+ * Pill linking to the Calendly embed on the contact page. Use for any "Book a
+ * visit / tour" CTA — bookings made there are tracked as conversions, bookings
+ * made on calendly.com directly are not.
  */
 export const BookButton = forwardRef<
   HTMLAnchorElement,
   Omit<LinkPillProps, 'href' | 'target' | 'rel'>
->(({ variant = 'dark', size = 'md', withArrow = false, className, children, ...rest }, ref) => (
-  <a
-    ref={ref}
-    href={BOOKING_URL}
-    target='_blank'
-    rel='noopener noreferrer'
-    className={cn(PILL_BASE, VARIANTS[variant], SIZES[size], className)}
-    {...rest}
-  >
-    {children}
-    {withArrow && <ArrowChip variant={variant} />}
-  </a>
-))
+>(({ variant = 'dark', size = 'md', withArrow = false, className, children, ...rest }, ref) => {
+  const { lang } = useLang()
+  return (
+    <Link
+      ref={ref}
+      href={bookTourHref(lang)}
+      className={cn(PILL_BASE, VARIANTS[variant], SIZES[size], className)}
+      {...rest}
+    >
+      {children}
+      {withArrow && <ArrowChip variant={variant} />}
+    </Link>
+  )
+})
 BookButton.displayName = 'BookButton'
 
 export const WaitlistButton = forwardRef<

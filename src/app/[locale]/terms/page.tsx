@@ -51,10 +51,10 @@ export default async function TermsPage() {
                 you're responsible for keeping your account secure. if you suspect unauthorized
                 access, contact us immediately at{' '}
                 <a
-                  href='mailto:support@shipfree.dev'
+                  href='mailto:info@ilecoco.com'
                   className='text-(--brand-accent-hex) underline-offset-4 hover:text-(--brand-accent-hover-hex) hover:underline'
                 >
-                  support@shipfree.dev
+                  info@ilecoco.com
                 </a>
                 .
               </p>

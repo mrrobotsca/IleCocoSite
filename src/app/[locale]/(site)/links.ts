@@ -1,8 +1,22 @@
+import type { Lang } from './copy'
+
 // External links — single source of truth so we never duplicate-and-drift.
+// BOOKING_URL is only the Calendly embed source: tour CTAs point at the embed on
+// the contact page (bookTourHref) so bookings can be tracked as conversions.
 export const BOOKING_URL = 'https://calendly.com/ilecocodaycare'
 export const INSTAGRAM_URL = 'https://www.instagram.com/ilecocodaycare/'
 export const INSTAGRAM_HANDLE = '@ilecocodaycare'
 export const CONTACT_EMAIL = 'info@ilecoco.com'
+export const EMAIL_HREF = `mailto:${CONTACT_EMAIL}`
+export const PHONE_DISPLAY = '(514) 574-4695'
+export const PHONE_HREF = 'tel:+15145744695'
+
+/** Anchor id of the Calendly embed on the contact page. */
+export const BOOK_TOUR_ANCHOR = 'book-tour'
+export const bookTourHref = (lang: Lang) => `/${lang}/contact#${BOOK_TOUR_ANCHOR}`
+
+/** Thank-you page after a waitlist submit — the slug differs per language. */
+export const THANK_YOU_PATH: Record<Lang, string> = { fr: '/merci', en: '/thank-you' }
 
 /**
  * Primary navigation, as real locale-prefixed routes.

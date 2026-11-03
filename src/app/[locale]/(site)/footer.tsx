@@ -7,7 +7,8 @@ import { useLang } from './lang-context'
 import { COPY, type Lang } from './copy'
 import { Blob, CocoTree, IleCocoLogo, Sparkle } from './doodles'
 import { useWizard } from './wizard-context'
-import { BOOKING_URL, CONTACT_EMAIL, INSTAGRAM_URL } from './links'
+import { ConsentSettingsLink } from '@/components/analytics/consent-banner'
+import { CONTACT_EMAIL, INSTAGRAM_URL, PHONE_HREF, bookTourHref } from './links'
 
 export const DaycareFooter = () => {
   const { lang } = useLang()
@@ -57,17 +58,15 @@ export const DaycareFooter = () => {
             </p>
 
             <div className='flex flex-col items-center justify-center gap-3 sm:flex-row'>
-              <a
-                href={BOOKING_URL}
-                target='_blank'
-                rel='noopener noreferrer'
+              <Link
+                href={bookTourHref(lang)}
                 className='group inline-flex items-center gap-2.5 rounded-full bg-sunlit-clay px-7 py-4 font-display text-[15px] font-semibold text-charcoal-deep transition-all hover:-translate-y-0.5 hover:bg-sunlit-clay-soft'
               >
                 {ctaC.cta1}
                 <span className='inline-flex h-7 w-7 items-center justify-center rounded-full bg-charcoal-deep text-[13px] text-porcelain'>
                   →
                 </span>
-              </a>
+              </Link>
               <button
                 type='button'
                 onClick={openWaitlist}
@@ -94,7 +93,7 @@ export const DaycareFooter = () => {
               <div>{f.addr}</div>
               <div>
                 <a
-                  href={`tel:${f.phone.replace(/\s|-|\(|\)/g, '')}`}
+                  href={PHONE_HREF}
                   className='hover:text-porcelain'
                 >
                   {f.phone}
@@ -130,6 +129,10 @@ export const DaycareFooter = () => {
         <div className='mx-auto mt-16 flex max-w-[1280px] flex-wrap items-center justify-between gap-4 border-t border-porcelain/10 px-8 pt-6 text-[12px] text-porcelain/55'>
           <span>{f.copyright}</span>
           <div className='flex items-center gap-4'>
+            <ConsentSettingsLink
+              label={lang === 'fr' ? 'Paramètres des témoins' : 'Cookie settings'}
+              className='hover:text-porcelain'
+            />
             <a
               href={INSTAGRAM_URL}
               target='_blank'
@@ -171,11 +174,21 @@ const FooterLink = ({ label, href, lang }: { label: string; href: string; lang: 
     )
   }
 
-  if (href === 'booking' || href === 'instagram') {
+  if (href === 'booking') {
+    return (
+      <li>
+        <Link href={bookTourHref(lang)} className={FOOTER_LINK_CLASS}>
+          {label}
+        </Link>
+      </li>
+    )
+  }
+
+  if (href === 'instagram') {
     return (
       <li>
         <a
-          href={href === 'booking' ? BOOKING_URL : INSTAGRAM_URL}
+          href={INSTAGRAM_URL}
           target='_blank'
           rel='noopener noreferrer'
           className={FOOTER_LINK_CLASS}

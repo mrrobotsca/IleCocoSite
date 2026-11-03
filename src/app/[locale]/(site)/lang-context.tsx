@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, type ReactNode } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import type { Lang } from './copy'
+import { THANK_YOU_PATH } from './links'
 
 const LOCALES: ReadonlyArray<Lang> = ['en', 'fr'] as const
 
@@ -35,7 +36,9 @@ export const LangProvider = ({
 
   const pathFor = useCallback(
     (l: Lang) => {
-      const restPath = stripLocaleFromPath(pathname || '/')
+      const current = stripLocaleFromPath(pathname || '/')
+      // The thank-you page is the one route whose slug is translated.
+      const restPath = Object.values(THANK_YOU_PATH).includes(current) ? THANK_YOU_PATH[l] : current
       return restPath === '/' ? `/${l}` : `/${l}${restPath}`
     },
     [pathname]

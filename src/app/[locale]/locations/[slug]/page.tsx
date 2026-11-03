@@ -9,7 +9,7 @@ import DaycareFooter from '../../(site)/footer'
 import { WaitlistWizard } from '../../(site)/waitlist-wizard'
 import { PHOTOS } from '../../(site)/copy'
 import { LOCATIONS_COPY } from '../../(site)/copy-locations'
-import { BOOKING_URL } from '../../(site)/links'
+import { PHONE_HREF, bookTourHref } from '../../(site)/links'
 import { WaitlistButton } from '../../(site)/ui'
 import { JsonLd } from '@/components/seo/json-ld'
 import {
@@ -25,6 +25,8 @@ import {
   getServiceSchema,
 } from '@/lib/structured-data'
 import { getLocation, type DaycareLocation } from '@/config/branding'
+import { ContactText } from '../../(site)/contact-text'
+import { LazyIframe } from '@/components/ui/lazy-iframe'
 
 const SLUGS = ['somerled', 'lachine'] as const
 type Slug = (typeof SLUGS)[number]
@@ -184,14 +186,12 @@ export default async function LocationPage({ params }: Props) {
                   </p>
 
                   <div className="mt-8 flex flex-wrap items-center gap-3">
-                    <a
-                      href={BOOKING_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href={bookTourHref(locale)}
                       className="inline-flex items-center gap-2.5 rounded-full bg-charcoal-deep px-7 py-3.5 font-display text-[15px] font-semibold text-porcelain transition-all hover:-translate-y-0.5 hover:bg-black"
                     >
                       {copy.ctaPrimary}
-                    </a>
+                    </Link>
                     {/*
                       Opens the waitlist wizard in place. This used to be a link to
                       the homepage's #contact band, which navigated the visitor off
@@ -261,7 +261,7 @@ export default async function LocationPage({ params }: Props) {
                         {copy.phoneLabel}
                       </div>
                       <a
-                        href={`tel:${location.phone.replace(/[^+\d]/g, '')}`}
+                        href={PHONE_HREF}
                         className="hover:underline"
                       >
                         (514) 574-4695
@@ -280,20 +280,17 @@ export default async function LocationPage({ params }: Props) {
                   </ul>
                 </div>
 
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] sm:aspect-[5/3]">
-                  <iframe
-                    src={mapEmbedUrl}
-                    title={
-                      locale === 'fr'
-                        ? `Carte de la garderie Ile Coco à ${location.neighbourhood}`
-                        : `Map of Ile Coco daycare in ${location.neighbourhood}`
-                    }
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="h-full w-full border-0"
-                    allowFullScreen
-                  />
-                </div>
+                <LazyIframe
+                  src={mapEmbedUrl}
+                  title={
+                    locale === 'fr'
+                      ? `Carte de la garderie Ile Coco à ${location.neighbourhood}`
+                      : `Map of Ile Coco daycare in ${location.neighbourhood}`
+                  }
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                  className="relative aspect-[4/3] overflow-hidden rounded-[20px] sm:aspect-[5/3]"
+                />
               </section>
 
               {/* Why this location */}
@@ -380,14 +377,12 @@ export default async function LocationPage({ params }: Props) {
                   {copy.visitBody}
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href={BOOKING_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={bookTourHref(locale)}
                     className="inline-flex items-center gap-2.5 rounded-full bg-sunlit-clay px-7 py-3.5 font-display text-[15px] font-semibold text-charcoal-deep transition-all hover:-translate-y-0.5 hover:bg-sunlit-clay-soft"
                   >
                     {copy.ctaPrimary}
-                  </a>
+                  </Link>
                 </div>
               </section>
 
@@ -406,7 +401,7 @@ export default async function LocationPage({ params }: Props) {
                         {f.q}
                       </summary>
                       <p className="mt-3 text-[15px] leading-[1.65] text-charcoal-deep/75">
-                        {f.a}
+                        <ContactText>{f.a}</ContactText>
                       </p>
                     </details>
                   ))}

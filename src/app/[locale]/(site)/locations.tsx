@@ -8,6 +8,7 @@ import { useLang } from './lang-context'
 import { COPY, PHOTOS } from './copy'
 import { Bloom, Sparkle, Squiggle } from './doodles'
 import { BookButton, Eyebrow, SectionTitle } from './ui'
+import { PHONE_HREF } from './links'
 
 const LOCATION_SLUG: Record<string, 'somerled' | 'lachine'> = {
   Somerled: 'somerled',
@@ -231,7 +232,7 @@ export const Locations = () => {
                     </Field>
                     <Field label={c.labels.phone} className='col-span-2'>
                       <a
-                        href={`tel:${loc.phone.replace(/\s|-|\(|\)/g, '')}`}
+                        href={PHONE_HREF}
                         className='block font-display font-semibold text-charcoal-deep hover:underline'
                       >
                         {loc.phone}

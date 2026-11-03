@@ -6,6 +6,7 @@ import { useLang } from './lang-context'
 import { COPY } from './copy'
 import { CurlyArrow, Spiral } from './doodles'
 import { Eyebrow, SectionTitle } from './ui'
+import { ContactText } from './contact-text'
 
 export const FAQ = () => {
   const { lang } = useLang()
@@ -89,7 +90,7 @@ export const FAQ = () => {
                   className='overflow-hidden'
                 >
                   <p className='max-w-[640px] pb-6 text-[16px] leading-[1.6] text-ink-soft'>
-                    {it.a}
+                    <ContactText>{it.a}</ContactText>
                   </p>
                 </motion.div>
               </div>

@@ -4,8 +4,10 @@ import { notFound } from 'next/navigation'
 
 import { PageShell } from '../(site)/page-shell'
 import { CONTACT_COPY } from '../(site)/copy-pages'
-import { BOOKING_URL } from '../(site)/links'
+import { BOOKING_URL, BOOK_TOUR_ANCHOR, PHONE_DISPLAY, PHONE_HREF } from '../(site)/links'
 import { WaitlistButton } from '../(site)/ui'
+import { CalendlyEmbed } from '@/components/analytics/calendly-embed'
+import { LazyIframe } from '@/components/ui/lazy-iframe'
 import { JsonLd } from '@/components/seo/json-ld'
 import {
   generateMetadata as buildMetadata,
@@ -91,8 +93,8 @@ export default async function ContactPage({ params }: Props) {
                       <div className='text-[12px] font-semibold uppercase tracking-[0.08em] text-charcoal-deep/55'>
                         {copy.phoneLabel}
                       </div>
-                      <a href={`tel:${location.phone}`} className='hover:underline'>
-                        {location.phone}
+                      <a href={PHONE_HREF} className='hover:underline'>
+                        {PHONE_DISPLAY}
                       </a>
                     </div>
                     <div>
@@ -118,38 +120,42 @@ export default async function ContactPage({ params }: Props) {
                     <span aria-hidden='true'>→</span>
                   </Link>
                 </div>
-                <iframe
+                <LazyIframe
                   src={mapEmbedUrl}
                   title={
                     locale === 'fr'
                       ? `Carte — ${location.name}`
                       : `Map — ${location.name}`
                   }
-                  loading='lazy'
                   referrerPolicy='no-referrer-when-downgrade'
-                  className='h-[240px] w-full border-0'
+                  className='h-[240px] w-full'
                 />
               </div>
             )
           })}
         </section>
 
-        <section className='mt-16 mb-24 grid gap-6 md:grid-cols-2'>
-          <div className='rounded-[24px] border border-charcoal-deep/10 p-8'>
-            <h2 className='font-display text-[20px] font-semibold tracking-[-0.01em]'>
-              {copy.visitTitle}
-            </h2>
-            <p className='mt-3 text-[15px] leading-[1.6] text-charcoal-deep/75'>{copy.visitBody}</p>
-            <a
-              href={BOOKING_URL}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='mt-6 inline-flex items-center gap-2.5 rounded-full bg-charcoal-deep px-7 py-3.5 font-display text-[15px] font-semibold text-porcelain transition-all hover:-translate-y-0.5 hover:bg-black'
-            >
-              {locale === 'fr' ? 'Réserver une visite' : 'Book a visit'}
-            </a>
+        {/*
+          Every "Book a tour" CTA on the site lands here. Booking inside the embed
+          (rather than on calendly.com) is what lets Google Ads count it.
+        */}
+        <section id={BOOK_TOUR_ANCHOR} className='mt-16 scroll-mt-28'>
+          <h2 className='font-display text-[clamp(22px,2.6vw,30px)] font-semibold tracking-[-0.01em]'>
+            {copy.visitTitle}
+          </h2>
+          <p className='mt-3 max-w-[640px] text-[15px] leading-[1.6] text-charcoal-deep/75'>
+            {copy.visitBody}
+          </p>
+          <div className='mt-6'>
+            <CalendlyEmbed
+              url={BOOKING_URL}
+              title={locale === 'fr' ? 'Réserver une visite' : 'Book a tour'}
+            />
           </div>
-          <div className='rounded-[24px] bg-white/70 p-8 shadow-[0_6px_24px_rgba(58,58,58,0.05)]'>
+        </section>
+
+        <section className='mt-16 mb-24'>
+          <div className='max-w-[720px] rounded-[24px] bg-white/70 p-8 shadow-[0_6px_24px_rgba(58,58,58,0.05)]'>
             <h2 className='font-display text-[20px] font-semibold tracking-[-0.01em]'>
               {copy.waitlistTitle}
             </h2>
